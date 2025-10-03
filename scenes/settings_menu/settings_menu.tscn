@@ -1,0 +1,149 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj8sjte3quqjh"]
+
+[ext_resource type="Theme" uid="uid://dx2jrpheeri2w" path="res://assets/theme.tres" id="1_1rsps"]
+[ext_resource type="Script" uid="uid://4ms4qik7vw0o" path="res://scenes/settings_menu/settings_menu.gd" id="2_io11x"]
+
+[sub_resource type="Gradient" id="Gradient_p28av"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vlvk0"]
+gradient = SubResource("Gradient_p28av")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p28av"]
+
+[node name="SettingsMenu" type="CanvasLayer"]
+layer = 100
+script = ExtResource("2_io11x")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -420.0
+offset_right = 1920.0
+offset_bottom = 1500.0
+texture = SubResource("GradientTexture1D_vlvk0")
+expand_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1rsps")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p28av")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MainSettingsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SettingsTitle" type="Label" parent="PanelContainer/MarginContainer/MainSettingsContainer"]
+layout_mode = 2
+text = "settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SettingsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FullScreen" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer"]
+layout_mode = 2
+
+[node name="fullScreenLabel" type="Label" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/FullScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Full Screen"
+
+[node name="FullScreenButton" type="CheckButton" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/FullScreen"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WindowResolution" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer"]
+layout_mode = 2
+
+[node name="WinResLabel" type="Label" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/WindowResolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Resolution"
+
+[node name="ResolutionDropdown" type="OptionButton" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/WindowResolution"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MasterVolume" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/MasterVolume"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="MusicVolume" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/MusicVolume"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="SFXVolume" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/SFXVolume"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="SettingsReturnButton" type="Button" parent="PanelContainer/MarginContainer/MainSettingsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return"
+
+[connection signal="toggled" from="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/FullScreen/FullScreenButton" to="." method="_on_full_screen_button_toggled"]
+[connection signal="item_selected" from="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/WindowResolution/ResolutionDropdown" to="." method="_on_resolution_dropdown_item_selected"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/MasterVolume/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/MusicVolume/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/MainSettingsContainer/PanelContainer/MarginContainer/SettingsContainer/SFXVolume/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/MainSettingsContainer/SettingsReturnButton" to="." method="_on_settings_return_button_pressed"]

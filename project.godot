@@ -1,0 +1,34 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="LD58"
+run/main_scene="uid://csa7a3e8acaer"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://b73rar7etj8s"
+
+[autoload]
+
+SceneTransition="*res://globals/autoloads/scene_transition/scene_transition.tscn"
+Constants="*res://globals/autoloads/constants.gd"
+Music="*res://globals/autoloads/music.gd"
+Settings="*res://globals/autoloads/settings.gd"
+Sfx="*res://globals/autoloads/sfx.gd"
+TileInfo="*res://globals/autoloads/tile_info.gd"
+Utils="*res://globals/autoloads/utils.gd"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
