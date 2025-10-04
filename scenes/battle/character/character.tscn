@@ -1,20 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgsdmqqw8epq0"]
+[gd_scene load_steps=5 format=3 uid="uid://dgsdmqqw8epq0"]
 
 [ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character/character.gd" id="1_efktm"]
+[ext_resource type="PackedScene" uid="uid://dwuhcvq555vv3" path="res://WIP/lich_mesh.gltf" id="2_sytih"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7gynk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffvsa"]
+size = Vector3(1.25, 2, 1)
 
 [node name="Character" type="Node3D"]
 script = ExtResource("1_efktm")
 
+[node name="lich_mesh" parent="." instance=ExtResource("2_sytih")]
+
 [node name="Mesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
+visible = false
 mesh = SubResource("BoxMesh_7gynk")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_ffvsa")

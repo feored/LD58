@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjx0nd20g7usn"]
+
+[ext_resource type="PackedScene" uid="uid://bsrc8jrr1br1n" path="res://WIP/soul_blue.gltf" id="1_mn5tl"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mn5tl"]
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+damping_max = 18.900002
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8wm"]
+emission_enabled = true
+emission = Color(0.12941177, 0.39215687, 1, 1)
+emission_energy_multiplier = 3.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_mn5tl"]
+material = SubResource("StandardMaterial3D_wl8wm")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="Animation" id="Animation_78447"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("soul_blue:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1.1095695, 1.1892105, 1.1095695),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0.75, 0), Vector3(0, 0.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("soul_blue:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4uw31"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("soul_blue:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("soul_blue:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44wcl"]
+_data = {
+&"RESET": SubResource("Animation_4uw31"),
+&"idle": SubResource("Animation_78447")
+}
+
+[node name="SkullBlue" type="Node3D"]
+
+[node name="soul_blue" parent="." instance=ExtResource("1_mn5tl")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="soul_blue"]
+amount = 50
+explosiveness = 0.6
+process_material = SubResource("ParticleProcessMaterial_mn5tl")
+draw_pass_1 = SubResource("SphereMesh_mn5tl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_44wcl")
+}
+autoplay = "idle"

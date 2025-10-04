@@ -7,6 +7,7 @@ var spawn_rate: float = 2.0 # seconds between spawns
 var next_spawn_time: float = 0.0
 
 var enemy_scene = preload("res://scenes/battle/enemy/enemy.tscn")
+var soul_scene = preload("res://scenes/battle/souls/skull_blue.tscn")
 var enemies: Array = []
 
 var time_elapsed: float = 0.0
@@ -29,14 +30,22 @@ func spawn_enemy() -> void:
         0.5,
         randf() * Constants.ARENA_SIZE_Y - Constants.ARENA_SIZE_Y / 2
     )
-    enemy_instance.died.connect(func(enemy: Node3D) -> void:
-        enemies.erase(enemy)
-        enemy.queue_free()
-    )
+    enemy_instance.died.connect(enemy_died)
     add_child(enemy_instance)
     enemy_instance.player_character = player_character
     # enemy_instance.get_enemies = func(): return self.enemies
     enemies.push_back(enemy_instance)
+
+func enemy_died(enemy: Node3D) -> void:
+    var enemy_position = enemy.global_position
+    enemies.erase(enemy)
+    enemy.queue_free()
+    spawn_item(enemy_position)
+
+func spawn_item(position: Vector3) -> void:
+    var soul_instance = soul_scene.instantiate()
+    soul_instance.position = position + Vector3(0, 0.5, 0)
+    add_child(soul_instance)
 
 func check_wave() -> void:
     if time_elapsed > WAVE_DURATION:
