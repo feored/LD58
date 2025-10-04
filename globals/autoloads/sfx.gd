@@ -24,7 +24,7 @@ const RANDOM_PITCH_SCALE = {
 }
 
 const CUSTOM_VOLUME = {
-    #Track.Sink: -15, Track.Rumble: -5, Track.Move: -15, Track.Built: -10, Track.Sacrifice: -15, Track.Emerge: -15, Track.Reinforce: -15
+    Track.Confirm: -15
 }
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.CalmWind: -45}

@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://dgsdmqqw8epq0"]
+[gd_scene load_steps=16 format=4 uid="uid://dgsdmqqw8epq0"]
 
 [ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character/character.gd" id="1_efktm"]
 [ext_resource type="PackedScene" uid="uid://dwuhcvq555vv3" path="res://WIP/lich_mesh.gltf" id="2_sytih"]
 [ext_resource type="Texture2D" uid="uid://bga75m6eufye" path="res://scenes/battle/character/lich_anim_lich Base Color.png" id="2_txcok"]
+[ext_resource type="Script" uid="uid://5re8071q4w06" path="res://scenes/battle/character/inventory.gd" id="4_nonsa"]
 
 [sub_resource type="Animation" id="Animation_go01t"]
 resource_name = "lich_death"
@@ -601,3 +602,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_ffvsa")
+
+[node name="Inventory" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_nonsa")
