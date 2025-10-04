@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=9 format=3 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
 [ext_resource type="PackedScene" path="res://WIP/arena.glb" id="2_0yh6x"]
+[ext_resource type="Script" uid="uid://8cftwb83irh6" path="res://scenes/battle/camera_3d.gd" id="3_h0kxc"]
 [ext_resource type="Script" uid="uid://bvfx32xj7ds6y" path="res://scenes/battle/UI/battle_ui.gd" id="3_xd4uy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
@@ -29,8 +30,10 @@ transform = Transform3D(-0.41606382, 0.9079657, 0.04989146, -0.002819998, -0.056
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r1e00")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 19, 0)
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("character")]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 10, 4.11)
+script = ExtResource("3_h0kxc")
+character = NodePath("../Character")
 
 [node name="Character" parent="." node_paths=PackedStringArray("battle") instance=ExtResource("1_ffvsa")]
 unique_name_in_owner = true

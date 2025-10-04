@@ -26,9 +26,9 @@ func manage_spawn() -> void:
 func spawn_enemy() -> void:
     var enemy_instance = enemy_scene.instantiate()
     enemy_instance.position = Vector3(
-        randf() * Constants.ARENA_SIZE_X - Constants.ARENA_SIZE_X / 2,
+        randf() * Constants.ARENA_SIZE_X - (Constants.ARENA_SIZE_X / 2.0),
         0.5,
-        randf() * Constants.ARENA_SIZE_Y - Constants.ARENA_SIZE_Y / 2
+        randf() * Constants.ARENA_SIZE_Y - (Constants.ARENA_SIZE_Y / 2.0)
     )
     enemy_instance.died.connect(enemy_died)
     add_child(enemy_instance)
