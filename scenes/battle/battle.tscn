@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bah67ey81q3j"]
+
+[ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character.gd" id="1_7gynk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7gynk"]
+material = SubResource("StandardMaterial3D_r1e00")
+size = Vector2(30, 30)
+
+[sub_resource type="Environment" id="Environment_r1e00"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7gynk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffvsa"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_7gynk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.41606382, 0.9079657, 0.049891464, -0.002819998, -0.056153923, 0.99841815, 0.9093311, 0.41526496, 0.02592408, 3.321577, 10.591759, -0.841836)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r1e00")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, -5, 10, 5)
+
+[node name="Character" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_7gynk")
+
+[node name="Mesh" type="MeshInstance3D" parent="Character"]
+unique_name_in_owner = true
+mesh = SubResource("BoxMesh_7gynk")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Character"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character/Area3D"]
+shape = SubResource("BoxShape3D_ffvsa")
