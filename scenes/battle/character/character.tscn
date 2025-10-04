@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character/character.gd" id="1_efktm"]
 [ext_resource type="PackedScene" uid="uid://dwuhcvq555vv3" path="res://WIP/lich_mesh.gltf" id="2_sytih"]
-[ext_resource type="Texture2D" uid="uid://dqiprbtcr14xo" path="res://scenes/battle/character/lich_anim_lich Base Color.png" id="2_txcok"]
+[ext_resource type="Texture2D" uid="uid://bga75m6eufye" path="res://scenes/battle/character/lich_anim_lich Base Color.png" id="2_txcok"]
 
 [sub_resource type="Animation" id="Animation_go01t"]
 resource_name = "lich_death"
@@ -486,7 +486,7 @@ bind/9/pose = Transform3D(1, -7.4505806e-08, 2.6424593e-07, -5.960464e-08, -1.00
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffvsa"]
 size = Vector3(1.25, 2, 1)
 
-[node name="Character" type="Node3D" node_paths=PackedStringArray("animation_player")]
+[node name="Character" type="Node3D" node_paths=PackedStringArray("animation_player") groups=["player"]]
 script = ExtResource("1_efktm")
 animation_player = NodePath("lich/AnimationPlayer")
 

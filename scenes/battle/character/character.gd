@@ -65,3 +65,6 @@ func play_animation(anim: String) -> void:
     self.animation_player.clear_queue()
     self.animation_player.play(anim)
     self.animation_player.animation_set_next(anim, "reset")
+
+func add_item(item: Item) -> void:
+    Log.info("Picked up item: %s" % item)

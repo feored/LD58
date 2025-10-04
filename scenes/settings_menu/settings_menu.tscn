@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dj8sjte3quqjh"]
 
-[ext_resource type="Theme" uid="uid://dx2jrpheeri2w" path="res://assets/theme.tres" id="1_1rsps"]
+[ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="1_1rsps"]
 [ext_resource type="Script" uid="uid://4ms4qik7vw0o" path="res://scenes/settings_menu/settings_menu.gd" id="2_io11x"]
 
 [sub_resource type="Gradient" id="Gradient_p28av"]

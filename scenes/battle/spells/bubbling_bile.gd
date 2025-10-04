@@ -50,11 +50,11 @@ func explode_bile():
 func check_bounds() -> void:
     if self.global_position.y < 0:
         self.global_position.y = 0
-    if self.global_position.x > Constants.ARENA_SIZE_X / 2:
+    if self.global_position.x > Constants.ARENA_SIZE_X / 2.0:
         self.queue_free()
-    elif self.global_position.x < -Constants.ARENA_SIZE_X / 2:
+    elif self.global_position.x < -Constants.ARENA_SIZE_X / 2.0:
         self.queue_free()
-    elif self.global_position.z > Constants.ARENA_SIZE_Y / 2:
+    elif self.global_position.z > Constants.ARENA_SIZE_Y / 2.0:
         self.queue_free()
-    elif self.global_position.z < -Constants.ARENA_SIZE_Y / 2:
+    elif self.global_position.z < -Constants.ARENA_SIZE_Y / 2.0:
         self.queue_free()

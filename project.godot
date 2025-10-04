@@ -32,7 +32,9 @@ ItemInfo="*res://items/item_info.gd"
 
 [global_group]
 
-enemy=""
+enemies=""
+items=""
+player=""
 
 [input]
 

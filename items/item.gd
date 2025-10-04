@@ -8,13 +8,13 @@ var item_name: String = "Item"
 
 
 func _to_string() -> String:
-	var affixes_str = ""
-	for affix in rolled_affixes:
-		affixes_str += "\n  " + str(affix)
-	return (
+    var affixes_str = ""
+    for affix in rolled_affixes:
+        affixes_str += "\n  " + str(affix)
+    return (
 		"%s (Type: %s, Base Fortitude: %d, Affixes: [%s\n])"
-		% [item_name, str(item_type), fortitude, affixes_str]
-	)
+        % [item_name, str(item_type), fortitude, affixes_str]
+    )
 
 
 enum Type { Blue, Green, Red }
@@ -23,48 +23,48 @@ enum Group { Fortitude, MovementSpeed, SpellSpeed, SpellDamage }
 
 
 class RolledAffix:
-	var affix: Affix
-	var value: float
+    var affix: Affix
+    var value: float
 
-	func _init(affix: Affix):
-		self.affix = affix
-		self.value = Utils.rng.randf_range(affix.value_range.x, affix.value_range.y)
+    func _init(init_affix: Affix):
+        self.affix = init_affix
+        self.value = fmod(Utils.rng.randf_range(affix.value_range.x, affix.value_range.y), 0.1)
 
-	func _to_string() -> String:
-		return "%s: %f" % [str(self.affix), self.value]
+    func _to_string() -> String:
+        return "%s: %f" % [str(self.affix), self.value]
 
 
 class Affix:
-	var group: Group
-	var tier: int
-	var prefix: String = ""
-	var suffix: String = ""
-	var value_range: Vector2
-	var is_negative: bool = false
+    var group: Group
+    var tier: int
+    var prefix: String = ""
+    var suffix: String = ""
+    var value_range: Vector2
+    var is_negative: bool = false
 
-	func _init(
-		group: Group,
-		tier: int,
-		prefix: String,
-		suffix: String,
-		value_range: Vector2,
-		is_negative: bool = false
-	):
-		self.group = group
-		self.tier = tier
-		self.prefix = prefix
-		self.suffix = suffix
-		self.value_range = value_range
-		self.is_negative = is_negative
+    func _init(
+        init_group: Group,
+        init_tier: int,
+        init_prefix: String,
+        init_suffix: String,
+        init_value_range: Vector2,
+        init_is_negative: bool = false
+    ):
+        self.group = init_group
+        self.tier = init_tier
+        self.prefix = init_prefix
+        self.suffix = init_suffix
+        self.value_range = init_value_range
+        self.is_negative = init_is_negative
 
-	func _to_string() -> String:
-		return (
+    func _to_string() -> String:
+        return (
 			"%s (Tier %d) [%f - %f] %s"
-			% [
-				Group.keys()[self.group],
-				self.tier,
-				self.value_range.x,
-				self.value_range.y,
-				"Negative" if self.is_negative else "Positive"
-			]
-		)
+            % [
+                Group.keys()[self.group],
+                self.tier,
+                self.value_range.x,
+                self.value_range.y,
+                "Negative" if self.is_negative else "Positive"
+            ]
+        )
