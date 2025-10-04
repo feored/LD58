@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://3mhoifs2kipt"
-path="res://.godot/imported/UI_Confirm.wav-74b5ef0b47f01ea51345e6fda3e54c93.sample"
+uid="uid://ckfvqggejbnv7"
+path="res://.godot/imported/UI_Cancel.wav-cccc7487f46a6381e24841aacbd327b1.sample"
 
 [deps]
 
-source_file="res://audio/UI/UI_Confirm.wav"
-dest_files=["res://.godot/imported/UI_Confirm.wav-74b5ef0b47f01ea51345e6fda3e54c93.sample"]
+source_file="res://audio/sfx/UI/UI_Cancel.wav"
+dest_files=["res://.godot/imported/UI_Cancel.wav-cccc7487f46a6381e24841aacbd327b1.sample"]
 
 [params]
 

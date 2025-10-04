@@ -6,8 +6,6 @@ var life: int = Utils.rng.randi_range(40, 60)
 
 const DAMAGE = 10
 const HIT_ANIMATION_TIME = 0.15
-const ENEMY_BUNCHUP_RANGE = 5.0
-const SEPARATE_STRENGTH = 5.0
 
 var player_character: Node3D = null
 var speed: float = Utils.rng.randf_range(0.75, 1.25)

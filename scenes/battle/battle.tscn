@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=10 format=3 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
 [ext_resource type="PackedScene" path="res://WIP/arena.glb" id="2_0yh6x"]
 [ext_resource type="Script" uid="uid://8cftwb83irh6" path="res://scenes/battle/camera_3d.gd" id="3_h0kxc"]
 [ext_resource type="Script" uid="uid://bvfx32xj7ds6y" path="res://scenes/battle/UI/battle_ui.gd" id="3_xd4uy"]
+[ext_resource type="PackedScene" uid="uid://pu46mkcjdswb" path="res://scenes/escape_menu/escape_menu.tscn" id="6_fh7rg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
 albedo_color = Color(0, 0, 0, 1)
@@ -66,6 +67,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Next Wave"
+
+[node name="EscMenu" parent="." instance=ExtResource("6_fh7rg")]
 
 [connection signal="next_wave" from="UI" to="." method="_on_ui_next_wave"]
 [connection signal="pressed" from="UI/MenuContainer/NextWaveButton" to="UI" method="_on_next_wave_button_pressed"]

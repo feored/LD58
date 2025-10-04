@@ -4,12 +4,16 @@ const LOWEST_VOLUME = -80
 const DEFAULT_VOLUME = 0
 
 enum Track {
-
+    Confirm,
+    Hover,
+    Cancel
 }
 enum Ambience { CalmWind }
 
 const TRACKS = {
-#	Track.Sink: preload("res://audio/sfx/waterexplosion.wav"),
+    Track.Confirm: preload("res://audio/sfx/UI/UI_Confirm.wav"),
+    Track.Hover: preload("res://audio/sfx/UI/UI_Hover.wav"),
+    Track.Cancel: preload("res://audio/sfx/UI/UI_Cancel.wav"),
 }
 
 const AMBIENCE_TRACKS = {} #Ambience.CalmWind: preload("res://audio/ambience/wind_calm.wav")}
@@ -77,13 +81,11 @@ func _on_SceneTree_node_added(node):
 
 
 func _on_Button_pressed():
-    pass
-    # self.play(Track.Click)
+    self.play(Track.Confirm)
 
 
 func on_Button_hovered():
-    pass
-    # self.play(Track.Hover)
+    self.play(Track.Hover)
 
 
 # recursively connect all buttons

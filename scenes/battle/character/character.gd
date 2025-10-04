@@ -64,4 +64,4 @@ func get_hit(damage: int) -> void:
 func play_animation(anim: String) -> void:
     self.animation_player.clear_queue()
     self.animation_player.play(anim)
-    self.animation_player.queue("reset")
+    self.animation_player.animation_set_next(anim, "reset")
