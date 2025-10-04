@@ -28,6 +28,7 @@ Settings="*res://globals/autoloads/settings.gd"
 Sfx="*res://globals/autoloads/sfx.gd"
 TileInfo="*res://globals/autoloads/tile_info.gd"
 Utils="*res://globals/autoloads/utils.gd"
+ItemInfo="*res://items/item_info.gd"
 
 [global_group]
 

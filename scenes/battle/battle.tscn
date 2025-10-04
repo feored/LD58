@@ -30,7 +30,7 @@ transform = Transform3D(-0.41606382, 0.9079657, 0.04989146, -0.002819998, -0.056
 environment = SubResource("Environment_r1e00")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 20, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 19, 0)
 
 [node name="Character" parent="." node_paths=PackedStringArray("battle") instance=ExtResource("1_ffvsa")]
 unique_name_in_owner = true

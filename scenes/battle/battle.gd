@@ -44,6 +44,8 @@ func enemy_died(enemy: Node3D) -> void:
 
 func spawn_item(position: Vector3) -> void:
     var soul_instance = soul_scene.instantiate()
+    var item: Item = ItemInfo.generate_blue_item()
+    Log.info(item)
     soul_instance.position = position + Vector3(0, 0.5, 0)
     add_child(soul_instance)
 

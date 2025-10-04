@@ -12,6 +12,15 @@ size = Vector3(1.25, 2, 1)
 script = ExtResource("1_efktm")
 
 [node name="lich_mesh" parent="." instance=ExtResource("2_sytih")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lich_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46, 0.56, 0.02)
+layers = 3
+light_color = Color(0.51, 1, 0.6488333, 1)
+light_energy = 3.51
+omni_range = 0.222
+omni_attenuation = 2.96
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
