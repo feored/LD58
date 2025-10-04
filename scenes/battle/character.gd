@@ -15,5 +15,5 @@ func _physics_process(delta: float) -> void:
     elif Input.is_action_pressed("down"):
         self.global_position += (self.global_transform.basis.z  * delta * movement_speed)
     var mouse_pos = Utils.get_mouse_pos(get_viewport().get_camera_3d())
-    Log.info("Mouse pos: %s" % str(mouse_pos))
+    # Log.info("Mouse pos: %s" % str(mouse_pos))
     self.look_at(Vector3(mouse_pos.x, self.global_position.y, mouse_pos.z))
