@@ -47,6 +47,7 @@ func start_explode():
     self.is_moving = false
     self.base.visible = false
     self.explosion_mesh.visible = true
+    self.explosion_area.monitoring = true
     var timer := Timer.new()
     self.add_child(timer)
     timer.wait_time = 0.25

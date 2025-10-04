@@ -2,6 +2,7 @@ extends Node3D
 
 @export var battle: Battle
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
+const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
 
 const movement_speed: float = 2.5
 var time_elapsed: float = 0.0
@@ -22,6 +23,14 @@ func shoot(event) -> void:
         spell_instance.global_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
         var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
         spell_instance.look_at(spell_instance.global_position + spell_direction)
+    elif event.is_action_pressed("spell_2"):
+        var spell_instance = bubbling_bile.instantiate()
+        battle.add_child(spell_instance)
+        spell_instance.global_position = self.global_position + Vector3(0, 0.5, 0) - transform.basis.z * 1.5
+        var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
+        spell_instance.look_at(spell_instance.global_position + spell_direction)
+        spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
+
 
 func movement_vector() -> Vector3:
     var movement: Vector3 = Vector3.ZERO
