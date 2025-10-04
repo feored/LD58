@@ -1,5 +1,9 @@
 extends Node3D
 
+signal died(enemy: Node3D)
+
+var life: int = Utils.rng.randi_range(40, 60)
+
 const HIT_TIME = 0.15
 const ENEMY_BUNCHUP_RANGE = 5.0
 const SEPARATE_STRENGTH = 5.0
@@ -55,4 +59,12 @@ func hit_red_tween() -> void:
 
 
 func die() -> void:
-    self.queue_free()
+    self.died.emit(self)
+
+
+func get_hit(damage: int) -> void:
+    life -= damage
+    if life <= 0:
+        die()
+    else:
+        hit_red_tween()

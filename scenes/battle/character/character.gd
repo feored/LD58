@@ -1,22 +1,40 @@
 extends Node3D
 
-@export var movement_speed: float = 5.0
+@export var battle: Battle
+const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
+
+const movement_speed: float = 2.5
 var time_elapsed: float = 0.0
 
 
 func _physics_process(delta: float) -> void:
     time_elapsed += delta
-    var initial_position = self.global_position
+    self.global_position += movement_vector() * movement_speed * delta
+    self.look_at_mouse()
+
+func _unhandled_input(event):
+    self.shoot(event)
+
+func shoot(event) -> void:
+    if event.is_action_pressed("spell_1"):
+        var spell_instance = howling_geist.instantiate()
+        battle.add_child(spell_instance)
+        spell_instance.global_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
+        var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
+        spell_instance.look_at(spell_instance.global_position + spell_direction)
+
+func movement_vector() -> Vector3:
+    var movement: Vector3 = Vector3.ZERO
     if Input.is_action_pressed("left"):
-        self.global_position += (Vector3.LEFT * delta * movement_speed)
+        movement += Vector3.LEFT
     elif Input.is_action_pressed("right"):
-        self.global_position += (Vector3.RIGHT * delta * movement_speed)
+        movement += Vector3.RIGHT
     if Input.is_action_pressed("up"):
-        self.global_position += (Vector3.FORWARD * delta * movement_speed)
+        movement += Vector3.FORWARD
     elif Input.is_action_pressed("down"):
-        self.global_position += (Vector3.BACK  * delta * movement_speed)
+        movement += Vector3.BACK
+    return movement.normalized()
+
+func look_at_mouse() -> void:
     var mouse_pos = Utils.get_mouse_pos(get_viewport().get_camera_3d())
-    # Log.info("Mouse pos: %s" % str(mouse_pos))
-    # Log.info("Character pos: %s" % str(self.global_position))
-    # Log.info("Movement : %s" % str(self.global_position - initial_position))
     self.look_at(Vector3(mouse_pos.x, self.global_position.y, mouse_pos.z))
