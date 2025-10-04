@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhpv0mgqfcaky"]
+
+[ext_resource type="Script" uid="uid://cewwbsbik6pmu" path="res://scenes/battle/spells/howling_geist.gd" id="1_y2cce"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u06mx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y2cce"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ul6o"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2cce"]
+transparency = 1
+albedo_color = Color(0.9843137, 0.039215688, 0, 0.3529412)
+
+[sub_resource type="SphereMesh" id="SphereMesh_y2cce"]
+material = SubResource("StandardMaterial3D_y2cce")
+radius = 2.0
+height = 4.0
+
+[node name="HowlingGeist" type="Node3D"]
+script = ExtResource("1_y2cce")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_u06mx")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_y2cce")
+
+[node name="ExplosionArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea"]
+shape = SubResource("SphereShape3D_0ul6o")
+
+[node name="ExplosionMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_y2cce")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

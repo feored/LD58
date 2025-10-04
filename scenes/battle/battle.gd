@@ -1,6 +1,7 @@
 extends Node3D
+class_name Battle
 
-const WAVE_DURATION = 10.0
+const WAVE_DURATION = 30.0
 var wave_number: int = 1
 var spawn_rate: float = 2.0 # seconds between spawns
 var next_spawn_time: float = 0.0
@@ -27,6 +28,10 @@ func spawn_enemy() -> void:
         randf() * Constants.ARENA_SIZE_X - Constants.ARENA_SIZE_X / 2,
         0.5,
         randf() * Constants.ARENA_SIZE_Y - Constants.ARENA_SIZE_Y / 2
+    )
+    enemy_instance.died.connect(func(enemy: Node3D) -> void:
+        enemies.erase(enemy)
+        enemy.queue_free()
     )
     add_child(enemy_instance)
     enemy_instance.player_character = player_character

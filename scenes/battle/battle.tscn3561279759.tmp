@@ -28,10 +28,9 @@ environment = SubResource("Environment_r1e00")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.4226182, 0.90630776, 0, -0.90630776, 0.4226182, 0, 15, 10)
 
-[node name="Character" parent="." node_paths=PackedStringArray("battle") instance=ExtResource("1_ffvsa")]
+[node name="Character" parent="." instance=ExtResource("1_ffvsa")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-battle = NodePath("..")
 movement_speed = 2.5
 
 [node name="UI" type="CanvasLayer" parent="."]
