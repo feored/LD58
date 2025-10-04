@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://brujc4w7d4n8o"]
+[gd_scene load_steps=5 format=3 uid="uid://brujc4w7d4n8o"]
 
 [ext_resource type="Script" uid="uid://oip3wdk0ok5o" path="res://scenes/battle/enemy/enemy.gd" id="1_7q2pw"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q2pw"]
+resource_local_to_scene = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_7gynk"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_7q2pw")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffvsa"]
 
@@ -17,3 +22,5 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_ffvsa")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

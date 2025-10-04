@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgsdmqqw8epq0"]
 
-[ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character.gd" id="1_efktm"]
+[ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character/character.gd" id="1_efktm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7gynk"]
 
