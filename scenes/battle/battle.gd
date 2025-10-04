@@ -49,6 +49,7 @@ func _on_ui_next_wave() -> void:
         enemy.queue_free()
     enemies.clear()
     spawn_rate = max(0.5, spawn_rate - 0.2)
+    next_spawn_time = 0.0
     time_elapsed = 0.0
     wave_number += 1
     UI.set_wave(wave_number)
