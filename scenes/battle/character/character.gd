@@ -3,9 +3,12 @@ extends Node3D
 @export var battle: Battle
 @export var animation_player: AnimationPlayer
 @onready var model: Node3D = %lich
+@onready var melee_area: Area3D = %MeleeArea3D
+
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
 const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
 
+const BASE_MELEE_DAMAGE: int = 50
 const movement_speed: float = 2.5
 var time_elapsed: float = 0.0
 
@@ -13,6 +16,7 @@ func _ready() -> void:
     self.hover_animation()
 
 func _physics_process(delta: float) -> void:
+    Log.info("melee area monitoring: %s" % melee_area.monitoring)
     time_elapsed += delta
     self.global_position += movement_vector() * movement_speed * delta
     self.look_at_mouse()
@@ -21,13 +25,15 @@ func _unhandled_input(event):
     self.shoot(event)
 
 func shoot(event) -> void:
+    if event.is_action_pressed("melee_attack"):
+        self.animation_player.play("lich_m1")
     if event.is_action_pressed("spell_1"):
         var spell_instance = howling_geist.instantiate()
         battle.add_child(spell_instance)
         spell_instance.global_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
         var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
         spell_instance.look_at(spell_instance.global_position + spell_direction)
-        self.play_animation("lich_spec")
+        self.animation_player.play("lich_spec")
     elif event.is_action_pressed("spell_2"):
         var spell_instance = bubbling_bile.instantiate()
         battle.add_child(spell_instance)
@@ -35,7 +41,7 @@ func shoot(event) -> void:
         var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
         spell_instance.look_at(spell_instance.global_position + spell_direction)
         spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
-        self.play_animation("lich_spec")
+        self.animation_player.play("lich_spec")
 
 func movement_vector() -> Vector3:
     var movement: Vector3 = Vector3.ZERO
@@ -59,12 +65,17 @@ func hover_animation() -> void:
     tween.tween_property(self.model, "position:y", 0, 1.0)
 
 func get_hit(damage: int) -> void:
-    self.play_animation("lich_hurt")
-
-func play_animation(anim: String) -> void:
-    self.animation_player.clear_queue()
-    self.animation_player.play(anim)
-    self.animation_player.animation_set_next(anim, "reset")
+    self.animation_player.play("lich_hurt")
 
 func add_item(item: Item) -> void:
     Log.info("Picked up item: %s" % item)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+    self.animation_player.play("lich_idle")
+    self.melee_area.monitoring = false
+
+
+func _on_melee_area_3d_area_entered(area: Area3D) -> void:
+    if area.get_parent().is_in_group("enemies"):
+        area.get_parent().get_hit(BASE_MELEE_DAMAGE)
