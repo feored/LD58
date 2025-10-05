@@ -28,7 +28,7 @@ const movement_speed: float = 2.5
 var time_elapsed: float = 0.0
 
 func _ready() -> void:
-    $AudioListener3D.make_current()
+    ##$AudioListener3D.make_current()
     self.hover_animation()
 
 func _physics_process(delta: float) -> void:

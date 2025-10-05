@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvd6nlectobxw"
-path="res://.godot/imported/chain1.png-cb97fb97b5c2141f9d0b3a7172cc8c64.ctex"
+uid="uid://cnicci04d26rt"
+path="res://.godot/imported/ui - Copy.png-955864420b3bd2a05dd38bfe7abf79c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/chain1.png"
-dest_files=["res://.godot/imported/chain1.png-cb97fb97b5c2141f9d0b3a7172cc8c64.ctex"]
+source_file="res://assets/images/ui - Copy.png"
+dest_files=["res://.godot/imported/ui - Copy.png-955864420b3bd2a05dd38bfe7abf79c6.ctex"]
 
 [params]
 

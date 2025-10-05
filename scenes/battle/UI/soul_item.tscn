@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1aem48epf5ao"]
+
+[ext_resource type="Script" uid="uid://b3jtflyk4ty1m" path="res://scenes/battle/UI/soul_item.gd" id="1_b6che"]
+[ext_resource type="Texture2D" uid="uid://bg65yd8kkl3wo" path="res://assets/icons/skull_bw.png" id="1_taupc"]
+[ext_resource type="PackedScene" uid="uid://dow58fy8nkt7a" path="res://scenes/battle/UI/item_view.tscn" id="3_nyruy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nyruy"]
+
+[node name="SoulItem" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1840.0
+offset_bottom = -1000.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nyruy")
+script = ExtResource("1_b6che")
+
+[node name="SkullTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_taupc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemView" parent="." instance=ExtResource("3_nyruy")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
