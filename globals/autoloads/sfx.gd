@@ -57,7 +57,7 @@ func _ready():
     connect_buttons(get_tree().root)
     get_tree().connect("node_added", _on_SceneTree_node_added)
     for key in TRACKS:
-        var player = AudioStreamPlayer.new()
+        var player = AudioStreamPlayer3D.new()
         player.stream = TRACKS[key]
         player.max_polyphony = 10  if key not in CUSTOM_POLYPHONY else CUSTOM_POLYPHONY[key]
         player.bus = "SFX"
@@ -79,15 +79,16 @@ func play_ambience(ambience: Ambience):
     self.ambience_players[ambience].play()
 
 
-func play(track: Track):
+func play(track: Track, position: Vector3 = Vector3.ZERO):
     if track in RANDOM_PITCH_SCALE:
         self.players[track].pitch_scale = randf_range(RANDOM_PITCH_SCALE[track][0], RANDOM_PITCH_SCALE[track][1])
+    self.players[track].global_transform.origin = position
     self.players[track].play()
 
-func play_multitrack(multi_track: MultiTrack):
+func play_multitrack(multi_track: MultiTrack, position: Vector3 = Vector3.ZERO):
     var tracks = MULTITRACKS[multi_track]
     var track = tracks[randi() % tracks.size()]
-    self.play(track)
+    self.play(track, position)
 
 
 func disable_track(track: Track):

@@ -25,7 +25,7 @@ func start_lifetime_timer() -> void:
 
 
 func expire() -> void:
-    Sfx.play_multitrack(Sfx.MultiTrack.SoulExpire)
+    Sfx.play_multitrack(Sfx.MultiTrack.SoulExpire, self.global_position)
     self.queue_free()
 
 

@@ -650,5 +650,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.9)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeArea3D"]
 shape = SubResource("BoxShape3D_7dmu1")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+
 [connection signal="animation_finished" from="lich/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="MeleeArea3D" to="." method="_on_melee_area_3d_area_entered"]
