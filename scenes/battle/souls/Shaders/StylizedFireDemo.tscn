@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://drlmm16er32et"]
+[gd_scene load_steps=40 format=3 uid="uid://drlmm16er32et"]
 
 [ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="3_tg5uj"]
 [ext_resource type="Texture2D" uid="uid://b8wh1wkibxdsi" path="res://scenes/battle/souls/Shaders/StylizedFire/GreenFireGradient.tres" id="4"]
@@ -19,6 +19,15 @@ shader_parameter/time_scale = 3.0
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/edge_softness = 0.1
 
+[sub_resource type="Gradient" id="2"]
+colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
+
+[sub_resource type="GradientTexture2D" id="3"]
+gradient = SubResource("2")
+width = 128
+fill_from = Vector2(0.48971194, 0.74897116)
+fill_to = Vector2(0.872428, 0.46090534)
+
 [sub_resource type="Curve" id="4"]
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -26,6 +35,70 @@ point_count = 2
 [sub_resource type="CurveTexture" id="5"]
 width = 128
 curve = SubResource("4")
+
+[sub_resource type="ParticleProcessMaterial" id="6"]
+resource_local_to_scene = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("5")
+color = Color(0.7764706, 0, 0, 1)
+color_ramp = SubResource("3")
+
+[sub_resource type="QuadMesh" id="7"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8wm"]
+emission_enabled = true
+emission = Color(1, 0.13, 0.14449978, 1)
+emission_energy_multiplier = 3.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_tvm4e"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_wl8wm")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="Gradient" id="Gradient_tvm4e"]
+colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_asbqy"]
+gradient = SubResource("Gradient_tvm4e")
+width = 128
+fill_from = Vector2(0.5185185, 0.54320985)
+fill_to = Vector2(0.88065845, 0.41152263)
+
+[sub_resource type="Curve" id="Curve_bclxo"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iw26o"]
+width = 128
+curve = SubResource("Curve_bclxo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yeaj0"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+radial_velocity_min = 0.99997765
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_iw26o")
+color = Color(0.7764706, 0, 0, 1)
+color_ramp = SubResource("GradientTexture2D_asbqy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_arxyv"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="ParticleProcessMaterial" id="8"]
 lifetime_randomness = 0.5
@@ -44,40 +117,46 @@ scale_curve = SubResource("5")
 color_ramp = ExtResource("7")
 turbulence_noise_strength = 6.37
 
-[sub_resource type="QuadMesh" id="7"]
-size = Vector2(0.5, 0.5)
+[sub_resource type="Gradient" id="Gradient_jli1o"]
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
 
-[sub_resource type="Gradient" id="2"]
-colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
-
-[sub_resource type="GradientTexture2D" id="3"]
-gradient = SubResource("2")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tvm4e"]
+gradient = SubResource("Gradient_jli1o")
 width = 128
-fill_from = Vector2(0.48971194, 0.74897116)
-fill_to = Vector2(0.872428, 0.46090534)
+fill_from = Vector2(0.3580247, 0.55144036)
+fill_to = Vector2(0.781893, 0.69135803)
 
-[sub_resource type="ParticleProcessMaterial" id="6"]
+[sub_resource type="Curve" id="Curve_asbqy"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bclxo"]
+width = 128
+curve = SubResource("Curve_asbqy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iw26o"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
 direction = Vector3(0, 1, 0)
 spread = 0.0
 initial_velocity_min = 0.5
 initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 4.0
-scale_curve = SubResource("5")
-color = Color(0.7764706, 0, 0, 1)
-color_ramp = SubResource("3")
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = 49.999996
+radial_accel_max = 99.99999
+scale_min = 0.19999999
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_bclxo")
+color_ramp = SubResource("GradientTexture2D_tvm4e")
+turbulence_noise_strength = 6.37
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8wm"]
-emission_enabled = true
-emission = Color(1, 0.13, 0.14449978, 1)
-emission_energy_multiplier = 3.05
-
-[sub_resource type="SphereMesh" id="SphereMesh_tvm4e"]
+[sub_resource type="QuadMesh" id="QuadMesh_yeaj0"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_wl8wm")
-radius = 0.01
-height = 0.02
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="ParticleProcessMaterial" id="9"]
 lifetime_randomness = 0.81
@@ -104,32 +183,46 @@ material = SubResource("StandardMaterial3D_asbqy")
 radius = 0.01
 height = 0.02
 
+[sub_resource type="Gradient" id="Gradient_sv4b0"]
+colors = PackedColorArray(0.21875, 1, 0, 1, 0, 0.640625, 0.145142, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nvdhp"]
+gradient = SubResource("Gradient_sv4b0")
+width = 128
+fill_from = Vector2(0.52674896, 0.63374484)
+fill_to = Vector2(0.6872428, 0.40329218)
+
+[sub_resource type="Curve" id="Curve_i442t"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_swddl"]
+width = 128
+curve = SubResource("Curve_i442t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ir1w"]
+resource_local_to_scene = true
+lifetime_randomness = 0.81
+emission_shape_offset = Vector3(0, -0.3, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_swddl")
+color_ramp = SubResource("GradientTexture2D_nvdhp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4kapf"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
 [node name="StylizedFireDemo" type="CanvasLayer"]
-
-[node name="skullblue" parent="." instance=ExtResource("5_phiab")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 0.31094372)
-
-[node name="Ghost Fire" type="GPUParticles3D" parent="skullblue/soul_green/skull" index="0"]
-transform = Transform3D(0.5660159, 0, 0.38647977, 0, 0.6853762, 0, -0.38647977, 0, 0.5660159, 0, -0.36435354, 0)
-material_override = SubResource("1")
-cast_shadow = 0
-amount = 30
-randomness = 0.7
-fixed_fps = 15
-draw_order = 1
-trail_lifetime = 6.0
-process_material = SubResource("8")
-draw_pass_1 = SubResource("7")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="skullblue/soul_green/skull/Ghost Fire"]
-light_color = Color(0, 0.85639215, 0.7561138, 1)
-light_energy = 2.0
-
-[node name="GPUParticles3D" parent="skullblue/soul_green" index="1"]
-visible = false
 
 [node name="Blood Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 0)
+visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 amount = 1
@@ -149,8 +242,66 @@ light_energy = 2.0
 visible = false
 draw_pass_1 = SubResource("SphereMesh_tvm4e")
 
+[node name="Blood Fire Explosion" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 1.5015091)
+material_override = SubResource("1")
+cast_shadow = 0
+amount = 10
+lifetime = 0.5
+speed_scale = 3.0
+fixed_fps = 15
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_yeaj0")
+draw_pass_1 = SubResource("QuadMesh_arxyv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Blood Fire Explosion"]
+light_color = Color(0.80126345, 4.235506e-06, 2.8878452e-07, 1)
+light_energy = 2.0
+
+[node name="Ghost Fire" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 0.31094372)
+visible = false
+material_override = SubResource("1")
+cast_shadow = 0
+amount = 30
+randomness = 0.7
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("8")
+draw_pass_1 = SubResource("7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Ghost Fire"]
+light_color = Color(0, 0.85639215, 0.7561138, 1)
+light_energy = 2.0
+
+[node name="skullblue" parent="Ghost Fire" instance=ExtResource("5_phiab")]
+
+[node name="GPUParticles3D" parent="Ghost Fire/skullblue/soul_green" index="1"]
+visible = false
+
+[node name="Ghost Fire Explosion" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 2.392034)
+visible = false
+material_override = SubResource("1")
+cast_shadow = 0
+amount = 50
+lifetime = 0.3
+speed_scale = 0.8
+randomness = 1.0
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_iw26o")
+draw_pass_1 = SubResource("QuadMesh_yeaj0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Ghost Fire Explosion"]
+light_color = Color(0, 0.85639215, 0.7561138, 1)
+light_energy = 2.0
+
 [node name="Acid Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.66113, 1.26708, 0.007401228)
+visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 amount = 25
@@ -170,9 +321,26 @@ light_energy = 2.0
 visible = false
 draw_pass_1 = SubResource("SphereMesh_bclxo")
 
-[editable path="skullblue"]
-[editable path="skullblue/soul_green"]
+[node name="Acid Fire Explosion" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.66113, 1.26708, 1.8620055)
+visible = false
+material_override = SubResource("1")
+cast_shadow = 0
+amount = 25
+lifetime = 3.0
+speed_scale = 0.8
+fixed_fps = 15
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_4ir1w")
+draw_pass_1 = SubResource("QuadMesh_4kapf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Acid Fire Explosion"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 2.0
+
 [editable path="Blood Fire/skullred"]
 [editable path="Blood Fire/skullred/soul_blue"]
+[editable path="Ghost Fire/skullblue"]
+[editable path="Ghost Fire/skullblue/soul_green"]
 [editable path="Acid Fire/skullgreen"]
 [editable path="Acid Fire/skullgreen/soul_blue"]
