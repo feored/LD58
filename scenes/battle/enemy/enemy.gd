@@ -42,9 +42,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-    if area.get_parent() == player_character:
-        if area.is_in_group("melee_hitbox"):
-            return
+    if area.get_parent() == player_character and not area.is_in_group("melee_hitbox"):
         self.hit_red_tween()
         self.is_hit = true
         player_character.get_hit(DAMAGE)

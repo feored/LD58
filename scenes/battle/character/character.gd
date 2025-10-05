@@ -24,7 +24,7 @@ enum Spell {
 
 var current_spell: Spell = Spell.HowlingGeist
 
-const BASE_MELEE_DAMAGE: int = 50
+const BASE_MELEE_DAMAGE: int = 25
 const movement_speed: float = 2.5
 var time_elapsed: float = 0.0
 
@@ -135,9 +135,9 @@ func add_item(item: Item) -> bool:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     self.animation_player.play("lich_idle")
-    self.melee_area.monitoring = false
 
-
-func _on_melee_area_3d_area_entered(area: Area3D) -> void:
-    if area.get_parent().is_in_group("enemies"):
-        area.get_parent().get_hit(BASE_MELEE_DAMAGE, true)
+func melee_hit() -> void:
+    var areas = self.melee_area.get_overlapping_areas()
+    for area in areas:
+        if area.get_parent().is_in_group("enemies"):
+            area.get_parent().get_hit(BASE_MELEE_DAMAGE, true)
