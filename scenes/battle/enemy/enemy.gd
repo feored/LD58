@@ -65,9 +65,11 @@ func die() -> void:
     self.died.emit(self)
 
 
-func get_hit(damage: int) -> void:
+func get_hit(damage: int, knockback = false) -> void:
     life -= damage
     if life <= 0:
         die()
     else:
         hit_red_tween()
+        if knockback:
+            is_hit = true

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
-[ext_resource type="PackedScene" path="res://WIP/arena.glb" id="2_0yh6x"]
+[ext_resource type="PackedScene" uid="uid://b4mumcvc614jw" path="res://WIP/arena_square.gltf" id="2_py4tk"]
 [ext_resource type="Script" uid="uid://8cftwb83irh6" path="res://scenes/battle/camera_3d.gd" id="3_h0kxc"]
 [ext_resource type="Script" uid="uid://bvfx32xj7ds6y" path="res://scenes/battle/UI/battle_ui.gd" id="3_xd4uy"]
 [ext_resource type="PackedScene" uid="uid://pu46mkcjdswb" path="res://scenes/escape_menu/escape_menu.tscn" id="6_fh7rg"]
@@ -22,10 +22,10 @@ size = Vector2(30, 30)
 script = ExtResource("1_0yh6x")
 
 [node name="Ground" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("PlaneMesh_7gynk")
 
-[node name="arena" parent="." instance=ExtResource("2_0yh6x")]
-visible = false
+[node name="arena_square" parent="." instance=ExtResource("2_py4tk")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.41606382, 0.9079657, 0.04989146, -0.002819998, -0.056153923, 0.99841815, 0.9093311, 0.41526496, 0.025924075, -7.926017, 13.134023, 5.5020256)
