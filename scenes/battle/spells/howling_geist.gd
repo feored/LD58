@@ -57,6 +57,6 @@ func start_explode():
 
 func end_explode():
     for area in explosion_area.get_overlapping_areas():
-        if area.get_parent().is_in_group("enemies"):
+        if area.get_parent().is_in_group("enemies") and area.is_in_group("enemy_hitbox"):
             area.get_parent().get_hit(DAMAGE)
     self.queue_free()
