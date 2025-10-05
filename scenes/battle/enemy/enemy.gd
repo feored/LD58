@@ -4,10 +4,10 @@ signal died(enemy: Node3D)
 
 var life: int = Utils.rng.randi_range(40, 60)
 
-const HIT_TIME = 0.15
-const ENEMY_BUNCHUP_RANGE = 5.0
-const SEPARATE_STRENGTH = 5.0
+const DAMAGE = 10
+const HIT_ANIMATION_TIME = 0.15
 
+var type: Constants.EnemyType = Constants.EnemyType.Knight
 var player_character: Node3D = null
 var speed: float = Utils.rng.randf_range(0.75, 1.25)
 var is_hit: bool = false
@@ -43,8 +43,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
     if area.get_parent() == player_character:
+        if area.is_in_group("melee_hitbox"):
+            return
         self.hit_red_tween()
         self.is_hit = true
+        player_character.get_hit(DAMAGE)
 
 
 func hit_recover() -> void:
@@ -54,7 +57,7 @@ func hit_recover() -> void:
 
 func hit_red_tween() -> void:
     var tween = create_tween()
-    tween.tween_property($Mesh.get_active_material(0), "albedo_color", Color.RED, HIT_TIME)
+    tween.tween_property($Mesh.get_active_material(0), "albedo_color", Color.RED, HIT_ANIMATION_TIME)
     tween.tween_callback(hit_recover)
 
 

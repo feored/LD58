@@ -1,9 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://csa7a3e8acaer"]
 
 [ext_resource type="Script" uid="uid://dp16g45cbyino" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
-
-[sub_resource type="Theme" id="Theme_ob46e"]
-default_font_size = 32
+[ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="2_0ebjn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wem23"]
 
@@ -18,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_ob46e")
+theme = ExtResource("2_0ebjn")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wem23")
 
 [node name="TextureRect" type="TextureRect" parent="UI/PanelContainer"]

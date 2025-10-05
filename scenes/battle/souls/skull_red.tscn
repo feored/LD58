@@ -1,18 +1,19 @@
-[gd_scene load_steps=12 format=4 uid="uid://cjx0nd20g7usn"]
+[gd_scene load_steps=12 format=4 uid="uid://bacajla3hm5jt"]
 
-[ext_resource type="PackedScene" uid="uid://bsrc8jrr1br1n" path="res://WIP/soul_blue.gltf" id="1_mn5tl"]
+[ext_resource type="PackedScene" uid="uid://bsrc8jrr1br1n" path="res://WIP/soul_blue.gltf" id="1_cn6y5"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mn5tl"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cn6y5"]
 load_path = "res://.godot/imported/skulls.png-2674ff65a68bb259eec4a6abc40f2fff.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78447"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4508l"]
 resource_name = "Material.001"
 cull_mode = 2
-albedo_texture = SubResource("CompressedTexture2D_mn5tl")
+albedo_color = Color(1, 0, 0.016666412, 1)
+albedo_texture = SubResource("CompressedTexture2D_cn6y5")
 roughness = 0.5
 texture_repeat = false
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_4uw31"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_v8ysa"]
 resource_name = "soul_blue_Cylinder_001"
 _surfaces = [{
 "aabb": AABB(-0.20203553, -0.2394183, -0.23258607, 0.41343838, 0.489415, 0.49765503),
@@ -28,7 +29,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_44wcl"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_q7d8a"]
 resource_name = "soul_blue_Cylinder_001"
 _surfaces = [{
 "aabb": AABB(-0.20203553, -0.2394183, -0.23258607, 0.41343838, 0.489415, 0.49765503),
@@ -37,7 +38,7 @@ _surfaces = [{
 "index_count": 144,
 "index_data": PackedByteArray("HgAfAAwAFQAMAB8AFQACAAwAHgAUAB8AFAAVAB8AAAAUAB4AAAAHABQAFAAWABUAFgACABUABwAWABQAFgAXAAIABwANABYADQAXABYADQABABcAGAAgAAUABQAgABoABQAaAA4AGAAZACAAGQAaACAAAwAZABgAIQAOABoAGQAhABoAIQAiAA4AAwAIABkACAAhABkABAAiACEACAAEACEABAAGACIABAAQAAYABAAbABAACAAbAAQAGwAcABAAAwAjAAgACAAjABsAAwAkACMAGwAlABwAIwAlABsAHAAlACYAIwAmACUAJAAmACMAHAAmAA8AJAAPACYACQALABEACQAKAAsACgAnAAsACgASACcAEgATACcAEgAdABMA"),
 "lods": [0.1201755, PackedByteArray("AAAUAAwAAAAHABQAFAAVAAwAFQACAAwABwAWABQAFAAWABUAFgACABUABwANABYAFgAXAAIADQAXABYADQABABcAGAAZAAUAAwAZABgAGQAaAAUABQAaAA4AAwAIABkAAwAPAAgAGQAEABoABAAOABoACAAEABkABAAGAA4ABAAQAAYACAAbAAQABAAbABAACAAPABsAGwAcABAAHAAbAA8ACQALABEACQAKAAsACgASAAsAEgATAAsAEgAdABMA"), 0.13958482, PackedByteArray("AAAHAAwABwACAAwABwANAAIADQABAAIAAwAIAAUACAAOAAUAAwAPAAgACAAEAA4ACAAPAAQABAAGAA4AEAAEAA8ABAAQAAYACQALABEACQAKAAsACgASAAsAEgATAAsA"), 0.34040985, PackedByteArray("AAAHAAIABwABAAIAAwAIAAUACAAEAAUACAADAAQABAAGAAUABgAEAAMACQAKAAsA"), 0.41388226, PackedByteArray("AAABAAIAAwAEAAUABAAGAAUABgAEAAMA")],
-"material": SubResource("StandardMaterial3D_78447"),
+"material": SubResource("StandardMaterial3D_4508l"),
 "name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -45,7 +46,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("DRMRR1qKFSAd66tGqJGKLl/Rsv8uhTMQHeurRqiRyCraLrZIUehmPl/Rsv8uhVckDRMRR1qKHCbxN0xFki6gBTrGb0hv7Wsw8TdMRZIuLioNExFHWopbJB3rq0aokVsk4i7//7B/fTtQzwVFsDObIOIu//+wf9Ep+rEAAFW7ByOYM+M37Z7iK1DPBUWwMy4qmDPjN+2eHRT6sQAAVbvPBXMsiqEAAEQSUL1l8YYs3g7N3zWhEAbPD///1aW4hLQb///VpbiE5SU405ep4/Y2Nms6OPPMwCE0TUQJPYLpgzuPRzIAvLdaI49HMgC8t5cxAABOphF8DjN5S5vxrSjzJnG/+fJLxeU23h/sqdPwDzoAAE6mEXzVK/av1jwm7X43mMidN/ejwi6/SpgV1vwQPSeobBX//8BKmMidN/ejHRTl0+fc3BviNQmpFqLfmylM0lFDjO65qZMWRgGVRc/6zbOKJ1kOK8bWKC5r0ygua9NCrhC7ti6MQm+MdMNSc0U11jxWgg4rxtaSNWLLniyy2FXFrclks+apbDCTOh8fGi6BsahgM6EWdMiMW7P4YViRpDNZcuo4v8L7ymnWZL+8tfixTI48breig1uNs2+QA2dXhbA/tVd+h0N7IVOSNWLL")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_4uw31")
+shadow_mesh = SubResource("ArrayMesh_v8ysa")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mn5tl"]
 radial_velocity_min = -2.2351742e-05
@@ -55,49 +56,21 @@ damping_max = 18.900002
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8wm"]
 emission_enabled = true
-emission = Color(0.12941177, 0.39215687, 1, 1)
+emission = Color(1, 0.13, 0.14449978, 1)
 emission_energy_multiplier = 3.05
 
 [sub_resource type="SphereMesh" id="SphereMesh_mn5tl"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_wl8wm")
 radius = 0.01
 height = 0.02
-
-[sub_resource type="Animation" id="Animation_78447"]
-resource_name = "idle"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("soul_green:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
-"transitions": PackedFloat32Array(1.1095695, 1.1892105, 1.1095695),
-"update": 0,
-"values": [Vector3(0, 0.5, 0), Vector3(0, 0.75, 0), Vector3(0, 0.5, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("soul_green:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_4uw31"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("soul_green:position")
+tracks/0/path = NodePath("soul_blue:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -109,7 +82,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("soul_green:rotation")
+tracks/1/path = NodePath("soul_blue:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -117,6 +90,35 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_78447"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("soul_blue:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1.1095695, 1.1892105, 1.1095695),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0.75, 0), Vector3(0, 0.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("soul_blue:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_44wcl"]
@@ -127,12 +129,12 @@ _data = {
 
 [node name="SkullBlue" type="Node3D"]
 
-[node name="soul_green" parent="." instance=ExtResource("1_mn5tl")]
+[node name="soul_blue" parent="." instance=ExtResource("1_cn6y5")]
 
-[node name="skull" parent="soul_green" index="0"]
-mesh = SubResource("ArrayMesh_44wcl")
+[node name="skull" parent="soul_blue" index="0"]
+mesh = SubResource("ArrayMesh_q7d8a")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="soul_green"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="soul_blue"]
 amount = 50
 randomness = 0.4
 process_material = SubResource("ParticleProcessMaterial_mn5tl")
@@ -144,4 +146,4 @@ libraries = {
 }
 autoplay = "idle"
 
-[editable path="soul_green"]
+[editable path="soul_blue"]

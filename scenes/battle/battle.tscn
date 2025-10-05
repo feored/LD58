@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=12 format=3 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
 [ext_resource type="PackedScene" path="res://WIP/arena.glb" id="2_0yh6x"]
+[ext_resource type="Script" uid="uid://8cftwb83irh6" path="res://scenes/battle/camera_3d.gd" id="3_h0kxc"]
 [ext_resource type="Script" uid="uid://bvfx32xj7ds6y" path="res://scenes/battle/UI/battle_ui.gd" id="3_xd4uy"]
+[ext_resource type="PackedScene" uid="uid://pu46mkcjdswb" path="res://scenes/escape_menu/escape_menu.tscn" id="6_fh7rg"]
+[ext_resource type="Script" uid="uid://di75qab6qrmci" path="res://scenes/battle/UI/ammo.gd" id="6_pll4o"]
+[ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="6_py4tk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
 albedo_color = Color(0, 0, 0, 1)
@@ -29,8 +33,10 @@ transform = Transform3D(-0.41606382, 0.9079657, 0.04989146, -0.002819998, -0.056
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r1e00")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 20, 0)
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("character")]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 7.5, 4.11)
+script = ExtResource("3_h0kxc")
+character = NodePath("../Character")
 
 [node name="Character" parent="." node_paths=PackedStringArray("battle") instance=ExtResource("1_ffvsa")]
 unique_name_in_owner = true
@@ -42,20 +48,47 @@ unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("3_xd4uy")
 
-[node name="WaveLabel" type="Label" parent="UI"]
+[node name="WaveUI" type="Control" parent="UI"]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0
-text = "60"
-
-[node name="MenuContainer" type="PanelContainer" parent="UI"]
-unique_name_in_owner = true
-process_mode = 3
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("6_py4tk")
+
+[node name="WaveLabel" type="Label" parent="UI/WaveUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "60"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveUI" node_paths=PackedStringArray("inventory")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("6_pll4o")
+inventory = NodePath("../../../Character/Inventory")
+
+[node name="MenuContainer" type="PanelContainer" parent="UI"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_py4tk")
 
 [node name="NextWaveButton" type="Button" parent="UI/MenuContainer"]
 process_mode = 3
@@ -64,5 +97,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Next Wave"
 
+[node name="EscMenu" parent="." instance=ExtResource("6_fh7rg")]
+
 [connection signal="next_wave" from="UI" to="." method="_on_ui_next_wave"]
 [connection signal="pressed" from="UI/MenuContainer/NextWaveButton" to="UI" method="_on_next_wave_button_pressed"]
+
+[editable path="Character"]
