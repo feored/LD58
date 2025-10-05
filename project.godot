@@ -45,6 +45,8 @@ import/blender/enabled=false
 enemies=""
 items=""
 player=""
+player_hitbox=""
+enemy_hitbox=""
 
 [input]
 
