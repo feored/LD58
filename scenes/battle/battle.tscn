@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=12 format=3 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bvfx32xj7ds6y" path="res://scenes/battle/UI/battle_ui.gd" id="3_xd4uy"]
 [ext_resource type="PackedScene" uid="uid://pu46mkcjdswb" path="res://scenes/escape_menu/escape_menu.tscn" id="6_fh7rg"]
 [ext_resource type="Script" uid="uid://di75qab6qrmci" path="res://scenes/battle/UI/ammo.gd" id="6_pll4o"]
+[ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="6_py4tk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
 albedo_color = Color(0, 0, 0, 1)
@@ -56,6 +57,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("6_py4tk")
 
 [node name="WaveLabel" type="Label" parent="UI/WaveUI"]
 unique_name_in_owner = true
@@ -86,6 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_py4tk")
 
 [node name="NextWaveButton" type="Button" parent="UI/MenuContainer"]
 process_mode = 3
