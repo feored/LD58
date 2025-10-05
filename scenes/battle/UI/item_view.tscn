@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://dow58fy8nkt7a"]
+
+[ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="1_ps211"]
+[ext_resource type="Script" uid="uid://cktelge8g1e3k" path="res://scenes/battle/UI/item_view.gd" id="2_5jbbt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jbbt"]
+bg_color = Color(0.09239706, 0.09239707, 0.092397, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ItemView" type="Control"]
+z_index = 9
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ps211")
+script = ExtResource("2_5jbbt")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jbbt")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ItemContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="PanelContainer/MarginContainer/ItemContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8006667, 0.53999996, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "Common Soul of a Health Nut"
+horizontal_alignment = 1
+
+[node name="SoulColorLabel" type="Label" parent="PanelContainer/MarginContainer/ItemContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Blue Soul"
+horizontal_alignment = 1
+
+[node name="FortitudeLabel" type="Label" parent="PanelContainer/MarginContainer/ItemContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Base Fortitude: 5"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/ItemContainer"]
+layout_mode = 2
+
+[node name="AffixContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ItemContainer"]
+unique_name_in_owner = true
+layout_mode = 2

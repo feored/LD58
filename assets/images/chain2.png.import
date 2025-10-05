@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnpjiwbl4nxp7"
-path="res://.godot/imported/chain3.png-110bb998788068fa8ee52fb71f5887f3.ctex"
+uid="uid://cpe2677r5ahls"
+path="res://.godot/imported/chain2.png-feb94fa23fdf3ad2d0790a07e3c55698.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/chain3.png"
-dest_files=["res://.godot/imported/chain3.png-110bb998788068fa8ee52fb71f5887f3.ctex"]
+source_file="res://assets/images/chain2.png"
+dest_files=["res://.godot/imported/chain2.png-feb94fa23fdf3ad2d0790a07e3c55698.ctex"]
 
 [params]
 

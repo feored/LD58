@@ -1,7 +1,12 @@
 extends PanelContainer
 
+const howling_geist_icon: Texture2D = preload("res://assets/icons/blue_icon.png")
+const bubbling_bile_icon: Texture2D = preload("res://assets/icons/green_icon.png")
+const bloodshard_arrows_icon: Texture2D = preload("res://assets/icons/red_icon.png")
+
 @onready var spell_label: Label = %SpellLabel
 @onready var spell_texture: TextureRect = %SpellTexture
+
 var tween: Tween = null
 
 
@@ -14,13 +19,13 @@ func set_spell(spell: Character.Spell) -> void:
     match spell:
         Character.Spell.HowlingGeist:
             spell_label.text = "Howling Geist"
-            spell_texture.modulate = Color(0.2, 0.2, 1, 1)
+            spell_texture.texture = howling_geist_icon
         Character.Spell.BubblingBile:
             spell_label.text = "Bubbling Bile"
-            spell_texture.modulate = Color(0.2, 1, 0.2, 1)
+            spell_texture.texture = bubbling_bile_icon
         Character.Spell.BloodshardArrows:
             spell_label.text = "Bloodshard Arrows"
-            spell_texture.modulate = Color(1, 0.2, 0.2, 1)
+            spell_texture.texture = bloodshard_arrows_icon
 
 func _on_character_spell_changed(new_spell: Character.Spell) -> void:
     set_spell(new_spell)

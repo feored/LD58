@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=17 format=3 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
@@ -10,6 +10,8 @@
 [ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="6_py4tk"]
 [ext_resource type="Script" uid="uid://bjjm7are0jsr4" path="res://scenes/battle/UI/spell_selector.gd" id="8_oiw7q"]
 [ext_resource type="Texture2D" uid="uid://bg65yd8kkl3wo" path="res://assets/icons/skull_bw.png" id="9_fisqk"]
+[ext_resource type="Texture2D" uid="uid://cs1mu5ut6yt8g" path="res://assets/images/chain_long.png" id="10_fisqk"]
+[ext_resource type="Script" uid="uid://ca4vbq17v04h7" path="res://scenes/battle/UI/soul_lantern.gd" id="11_mxe8n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
 albedo_color = Color(0, 0, 0, 1)
@@ -19,6 +21,8 @@ material = SubResource("StandardMaterial3D_r1e00")
 size = Vector2(30, 30)
 
 [sub_resource type="Environment" id="Environment_r1e00"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fisqk"]
 
 [node name="Battle" type="Node3D"]
 script = ExtResource("1_0yh6x")
@@ -68,7 +72,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "60"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveUI" node_paths=PackedStringArray("inventory")]
+[node name="Ammo" type="HBoxContainer" parent="UI/WaveUI" node_paths=PackedStringArray("inventory")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 1
@@ -120,6 +124,71 @@ layout_mode = 2
 texture = ExtResource("9_fisqk")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="EquippedSouls" type="PanelContainer" parent="UI/WaveUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fisqk")
+
+[node name="TextureRect" type="TextureRect" parent="UI/WaveUI/EquippedSouls"]
+layout_mode = 2
+texture = ExtResource("10_fisqk")
+
+[node name="SoulLantern" type="MarginContainer" parent="UI/WaveUI" node_paths=PackedStringArray("inventory")]
+custom_minimum_size = Vector2(720, 480)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+script = ExtResource("11_mxe8n")
+inventory = NodePath("../../../Character/Inventory")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveUI/SoulLantern"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/WaveUI/SoulLantern/VBoxContainer"]
+layout_mode = 2
+text = "Soul Lantern"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveUI/SoulLantern/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/WaveUI/SoulLantern/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BlueSoulContainer" type="VBoxContainer" parent="UI/WaveUI/SoulLantern/VBoxContainer/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="UI/WaveUI/SoulLantern/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GreenSoulContainer" type="VBoxContainer" parent="UI/WaveUI/SoulLantern/VBoxContainer/HBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="UI/WaveUI/SoulLantern/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RedSoulContainer" type="VBoxContainer" parent="UI/WaveUI/SoulLantern/VBoxContainer/HBoxContainer/PanelContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 
 [node name="MenuContainer" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true

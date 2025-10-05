@@ -1,9 +1,14 @@
 extends Node
 
 const SOUL_NAMES = {
-    Item.Type.Blue: ["Common Soul", "Soul", "Blue Soul", "Rough Soul"],
-    Item.Type.Green: ["Uncommon Soul", "Lesser Soul", "Green Soul", "Fine Soul"],
-    Item.Type.Red: ["Rare Soul", "Greater Soul", "Red Soul", "Exquisite Soul"]
+    Item.Type.Blue: ["Sapphire Soul", "Blue Soul", "Azure Soul", "Beryl Soul"],
+    Item.Type.Green: ["Jade Soul", "Sage Soul", "Green Soul", "Emerald Soul"],
+    Item.Type.Red: ["Crimson Soul", "Red Soul", "Ruby Soul", "Scarlet Soul"]
+}
+const ITEM_TYPE_COLOR = {
+    Item.Type.Blue: Color(0.2, 0.2, 1, 1),
+    Item.Type.Green: Color(0.2, 1, 0.2, 1),
+    Item.Type.Red: Color(1, 0.2, 0.2, 1)
 }
 
 const BASE_FORTITUDE = {
@@ -23,6 +28,36 @@ const GROUP_STEP = {
     Item.Group.GeistAbility         : 0.1,
     Item.Group.BileAbility          : 0.1,
     Item.Group.BloodshardAbility    : 0.1
+}
+
+const GROUP_STEP_DISPLAY = {
+    Item.Group.Fortitude            : "%.0f",
+    Item.Group.MovementSpeed        : "%.2f",
+    Item.Group.MagicFind            : "%.2f",
+    Item.Group.SpellDamage          : "%.2f",
+    Item.Group.CollectionRange      : "%.2f",
+    Item.Group.MeleeDamage          : "%.0f",
+    Item.Group.SoulHoT              : "%.1f",
+    Item.Group.SoulDuration         : "%.1f",
+    Item.Group.IntermissionDuration : "%.1f",
+    Item.Group.GeistAbility         : "%.1f",
+    Item.Group.BileAbility          : "%.1f",
+    Item.Group.BloodshardAbility    : "%.1f"
+}
+
+const GROUP_DISPLAY_TEXT = {
+    Item.Group.Fortitude            : "%s to Fortitude",
+    Item.Group.MovementSpeed        : "%s to Movement Speed",
+    Item.Group.MagicFind            : "%s to Magic Find",
+    Item.Group.SpellDamage          : "%s to Spell Damage",
+    Item.Group.CollectionRange      : "%s to Collection Range",
+    Item.Group.MeleeDamage          : "%s to Melee Damage",
+    Item.Group.SoulHoT              : "%s to Soul Heal over Time",
+    Item.Group.SoulDuration         : "%s to Soul Duration",
+    Item.Group.IntermissionDuration : "%s to Intermission Duration",
+    Item.Group.GeistAbility         : "%s to Howling Geist Ability",
+    Item.Group.BileAbility          : "%s to Bubbling Bile Ability",
+    Item.Group.BloodshardAbility    : "%s to Bloodshard Arrows Ability"
 }
 
 const DROP_CHANCES = {
