@@ -19,15 +19,6 @@ shader_parameter/time_scale = 3.0
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/edge_softness = 0.1
 
-[sub_resource type="Gradient" id="2"]
-colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
-
-[sub_resource type="GradientTexture2D" id="3"]
-gradient = SubResource("2")
-width = 128
-fill_from = Vector2(0.48971194, 0.74897116)
-fill_to = Vector2(0.872428, 0.46090534)
-
 [sub_resource type="Curve" id="4"]
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -35,32 +26,6 @@ point_count = 2
 [sub_resource type="CurveTexture" id="5"]
 width = 128
 curve = SubResource("4")
-
-[sub_resource type="ParticleProcessMaterial" id="6"]
-direction = Vector3(0, 1, 0)
-spread = 0.0
-initial_velocity_min = 0.5
-initial_velocity_max = 0.5
-gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 4.0
-scale_curve = SubResource("5")
-color = Color(0.7764706, 0, 0, 1)
-color_ramp = SubResource("3")
-
-[sub_resource type="QuadMesh" id="7"]
-size = Vector2(0.5, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8wm"]
-emission_enabled = true
-emission = Color(1, 0.13, 0.14449978, 1)
-emission_energy_multiplier = 3.05
-
-[sub_resource type="SphereMesh" id="SphereMesh_tvm4e"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_wl8wm")
-radius = 0.01
-height = 0.02
 
 [sub_resource type="ParticleProcessMaterial" id="8"]
 lifetime_randomness = 0.5
@@ -78,6 +43,41 @@ scale_max = 1.5
 scale_curve = SubResource("5")
 color_ramp = ExtResource("7")
 turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="7"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="2"]
+colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
+
+[sub_resource type="GradientTexture2D" id="3"]
+gradient = SubResource("2")
+width = 128
+fill_from = Vector2(0.48971194, 0.74897116)
+fill_to = Vector2(0.872428, 0.46090534)
+
+[sub_resource type="ParticleProcessMaterial" id="6"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("5")
+color = Color(0.7764706, 0, 0, 1)
+color_ramp = SubResource("3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8wm"]
+emission_enabled = true
+emission = Color(1, 0.13, 0.14449978, 1)
+emission_energy_multiplier = 3.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_tvm4e"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_wl8wm")
+radius = 0.01
+height = 0.02
 
 [sub_resource type="ParticleProcessMaterial" id="9"]
 lifetime_randomness = 0.81
@@ -106,6 +106,28 @@ height = 0.02
 
 [node name="StylizedFireDemo" type="CanvasLayer"]
 
+[node name="skullblue" parent="." instance=ExtResource("5_phiab")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 0.31094372)
+
+[node name="Ghost Fire" type="GPUParticles3D" parent="skullblue/soul_green/skull" index="0"]
+transform = Transform3D(0.5660159, 0, 0.38647977, 0, 0.6853762, 0, -0.38647977, 0, 0.5660159, 0, -0.36435354, 0)
+material_override = SubResource("1")
+cast_shadow = 0
+amount = 30
+randomness = 0.7
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("8")
+draw_pass_1 = SubResource("7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="skullblue/soul_green/skull/Ghost Fire"]
+light_color = Color(0, 0.85639215, 0.7561138, 1)
+light_energy = 2.0
+
+[node name="GPUParticles3D" parent="skullblue/soul_green" index="1"]
+visible = false
+
 [node name="Blood Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 0)
 material_override = SubResource("1")
@@ -126,27 +148,6 @@ light_energy = 2.0
 [node name="GPUParticles3D" parent="Blood Fire/skullred/soul_blue" index="1"]
 visible = false
 draw_pass_1 = SubResource("SphereMesh_tvm4e")
-
-[node name="Ghost Fire" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 0.31094372)
-material_override = SubResource("1")
-cast_shadow = 0
-amount = 30
-randomness = 0.7
-fixed_fps = 15
-draw_order = 1
-trail_lifetime = 6.0
-process_material = SubResource("8")
-draw_pass_1 = SubResource("7")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Ghost Fire"]
-light_color = Color(0, 0.85639215, 0.7561138, 1)
-light_energy = 2.0
-
-[node name="skullblue" parent="Ghost Fire" instance=ExtResource("5_phiab")]
-
-[node name="GPUParticles3D" parent="Ghost Fire/skullblue/soul_green" index="1"]
-visible = false
 
 [node name="Acid Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.66113, 1.26708, 0.007401228)
@@ -169,9 +170,9 @@ light_energy = 2.0
 visible = false
 draw_pass_1 = SubResource("SphereMesh_bclxo")
 
+[editable path="skullblue"]
+[editable path="skullblue/soul_green"]
 [editable path="Blood Fire/skullred"]
 [editable path="Blood Fire/skullred/soul_blue"]
-[editable path="Ghost Fire/skullblue"]
-[editable path="Ghost Fire/skullblue/soul_green"]
 [editable path="Acid Fire/skullgreen"]
 [editable path="Acid Fire/skullgreen/soul_blue"]

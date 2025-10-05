@@ -4,9 +4,9 @@ const soul_item_scene = preload("res://scenes/battle/UI/soul_item.tscn")
 
 @export var inventory : Inventory
 
-@onready var blue_soul_container : VBoxContainer = %BlueSoulContainer
-@onready var green_soul_container : VBoxContainer = %GreenSoulContainer
-@onready var red_soul_container : VBoxContainer = %RedSoulContainer
+@onready var blue_soul_container = %BlueSoulContainer
+@onready var green_soul_container = %GreenSoulContainer
+@onready var red_soul_container = %RedSoulContainer
 
 func _ready():
     inventory.updated.connect(_on_inventory_updated)

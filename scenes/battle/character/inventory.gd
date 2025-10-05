@@ -19,7 +19,7 @@ func count_items_of_type(item_type: Item.Type) -> int:
     return count
 
 func use_last_item_of_type(item_type: Item.Type) -> void:
-    for i in range(items.size() - 1, -1, -1):
+    for i in range(items.size()):
         if items[i].item_type == item_type:
             items.remove_at(i)
             emit_signal("updated")
