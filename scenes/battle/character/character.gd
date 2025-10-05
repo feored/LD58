@@ -1,4 +1,5 @@
 extends Node3D
+class_name Character
 
 @export var battle: Battle
 @export var animation_player: AnimationPlayer
@@ -6,8 +7,21 @@ extends Node3D
 @onready var melee_area: Area3D = %MeleeArea3D
 @onready var inventory: Inventory = %Inventory
 
+const SPELL_CAST_WAIT_TIME: float = 0.25
+
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
 const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
+
+signal spell_changed(new_spell: Spell)
+signal spell_no_ammo()
+
+enum Spell {
+    HowlingGeist,
+    BubblingBile,
+    BloodshardArrows
+}
+
+var current_spell: Spell = Spell.HowlingGeist
 
 const BASE_MELEE_DAMAGE: int = 50
 const movement_speed: float = 2.5
@@ -23,32 +37,68 @@ func _physics_process(delta: float) -> void:
     self.look_at_mouse()
 
 func _unhandled_input(event):
+    self.switch_spells(event)
     self.shoot(event)
 
+func switch_spells(event) -> void:
+    if event.is_action_pressed("wheel_up"):
+        var next_index = (int(current_spell) + 1) % Spell.size()
+        current_spell = Spell.values()[next_index] as Spell
+        self.emit_signal("spell_changed", current_spell)
+    elif event.is_action_pressed("wheel_down"):
+        var next_index = (int(current_spell) - 1) % Spell.size()
+        current_spell = Spell.values()[next_index] as Spell
+        self.emit_signal("spell_changed", current_spell)
+
 func shoot(event) -> void:
-    if event.is_action_pressed("melee_attack"):
+    if event.is_action_pressed("left_click"):
         self.animation_player.play("lich_m1")
     if event.is_action_pressed("spell_1"):
-        if inventory.count_items_of_type(Item.Type.Blue) <= 0:
-            return
-        var spell_instance = howling_geist.instantiate()
-        battle.add_child(spell_instance)
-        spell_instance.global_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
-        var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
-        spell_instance.look_at(spell_instance.global_position + spell_direction)
-        self.animation_player.play("lich_spec")
-        inventory.use_last_item_of_type(Item.Type.Blue)
+        shoot_howling_geist()
     elif event.is_action_pressed("spell_2"):
-        if inventory.count_items_of_type(Item.Type.Green) <= 0:
-            return
-        var spell_instance = bubbling_bile.instantiate()
-        battle.add_child(spell_instance)
-        spell_instance.global_position = self.global_position + Vector3(0, 0.5, 0) - transform.basis.z * 1.5
-        var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
-        spell_instance.look_at(spell_instance.global_position + spell_direction)
-        spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
-        self.animation_player.play("lich_spec")
-        inventory.use_last_item_of_type(Item.Type.Green)
+        shoot_bubbling_bile()
+    elif event.is_action_pressed("spell_3"):
+        pass
+    if event.is_action_pressed("right_click"):
+        match current_spell:
+            Spell.HowlingGeist:
+                shoot_howling_geist()
+            Spell.BubblingBile:
+                shoot_bubbling_bile()
+            Spell.BloodshardArrows:
+                pass
+
+func shoot_howling_geist() -> void:
+    self.spell_changed.emit(Spell.HowlingGeist)
+    if inventory.count_items_of_type(Item.Type.Blue) <= 0:
+        #Sfx.play(Sfx.Track.Cancel)
+        self.spell_no_ammo.emit()
+        return
+    self.animation_player.play("lich_spec")
+    await Utils.wait(SPELL_CAST_WAIT_TIME)
+    var spell_instance = howling_geist.instantiate()
+    battle.add_child(spell_instance)
+    spell_instance.global_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
+    var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
+    spell_instance.look_at(spell_instance.global_position + spell_direction)
+    inventory.use_last_item_of_type(Item.Type.Blue)
+
+func shoot_bubbling_bile() -> void:
+    self.spell_changed.emit(Spell.BubblingBile)
+    if inventory.count_items_of_type(Item.Type.Green) <= 0:
+        #Sfx.play(Sfx.Track.Cancel)
+        self.spell_no_ammo.emit()
+        return
+    self.animation_player.play("lich_spec")
+    await Utils.wait(SPELL_CAST_WAIT_TIME)
+    var spell_instance = bubbling_bile.instantiate()
+    battle.add_child(spell_instance)
+    spell_instance.global_position = self.global_position + Vector3(0, 0.5, 0) - transform.basis.z * 1.5
+    var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
+    spell_instance.look_at(spell_instance.global_position + spell_direction)
+    spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
+    inventory.use_last_item_of_type(Item.Type.Green)
+
 
 func movement_vector() -> Vector3:
     var movement: Vector3 = Vector3.ZERO
