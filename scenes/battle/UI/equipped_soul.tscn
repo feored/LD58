@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4hyc7yrsthiv"]
+
+[ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="1_8b4d0"]
+[ext_resource type="Texture2D" uid="uid://dl8iflve2xhye" path="res://assets/images/bar1_background.png" id="1_y2lav"]
+[ext_resource type="Texture2D" uid="uid://dfgj6yn4v1jpv" path="res://assets/images/bar1.png" id="2_mpf7o"]
+[ext_resource type="Script" uid="uid://dbxuwnit7u76x" path="res://scenes/battle/UI/equipped_soul.gd" id="3_1fk6p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8b4d0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fk6p"]
+bg_color = Color(0.4, 0, 0, 0.7019608)
+
+[node name="EquippedSoul" type="TextureRect"]
+offset_right = 337.0
+offset_bottom = 111.0
+theme = ExtResource("1_8b4d0")
+texture = ExtResource("1_y2lav")
+stretch_mode = 2
+script = ExtResource("3_1fk6p")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 19.0
+offset_right = -26.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_8b4d0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1fk6p")
+value = 51.78
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_mpf7o")
+
+[node name="ItemNameLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = 25.0
+offset_right = -36.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.848, 0.62, 1)
+text = "Lucky Soul of a Lucky Dog"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

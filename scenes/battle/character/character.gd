@@ -14,6 +14,7 @@ const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
 
 signal spell_changed(new_spell: Spell)
 signal spell_no_ammo()
+signal got_hit(damage: int)
 
 enum Spell {
     HowlingGeist,
@@ -123,6 +124,7 @@ func hover_animation() -> void:
 
 func get_hit(damage: int) -> void:
     self.animation_player.play("lich_hurt")
+    self.emit_signal("got_hit", damage)
 
 func add_item(item: Item) -> bool:
     if inventory.items.size() >= Inventory.MAX_TOTAL_SOULS:

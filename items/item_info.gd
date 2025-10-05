@@ -289,13 +289,14 @@ func generate_name(item: Item) -> String:
 
     var random_soul_name = SOUL_NAMES[item.item_type][Utils.rng.randi() % SOUL_NAMES[item.item_type].size()]
     var final_name = random_soul_name
+    var order = Utils.rng.randi() % 2
     if highest_affix:
-        if Utils.rng.randi() % 2 == 0:
+        if order == 0:
             final_name = final_name + " " + highest_affix.suffix
         else:
             final_name = highest_affix.prefix + " " + final_name
     if second_highest_affix:
-        if Utils.rng.randi() % 2 == 0:
+        if order != 0:
             final_name = final_name + " " + second_highest_affix.suffix
         else:
             final_name = second_highest_affix.prefix + " " + final_name

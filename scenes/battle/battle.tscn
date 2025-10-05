@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=19 format=3 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://bjjm7are0jsr4" path="res://scenes/battle/UI/spell_selector.gd" id="8_oiw7q"]
 [ext_resource type="Texture2D" uid="uid://bg65yd8kkl3wo" path="res://assets/icons/skull_bw.png" id="9_fisqk"]
 [ext_resource type="Texture2D" uid="uid://cs1mu5ut6yt8g" path="res://assets/images/chain_long.png" id="10_fisqk"]
+[ext_resource type="Script" uid="uid://syhf38oqxv7f" path="res://scenes/battle/UI/equipped_souls.gd" id="10_t1kk3"]
 [ext_resource type="Script" uid="uid://ca4vbq17v04h7" path="res://scenes/battle/UI/soul_lantern.gd" id="11_mxe8n"]
+[ext_resource type="Texture2D" uid="uid://cnicci04d26rt" path="res://assets/images/ui - Copy.png" id="12_t1kk3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
 albedo_color = Color(0, 0, 0, 1)
@@ -68,22 +70,11 @@ theme = ExtResource("6_py4tk")
 [node name="WaveLabel" type="Label" parent="UI/WaveUI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 10.0
+offset_top = 120.0
+offset_right = 50.0
+offset_bottom = 143.00005
 text = "60"
-
-[node name="Ammo" type="HBoxContainer" parent="UI/WaveUI" node_paths=PackedStringArray("inventory")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("6_pll4o")
-inventory = NodePath("../../../Character/Inventory")
 
 [node name="SpellSelector" type="PanelContainer" parent="UI/WaveUI"]
 layout_mode = 1
@@ -125,18 +116,26 @@ texture = ExtResource("9_fisqk")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EquippedSouls" type="PanelContainer" parent="UI/WaveUI"]
+[node name="EquippedSoulsChain" type="PanelContainer" parent="UI/WaveUI"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fisqk")
 
-[node name="TextureRect" type="TextureRect" parent="UI/WaveUI/EquippedSouls"]
+[node name="TextureRect" type="TextureRect" parent="UI/WaveUI/EquippedSoulsChain"]
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 texture = ExtResource("10_fisqk")
+stretch_mode = 5
 
-[node name="SoulLantern" type="MarginContainer" parent="UI/WaveUI" node_paths=PackedStringArray("inventory")]
+[node name="EquippedSouls" type="HBoxContainer" parent="UI/WaveUI/EquippedSoulsChain"]
+layout_mode = 2
+theme_override_constants/separation = 50
+script = ExtResource("10_t1kk3")
+
+[node name="SoulLantern" type="MarginContainer" parent="UI/WaveUI" node_paths=PackedStringArray("inventory", "equipped_souls")]
+visible = false
 custom_minimum_size = Vector2(720, 480)
 layout_mode = 1
 anchors_preset = 15
@@ -150,6 +149,7 @@ theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 200
 script = ExtResource("11_mxe8n")
 inventory = NodePath("../../../Character/Inventory")
+equipped_souls = NodePath("../EquippedSoulsChain/EquippedSouls")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveUI/SoulLantern"]
 layout_mode = 2
@@ -191,6 +191,31 @@ custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 
+[node name="TextureRect" type="TextureRect" parent="UI/WaveUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("12_t1kk3")
+
+[node name="Ammo" type="HBoxContainer" parent="UI/WaveUI/TextureRect" node_paths=PackedStringArray("inventory")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 15.0
+offset_right = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_pll4o")
+inventory = NodePath("../../../../Character/Inventory")
+
 [node name="MenuContainer" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
 process_mode = 3
@@ -211,9 +236,11 @@ text = "Next Wave"
 
 [node name="EscMenu" parent="." instance=ExtResource("6_fh7rg")]
 
+[connection signal="got_hit" from="Character" to="UI/WaveUI/EquippedSoulsChain/EquippedSouls" method="_on_character_got_hit"]
 [connection signal="spell_changed" from="Character" to="UI/WaveUI/SpellSelector" method="_on_character_spell_changed"]
 [connection signal="spell_no_ammo" from="Character" to="UI/WaveUI/SpellSelector" method="_on_character_spell_no_ammo"]
 [connection signal="next_wave" from="UI" to="." method="_on_ui_next_wave"]
+[connection signal="died" from="UI/WaveUI/EquippedSoulsChain/EquippedSouls" to="." method="_on_equipped_souls_died"]
 [connection signal="pressed" from="UI/MenuContainer/NextWaveButton" to="UI" method="_on_next_wave_button_pressed"]
 
 [editable path="Character"]

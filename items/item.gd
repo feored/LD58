@@ -17,6 +17,14 @@ func _to_string() -> String:
 	)
 
 
+func calculate_total_fortitude() -> int:
+	var total = fortitude
+	for affix in rolled_affixes:
+		if affix.affix.group == Group.Fortitude:
+			total += int(affix.value)
+	return total
+
+
 enum Type { Blue, Green, Red }
 enum Balance { Positive, Negative }
 enum Group {

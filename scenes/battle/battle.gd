@@ -71,3 +71,7 @@ func _on_ui_next_wave() -> void:
     time_elapsed = 0.0
     wave_number += 1
     UI.set_wave(wave_number)
+
+func _on_equipped_souls_died() -> void:
+    Log.info("Player has died")
+    SceneTransition.change_scene(SceneTransition.Scene.MainMenu)

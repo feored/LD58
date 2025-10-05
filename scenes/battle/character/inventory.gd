@@ -24,3 +24,7 @@ func use_last_item_of_type(item_type: Item.Type) -> void:
             items.remove_at(i)
             emit_signal("updated")
             return
+
+func remove_item(item: Item) -> void:
+    items.erase(item)
+    emit_signal("updated")
