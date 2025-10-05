@@ -4,7 +4,7 @@ const blue_skull_scene = preload("res://scenes/battle/souls/skull_blue.tscn")
 const red_skull_scene = preload("res://scenes/battle/souls/skull_red.tscn")
 const green_skull_scene = preload("res://scenes/battle/souls/skull_green.tscn")
 
-const LIFETIME = 2.0
+const LIFETIME = 5.0
 
 var item: Item = null
 

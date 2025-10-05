@@ -1,7 +1,7 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 30.0
+const WAVE_DURATION = 90.0
 var wave_number: int = 1
 var spawn_rate: float = 2.0 # seconds between spawns
 var next_spawn_time: float = 0.0
@@ -16,6 +16,7 @@ var time_elapsed: float = 0.0
 @onready var player_character = %Character
 
 func _ready() -> void:
+    Music.play_track(Music.Track.Battle3, true)
     UI.set_wave(wave_number)
 
 func manage_spawn() -> void:

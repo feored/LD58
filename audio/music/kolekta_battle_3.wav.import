@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dmrs28oqq25xt"
-path="res://.godot/imported/kolekta_battle_3.wav-a23d8ece6c419c5d644ca864f178449f.sample"
+path="res://.godot/imported/kolekta_battle_3.wav-62bc6192ec75adc5093f75ece4e2956c.sample"
 
 [deps]
 
-source_file="res://audio/kolekta_battle_3.wav"
-dest_files=["res://.godot/imported/kolekta_battle_3.wav-a23d8ece6c419c5d644ca864f178449f.sample"]
+source_file="res://audio/music/kolekta_battle_3.wav"
+dest_files=["res://.godot/imported/kolekta_battle_3.wav-62bc6192ec75adc5093f75ece4e2956c.sample"]
 
 [params]
 
