@@ -5,8 +5,6 @@ var item : Item = null
 var current_fortitude : int = 0
 var max_fortitude : int = 0
 
-signal broke(soul : EquippedSoul)
-
 @onready var progress_bar : ProgressBar = $ProgressBar
 @onready var item_name_label : Label = %ItemNameLabel
 
@@ -21,9 +19,11 @@ func set_item(new_item : Item) -> void:
     current_fortitude = max_fortitude
     progress_bar.value = 100
 
-func get_hit(damage : int) -> void:
+func get_hit(damage : int) -> int:
     if item:
+        var leftover_damage = damage - current_fortitude
         current_fortitude = max(current_fortitude - damage, 0)
         progress_bar.value = float(current_fortitude) / float(max_fortitude) * 100.0
-        if current_fortitude <= 0:
-            self.broke.emit(self)
+        return leftover_damage
+    else:
+        return damage

@@ -4,35 +4,51 @@ class_name EquippedSouls
 signal died
 const MAX_SOULS: int = 5
 const equipped_soul_scene = preload("res://scenes/battle/UI/equipped_soul.tscn")
-var total_stats : Dictionary = {}
-var equipped_souls : Array = []
+var total_stats: Dictionary = {}
+var equipped_souls: Array = []
+
 
 func can_equip() -> bool:
     return equipped_souls.size() < MAX_SOULS
 
+
 func equip_soul(item: Item) -> void:
     var soul_instance = equipped_soul_scene.instantiate()
     soul_instance.item = item
-    soul_instance.broke.connect(func(soul):
-        equipped_souls.erase(soul)
-        soul.queue_free()
-        if equipped_souls.size() == 0:
-            self.died.emit()
-    )
     self.add_child(soul_instance)
-    self.move_child(soul_instance, 0) # Move to the front
+    self.move_child(soul_instance, 0)  # Move to the front
     equipped_souls.push_front(soul_instance)
     self.total_stats = get_total_stats()
+
+
+func break_soul(soul) -> void:
+    equipped_souls.erase(soul)
+    soul.queue_free()
+    if equipped_souls.size() == 0:
+        self.died.emit()
+    self.total_stats = get_total_stats()
+
 
 func get_hit(damage: int) -> void:
     if equipped_souls.size() <= 0:
         self.died.emit()
         return
-    var soul = equipped_souls[0]
-    soul.get_hit(damage)
+    var leftover_damage = damage
+    var broken_souls = []
+    for i in range(equipped_souls.size() - 1, -1, -1):
+        var soul = equipped_souls[i]
+        leftover_damage = soul.get_hit(leftover_damage)
+        if leftover_damage > 0:
+            broken_souls.append(soul)
+        else:
+            break
+    for soul in broken_souls:
+        break_soul(soul)
+
 
 func _on_character_got_hit(damage: int) -> void:
     get_hit(damage)
+
 
 func get_total_stats() -> Dictionary:
     var total_stats = {}
@@ -42,4 +58,5 @@ func get_total_stats() -> Dictionary:
         var item = soul.item
         for rolled_affix in item.rolled_affixes:
             total_stats[rolled_affix.affix.group] += rolled_affix.value
+    print(total_stats)
     return total_stats

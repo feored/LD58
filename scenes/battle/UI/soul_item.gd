@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
         var mpos = get_viewport().get_mouse_position()
         item_view.global_position = mpos + Vector2(16, 16)
 
-
 func _on_mouse_entered() -> void:
     item_view.visible = true
 
