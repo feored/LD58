@@ -11,6 +11,7 @@ enum State {
 var state: State = State.NONE
 
 @onready var wave_label: Label = %WaveLabel
+@onready var wave_ui : Control = %WaveUI
 @onready var menu_container: Control = %MenuContainer
 
 func _ready() -> void:
@@ -25,13 +26,13 @@ func set_state(new_state: State) -> void:
     match state:
         State.IN_WAVE:
             menu_container.visible = false
-            wave_label.visible = true
+            wave_ui.visible = true
         State.MENU:
             menu_container.visible = true
-            wave_label.visible = false
+            wave_ui.visible = false
         State.NONE:
             menu_container.visible = false
-            wave_label.visible = false
+            wave_ui.visible = false
 
 func _on_button_pressed() -> void:
     Log.info("Menu button pressed")

@@ -40,11 +40,14 @@ func enemy_died(enemy: Node3D) -> void:
     var enemy_position = enemy.global_position
     enemies.erase(enemy)
     enemy.queue_free()
-    spawn_soul(enemy_position, "knight")
+    spawn_soul(enemy_position, enemy.type)
 
-func spawn_soul(spawn_position: Vector3, enemy_type = "knight") -> void:
+func spawn_soul(spawn_position: Vector3, enemy_type : Constants.EnemyType = Constants.EnemyType.Knight) -> void:
     var soul_instance = soul_scene.instantiate()
-    soul_instance.item = ItemInfo.generate_blue_item()
+    var item_type: Item.Type = ItemInfo.generate_item_type(enemy_type)
+    if item_type == Item.Type.Red:
+        item_type = Item.Type.Blue if Utils.rng.randf() < 0.5 else Item.Type.Green
+    soul_instance.item = ItemInfo.generate_item(item_type)
     soul_instance.position = spawn_position + Vector3(0, 0.5, 0)
     add_child(soul_instance)
 

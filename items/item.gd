@@ -19,7 +19,20 @@ func _to_string() -> String:
 
 enum Type { Blue, Green, Red }
 enum Balance { Positive, Negative }
-enum Group { Fortitude, MovementSpeed, SpellSpeed, SpellDamage }
+enum Group {
+    Fortitude,
+    MovementSpeed,
+    MagicFind,
+    SpellDamage,
+    CollectionRange,
+    MeleeDamage,
+    SoulHoT,
+    SoulDuration,
+    IntermissionDuration,
+    GeistAbility,
+    BileAbility,
+    BloodshardAbility
+}
 
 
 class RolledAffix:
@@ -28,7 +41,14 @@ class RolledAffix:
 
     func _init(init_affix: Affix):
         self.affix = init_affix
-        self.value = fmod(Utils.rng.randf_range(affix.value_range.x, affix.value_range.y), 0.1)
+        var temp_value = Utils.rng.randf_range(affix.value_range.x, affix.value_range.y)
+        var fmod_value = fmod(temp_value, ItemInfo.GROUP_STEP[affix.group])
+        var final_value = temp_value - fmod_value
+        if final_value < min(affix.value_range.x, affix.value_range.y):
+            final_value = min(affix.value_range.x, affix.value_range.y)
+        elif final_value > max(affix.value_range.x, affix.value_range.y):
+            final_value = max(affix.value_range.x, affix.value_range.y)
+        self.value = (temp_value - fmod_value)
 
     func _to_string() -> String:
         return "%s: %f" % [str(self.affix), self.value]

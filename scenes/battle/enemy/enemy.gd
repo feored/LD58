@@ -7,6 +7,7 @@ var life: int = Utils.rng.randi_range(40, 60)
 const DAMAGE = 10
 const HIT_ANIMATION_TIME = 0.15
 
+var type: Constants.EnemyType = Constants.EnemyType.Knight
 var player_character: Node3D = null
 var speed: float = Utils.rng.randf_range(0.75, 1.25)
 var is_hit: bool = false
@@ -43,7 +44,6 @@ func _physics_process(delta: float) -> void:
 func _on_area_3d_area_entered(area: Area3D) -> void:
     if area.get_parent() == player_character:
         if area.is_in_group("melee_hitbox"):
-            Log.info("This is a melee hitbox")
             return
         self.hit_red_tween()
         self.is_hit = true

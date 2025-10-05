@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvc3dotaoyu2g"]
+
+[ext_resource type="Texture2D" uid="uid://bg65yd8kkl3wo" path="res://assets/icons/skull_bw.png" id="1_cyv08"]
+
+[node name="TextureRect" type="TextureRect"]
+texture = ExtResource("1_cyv08")
+expand_mode = 3
+stretch_mode = 5

@@ -30,6 +30,11 @@ TileInfo="*res://globals/autoloads/tile_info.gd"
 Utils="*res://globals/autoloads/utils.gd"
 ItemInfo="*res://items/item_info.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [global_group]
 
 enemies=""

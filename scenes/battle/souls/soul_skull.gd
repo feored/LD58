@@ -39,5 +39,5 @@ func add_color_skull(color: Item.Type) -> void:
 func _on_area_3d_area_entered(area: Area3D) -> void:
     if area.get_parent().is_in_group("player"):
         if item != null:
-            area.get_parent().add_item(item)
-        self.queue_free()
+            if area.get_parent().add_item(item):
+                self.queue_free()
