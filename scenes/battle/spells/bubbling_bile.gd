@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 func hit_bile() -> void:
     for area in bile_area.get_overlapping_areas():
-        if area.get_parent().is_in_group("enemy"):
+        if area.get_parent().is_in_group("enemies"):
             area.get_parent().get_hit(DAMAGE)
     
 func explode_bile():
