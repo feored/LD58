@@ -4,7 +4,7 @@ const blue_skull_scene = preload("res://scenes/battle/souls/skull_blue.tscn")
 const red_skull_scene = preload("res://scenes/battle/souls/skull_red.tscn")
 const green_skull_scene = preload("res://scenes/battle/souls/skull_green.tscn")
 
-const LIFETIME = 10.0
+const LIFETIME = 2.0
 
 var item: Item = null
 
@@ -20,8 +20,13 @@ func start_lifetime_timer() -> void:
     var timer := Timer.new()
     self.add_child(timer)
     timer.wait_time = LIFETIME
-    timer.timeout.connect(queue_free)
+    timer.timeout.connect(expire)
     timer.start()
+
+
+func expire() -> void:
+    Sfx.play_multitrack(Sfx.MultiTrack.SoulExpire)
+    self.queue_free()
 
 
 func add_color_skull(color: Item.Type) -> void:

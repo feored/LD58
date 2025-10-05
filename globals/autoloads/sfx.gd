@@ -3,17 +3,31 @@ extends Node
 const LOWEST_VOLUME = -80
 const DEFAULT_VOLUME = 0
 
+enum MultiTrack {
+    SoulExpire
+}
+
 enum Track {
     Confirm,
     Hover,
-    Cancel
+    Cancel,
+    SoulExpire1,
+    SoulExpire2,
+    SoulExpire3,
 }
 enum Ambience { CalmWind }
+
+const MULTITRACKS = {
+    MultiTrack.SoulExpire: [Track.SoulExpire1, Track.SoulExpire2, Track.SoulExpire3],
+}
 
 const TRACKS = {
     Track.Confirm: preload("res://audio/sfx/UI/UI_Confirm.wav"),
     Track.Hover: preload("res://audio/sfx/UI/UI_Hover.wav"),
     Track.Cancel: preload("res://audio/sfx/UI/UI_Cancel.wav"),
+    Track.SoulExpire1: preload("res://audio/sfx/Souls/Soul_Expire.wav"),
+    Track.SoulExpire2: preload("res://audio/sfx/Souls/Soul_Expire_2.wav"),
+    Track.SoulExpire3: preload("res://audio/sfx/Souls/Soul_Expire_3.wav"),
 }
 
 const AMBIENCE_TRACKS = {} #Ambience.CalmWind: preload("res://audio/ambience/wind_calm.wav")}
@@ -24,7 +38,10 @@ const RANDOM_PITCH_SCALE = {
 }
 
 const CUSTOM_VOLUME = {
-    Track.Confirm: -15
+    Track.Confirm: -15,
+    Track.SoulExpire1: -10,
+    Track.SoulExpire2: -10,
+    Track.SoulExpire3: -10,
 }
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.CalmWind: -45}
@@ -66,6 +83,11 @@ func play(track: Track):
     if track in RANDOM_PITCH_SCALE:
         self.players[track].pitch_scale = randf_range(RANDOM_PITCH_SCALE[track][0], RANDOM_PITCH_SCALE[track][1])
     self.players[track].play()
+
+func play_multitrack(multi_track: MultiTrack):
+    var tracks = MULTITRACKS[multi_track]
+    var track = tracks[randi() % tracks.size()]
+    self.play(track)
 
 
 func disable_track(track: Track):
