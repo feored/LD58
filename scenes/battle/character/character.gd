@@ -69,6 +69,7 @@ func shoot(event) -> void:
                 pass
 
 func shoot_howling_geist() -> void:
+    self.spell_changed.emit(Spell.HowlingGeist)
     if inventory.count_items_of_type(Item.Type.Blue) <= 0:
         #Sfx.play(Sfx.Track.Cancel)
         self.spell_no_ammo.emit()
@@ -83,6 +84,7 @@ func shoot_howling_geist() -> void:
     inventory.use_last_item_of_type(Item.Type.Blue)
 
 func shoot_bubbling_bile() -> void:
+    self.spell_changed.emit(Spell.BubblingBile)
     if inventory.count_items_of_type(Item.Type.Green) <= 0:
         #Sfx.play(Sfx.Track.Cancel)
         self.spell_no_ammo.emit()
