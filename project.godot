@@ -32,8 +32,8 @@ ItemInfo="*res://items/item_info.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=640
+window/size/viewport_height=360
 
 [global_group]
 

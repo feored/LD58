@@ -88,4 +88,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_melee_area_3d_area_entered(area: Area3D) -> void:
     if area.get_parent().is_in_group("enemies"):
-        area.get_parent().get_hit(BASE_MELEE_DAMAGE)
+        area.get_parent().get_hit(BASE_MELEE_DAMAGE, true)
