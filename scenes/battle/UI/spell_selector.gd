@@ -2,7 +2,7 @@ extends PanelContainer
 
 @onready var spell_label: Label = %SpellLabel
 @onready var spell_texture: TextureRect = %SpellTexture
-@onready var tween = self.create_tween().set_trans(Tween.TransitionType.TRANS_SINE).set_ease(Tween.EaseType.EASE_IN_OUT)
+var tween: Tween = null
 
 
 func _ready() -> void:

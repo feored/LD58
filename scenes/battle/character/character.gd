@@ -7,6 +7,8 @@ class_name Character
 @onready var melee_area: Area3D = %MeleeArea3D
 @onready var inventory: Inventory = %Inventory
 
+const SPELL_CAST_WAIT_TIME: float = 0.25
+
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
 const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
 
@@ -71,12 +73,13 @@ func shoot_howling_geist() -> void:
         #Sfx.play(Sfx.Track.Cancel)
         self.spell_no_ammo.emit()
         return
+    self.animation_player.play("lich_spec")
+    await Utils.wait(SPELL_CAST_WAIT_TIME)
     var spell_instance = howling_geist.instantiate()
     battle.add_child(spell_instance)
     spell_instance.global_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
     var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
     spell_instance.look_at(spell_instance.global_position + spell_direction)
-    self.animation_player.play("lich_spec")
     inventory.use_last_item_of_type(Item.Type.Blue)
 
 func shoot_bubbling_bile() -> void:
@@ -84,13 +87,14 @@ func shoot_bubbling_bile() -> void:
         #Sfx.play(Sfx.Track.Cancel)
         self.spell_no_ammo.emit()
         return
+    self.animation_player.play("lich_spec")
+    await Utils.wait(SPELL_CAST_WAIT_TIME)
     var spell_instance = bubbling_bile.instantiate()
     battle.add_child(spell_instance)
     spell_instance.global_position = self.global_position + Vector3(0, 0.5, 0) - transform.basis.z * 1.5
     var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
     spell_instance.look_at(spell_instance.global_position + spell_direction)
     spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
-    self.animation_player.play("lich_spec")
     inventory.use_last_item_of_type(Item.Type.Green)
 
 
