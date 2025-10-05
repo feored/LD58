@@ -7,6 +7,9 @@ var life: int = Utils.rng.randi_range(40, 60)
 const DAMAGE = 10
 const HIT_ANIMATION_TIME = 0.15
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var mesh = %knight_001
+
 var type: Constants.EnemyType = Constants.EnemyType.Knight
 var player_character: Node3D = null
 var speed: float = Utils.rng.randf_range(0.75, 1.25)
@@ -50,18 +53,18 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 func hit_recover() -> void:
     self.is_hit = false
-    $Mesh.get_active_material(0).albedo_color = Color.WHITE
+    self.mesh.get_active_material(0).albedo_color = Color.WHITE
 
 
 func hit_red_tween() -> void:
+    self.animation_player.play("knighthit")
     var tween = create_tween()
-    tween.tween_property($Mesh.get_active_material(0), "albedo_color", Color.RED, HIT_ANIMATION_TIME)
+    tween.tween_property(self.mesh.get_active_material(0), "albedo_color", Color.RED, HIT_ANIMATION_TIME)
     tween.tween_callback(hit_recover)
 
 
 func die() -> void:
     self.died.emit(self)
-
 
 func get_hit(damage: int, knockback = false) -> void:
     life -= damage
@@ -71,3 +74,7 @@ func get_hit(damage: int, knockback = false) -> void:
         hit_red_tween()
         if knockback:
             is_hit = true
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+    self.animation_player.play("knightwalk")

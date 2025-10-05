@@ -6,7 +6,7 @@ var wave_number: int = 1
 var spawn_rate: float = 2.0 # seconds between spawns
 var next_spawn_time: float = 0.0
 
-var enemy_scene = preload("res://scenes/battle/enemy/enemy.tscn")
+var knight_scene = preload("res://scenes/battle/enemy/knight.tscn")
 var soul_scene = preload("res://scenes/battle/souls/soul_skull.tscn")
 var enemies: Array = []
 
@@ -25,7 +25,7 @@ func manage_spawn() -> void:
         next_spawn_time = time_elapsed + Utils.rng.randf_range(spawn_rate * 0.75, spawn_rate * 1.25)
 
 func spawn_enemy() -> void:
-    var enemy_instance = enemy_scene.instantiate()
+    var enemy_instance = knight_scene.instantiate()
     enemy_instance.position = Vector3(
         randf() * Constants.ARENA_SIZE_X - (Constants.ARENA_SIZE_X / 2.0),
         0.5,
