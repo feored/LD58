@@ -5,7 +5,7 @@ const HIT_FREQUENCY = 1.0
 const SPEED = 5.0
 const DAMAGE = 20
 
-@onready var base: MeshInstance3D = %Base
+@onready var base: Node3D = %SkullGreen
 @onready var bile: MeshInstance3D = %Bile
 @onready var bile_area: Area3D = %BileArea3D
 

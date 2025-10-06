@@ -1,67 +1,37 @@
-[gd_scene load_steps=12 format=4 uid="uid://cjx0nd20g7usn"]
+[gd_scene load_steps=14 format=3 uid="uid://cjx0nd20g7usn"]
 
-[ext_resource type="PackedScene" uid="uid://bsrc8jrr1br1n" path="res://WIP/soul_blue.gltf" id="1_mn5tl"]
+[ext_resource type="PackedScene" uid="uid://bsrc8jrr1br1n" path="res://scenes/battle/souls/soul_blue.gltf" id="1_mn5tl"]
+[ext_resource type="Shader" uid="uid://d2qu2h8fw4kic" path="res://scenes/battle/souls/Shaders/stylized_fire.gdshader" id="2_ksiy1"]
+[ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="3_4yfmm"]
+[ext_resource type="Texture2D" uid="uid://bko6oayqcslrd" path="res://scenes/battle/souls/Shaders/StylizedFire/FireMask.png" id="4_wd08o"]
+[ext_resource type="Texture2D" uid="uid://xl22pmkk0nsk" path="res://scenes/battle/souls/Shaders/StylizedFire/BlueFireGradient.tres" id="5_lt7f7"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mn5tl"]
-load_path = "res://.godot/imported/skulls.png-2674ff65a68bb259eec4a6abc40f2fff.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78447"]
-resource_name = "Material.001"
-cull_mode = 2
-albedo_texture = SubResource("CompressedTexture2D_mn5tl")
-roughness = 0.5
-texture_repeat = false
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_4uw31"]
-resource_name = "soul_blue_Cylinder_001"
-_surfaces = [{
-"aabb": AABB(-0.20203553, -0.2394183, -0.23258607, 0.41343838, 0.489415, 0.49765503),
-"format": 34896613377,
-"index_count": 144,
-"index_data": PackedByteArray("EgATAAYACwAGABMACgALABMAEgAKABMACwACAAYAAAAKABIACgAMAAsADAACAAsABAAMAAoAAAAEAAoABAAJAAwADAAOAAIACQAOAAwABAABAAkACQABAA4ABAAAAAEADgAUAAIAAgAUAA0AAgANAAYADgAPABQADwANABQAAQAPAA4AFQAGAA0ADwAVAA0AFQASAAYAAQAFAA8ABQAVAA8AAwASABUABQADABUAAwAAABIAAQAWAAUABQAQAAMABQAWABAAAQAXABYAAAAXAAEAFgAYABAAAwAHAAAAAAAHABcAAwAQAAcABwAIABcAFwAZABYAFgAZABgAFwAIABkAEAAYABEAEAARAAcAEQAYABkABwARAAgAEQAZAAgA"),
-"lods": [0.1201755, PackedByteArray("AAAKAAYACgALAAYACgAMAAsACwACAAYADAACAAsAAgANAAYABAAMAAoAAAAEAAoABAAJAAwAAwAAAAYAAwAGAA0ABAAAAAEABAABAAkACQAOAAwADAAOAAIACQABAA4ADwANAAIADgAPAAIADwADAA0AAQAPAA4ABQADAA8AAQAFAA8AAwAHAAAAAAAHAAEABQAQAAMAAwAQAAcAAQAIAAUABQAIABAABwAIAAEAEQAQAAgAEAARAAcABwARAAgA"), 0.13958482, PackedByteArray("AAAEAAYABAAAAAEAAwAAAAYAAwAHAAAAAAAHAAEABwADAAgABwAIAAEABQAIAAMABQADAAYAAQAIAAUABQAGAAIAAQAFAAIABAACAAYACQABAAIABAABAAkABAAJAAIA"), 0.34040985, PackedByteArray("AAAEAAIAAwAAAAIABAAAAAEAAAADAAEABAABAAIABQABAAMAAQAFAAIABQADAAIA"), 0.41388226, PackedByteArray("AAABAAIAAQADAAIAAwAAAAIAAAADAAEA")],
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 26,
-"vertex_data": PackedByteArray("DRMRR1qKAAAd66tGqJEAAF/Rsv8uhQAA2i62SFHoAADxN0xFki4AADrGb0hv7QAA4i7//7B/AACYM+M37Z4AAPqxAABVuwAAUM8FRbAzAABzLIqhAAAAAFC9ZfGGLAAAzd81oRAGAABrOjjzzMAAAP//1aW4hAAAONOXqeP2AABNRAk9gukAAI9HMgC8twAAAABOphF8AAB5S5vxrSgAAHG/+fJLxQAA3h/sqdPwAAD2r9Y8Ju0AAJjInTf3owAAv0qYFdb8AAAnqGwV//8AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_44wcl"]
-resource_name = "soul_blue_Cylinder_001"
-_surfaces = [{
-"aabb": AABB(-0.20203553, -0.2394183, -0.23258607, 0.41343838, 0.489415, 0.49765503),
-"attribute_data": PackedByteArray("YS5oF9IwHTJ5PusnKlRbLnxTkSAeRIEpElYmGrotaB+8UtEntxxiJ9wiKSncIkkdHD1nHbotpSkeRA4dB1kYKDZXLB23HBAfeiRRJ24oTSD6M8Qg7zhhJc403Sb8OHQuakv/L9pN6iZNSSggDVSNIbdZXiFuKCYmQTaeGA444yDoSMgmUE57IPRMkRaYU94mxVW+K6VVHiPnVY4leiQhHw=="),
-"format": 34896613399,
-"index_count": 144,
-"index_data": PackedByteArray("HgAfAAwAFQAMAB8AFQACAAwAHgAUAB8AFAAVAB8AAAAUAB4AAAAHABQAFAAWABUAFgACABUABwAWABQAFgAXAAIABwANABYADQAXABYADQABABcAGAAgAAUABQAgABoABQAaAA4AGAAZACAAGQAaACAAAwAZABgAIQAOABoAGQAhABoAIQAiAA4AAwAIABkACAAhABkABAAiACEACAAEACEABAAGACIABAAQAAYABAAbABAACAAbAAQAGwAcABAAAwAjAAgACAAjABsAAwAkACMAGwAlABwAIwAlABsAHAAlACYAIwAmACUAJAAmACMAHAAmAA8AJAAPACYACQALABEACQAKAAsACgAnAAsACgASACcAEgATACcAEgAdABMA"),
-"lods": [0.1201755, PackedByteArray("AAAUAAwAAAAHABQAFAAVAAwAFQACAAwABwAWABQAFAAWABUAFgACABUABwANABYAFgAXAAIADQAXABYADQABABcAGAAZAAUAAwAZABgAGQAaAAUABQAaAA4AAwAIABkAAwAPAAgAGQAEABoABAAOABoACAAEABkABAAGAA4ABAAQAAYACAAbAAQABAAbABAACAAPABsAGwAcABAAHAAbAA8ACQALABEACQAKAAsACgASAAsAEgATAAsAEgAdABMA"), 0.13958482, PackedByteArray("AAAHAAwABwACAAwABwANAAIADQABAAIAAwAIAAUACAAOAAUAAwAPAAgACAAEAA4ACAAPAAQABAAGAA4AEAAEAA8ABAAQAAYACQALABEACQAKAAsACgASAAsAEgATAAsA"), 0.34040985, PackedByteArray("AAAHAAIABwABAAIAAwAIAAUACAAEAAUACAADAAQABAAGAAUABgAEAAMACQAKAAsA"), 0.41388226, PackedByteArray("AAABAAIAAwAEAAUABAAGAAUABgAEAAMA")],
-"material": SubResource("StandardMaterial3D_78447"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 40,
-"vertex_data": PackedByteArray("DRMRR1qKFSAd66tGqJGKLl/Rsv8uhTMQHeurRqiRyCraLrZIUehmPl/Rsv8uhVckDRMRR1qKHCbxN0xFki6gBTrGb0hv7Wsw8TdMRZIuLioNExFHWopbJB3rq0aokVsk4i7//7B/fTtQzwVFsDObIOIu//+wf9Ep+rEAAFW7ByOYM+M37Z7iK1DPBUWwMy4qmDPjN+2eHRT6sQAAVbvPBXMsiqEAAEQSUL1l8YYs3g7N3zWhEAbPD///1aW4hLQb///VpbiE5SU405ep4/Y2Nms6OPPMwCE0TUQJPYLpgzuPRzIAvLdaI49HMgC8t5cxAABOphF8DjN5S5vxrSjzJnG/+fJLxeU23h/sqdPwDzoAAE6mEXzVK/av1jwm7X43mMidN/ejwi6/SpgV1vwQPSeobBX//8BKmMidN/ejHRTl0+fc3BviNQmpFqLfmylM0lFDjO65qZMWRgGVRc/6zbOKJ1kOK8bWKC5r0ygua9NCrhC7ti6MQm+MdMNSc0U11jxWgg4rxtaSNWLLniyy2FXFrclks+apbDCTOh8fGi6BsahgM6EWdMiMW7P4YViRpDNZcuo4v8L7ymnWZL+8tfixTI48breig1uNs2+QA2dXhbA/tVd+h0N7IVOSNWLL")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_4uw31")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mn5tl"]
-radial_velocity_min = -2.2351742e-05
-radial_velocity_max = 0.99997765
-gravity = Vector3(0, 0, 0)
-damping_max = 18.900002
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl8wm"]
-emission_enabled = true
-emission = Color(0.12941177, 0.39215687, 1, 1)
-emission_energy_multiplier = 3.05
-
-[sub_resource type="SphereMesh" id="SphereMesh_mn5tl"]
-material = SubResource("StandardMaterial3D_wl8wm")
-radius = 0.01
-height = 0.02
+[sub_resource type="Animation" id="Animation_4uw31"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("soul_green:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("soul_green:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_78447"]
 resource_name = "idle"
@@ -92,56 +62,75 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_4uw31"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("soul_green:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("soul_green:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_44wcl"]
 _data = {
 &"RESET": SubResource("Animation_4uw31"),
 &"idle": SubResource("Animation_78447")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btrxp"]
+render_priority = 0
+shader = ExtResource("2_ksiy1")
+shader_parameter/noise_texture = ExtResource("3_4yfmm")
+shader_parameter/texture_mask = ExtResource("4_wd08o")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Curve" id="Curve_0bdjg"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="5"]
+width = 128
+curve = SubResource("Curve_0bdjg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1kki0"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("5")
+color_ramp = ExtResource("5_lt7f7")
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_d1lex"]
+size = Vector2(0.5, 0.5)
+
 [node name="SkullBlue" type="Node3D"]
 
-[node name="soul_green" parent="." instance=ExtResource("1_mn5tl")]
-
-[node name="skull" parent="soul_green" index="0"]
-mesh = SubResource("ArrayMesh_44wcl")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="soul_green"]
-amount = 50
-randomness = 0.4
-process_material = SubResource("ParticleProcessMaterial_mn5tl")
-draw_pass_1 = SubResource("SphereMesh_mn5tl")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../soul_blue")
 libraries = {
 &"": SubResource("AnimationLibrary_44wcl")
 }
 autoplay = "idle"
 
-[editable path="soul_green"]
+[node name="soul_blue" parent="." instance=ExtResource("1_mn5tl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Ghost Fire" type="GPUParticles3D" parent="soul_blue"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_btrxp")
+cast_shadow = 0
+amount = 30
+randomness = 0.7
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_1kki0")
+draw_pass_1 = SubResource("QuadMesh_d1lex")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="soul_blue/Ghost Fire"]
+light_color = Color(0, 0.85639215, 0.7561138, 1)
+omni_range = 3.0
+omni_attenuation = 2.0

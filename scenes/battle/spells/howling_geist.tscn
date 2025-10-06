@@ -1,12 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhpv0mgqfcaky"]
+[gd_scene load_steps=7 format=3 uid="uid://dhpv0mgqfcaky"]
 
 [ext_resource type="Script" uid="uid://cewwbsbik6pmu" path="res://scenes/battle/spells/howling_geist.gd" id="1_y2cce"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ul6o"]
-albedo_color = Color(0.058800004, 0.27374694, 0.98, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_u06mx"]
-material = SubResource("StandardMaterial3D_0ul6o")
+[ext_resource type="PackedScene" uid="uid://cjx0nd20g7usn" path="res://scenes/battle/souls/skull_blue.tscn" id="2_0ul6o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y2cce"]
 
@@ -25,9 +20,8 @@ height = 4.0
 [node name="HowlingGeist" type="Node3D"]
 script = ExtResource("1_y2cce")
 
-[node name="Base" type="MeshInstance3D" parent="."]
+[node name="SkullBlue" parent="." instance=ExtResource("2_0ul6o")]
 unique_name_in_owner = true
-mesh = SubResource("SphereMesh_u06mx")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -36,6 +30,7 @@ shape = SubResource("SphereShape3D_y2cce")
 
 [node name="ExplosionArea" type="Area3D" parent="."]
 unique_name_in_owner = true
+visible = false
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea"]
@@ -43,6 +38,7 @@ shape = SubResource("SphereShape3D_0ul6o")
 
 [node name="ExplosionMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
+visible = false
 mesh = SubResource("SphereMesh_y2cce")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
