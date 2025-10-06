@@ -12,7 +12,9 @@ const ITEM_TYPE_COLOR = {
 }
 
 const BASE_FORTITUDE = {
-    Item.Type.Blue: Vector2(1, 5), Item.Type.Green: Vector2(6, 20), Item.Type.Red: Vector2(16, 40)
+    Item.Type.Blue: 50,
+    Item.Type.Green: 100,
+    Item.Type.Red: 200
 }
 
 const GROUP_STEP = {
@@ -311,7 +313,7 @@ func generate_name(item: Item) -> String:
 func generate_blue_item() -> Item:
     var item = Item.new()
     item.item_type = Item.Type.Blue
-    item.fortitude = Utils.rng.randi_range(BASE_FORTITUDE[Item.Type.Blue].x, BASE_FORTITUDE[Item.Type.Blue].y)
+    item.fortitude = BASE_FORTITUDE[Item.Type.Blue]
     var NUM_AFFIXES = Utils.rng.randi_range(1, 2)
     var already_rolled_groups: Array[Item.Group] = []
     for i in NUM_AFFIXES:
@@ -325,7 +327,7 @@ func generate_blue_item() -> Item:
 func generate_green_item() -> Item:
     var item = Item.new()
     item.item_type = Item.Type.Green
-    item.fortitude = Utils.rng.randi_range(BASE_FORTITUDE[Item.Type.Green].x, BASE_FORTITUDE[Item.Type.Green].y)
+    item.fortitude = BASE_FORTITUDE[Item.Type.Green]
     var NUM_AFFIXES = Utils.rng.randi_range(1, 3)
     var already_rolled_groups: Array[Item.Group] = []
     for i in NUM_AFFIXES:
@@ -341,7 +343,7 @@ func generate_red_item() -> Item:
     ## At least 1 negative to 2 positive
     var item = Item.new()
     item.item_type = Item.Type.Red
-    item.fortitude = Utils.rng.randi_range(BASE_FORTITUDE[Item.Type.Red].x, BASE_FORTITUDE[Item.Type.Red].y)
+    item.fortitude = BASE_FORTITUDE[Item.Type.Red]
     var NUM_AFFIXES = Utils.rng.randi_range(3, 7)
     var positive_count = 0
     var negative_count = 0

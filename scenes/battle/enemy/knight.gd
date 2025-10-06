@@ -4,7 +4,7 @@ signal died(enemy: Node3D)
 
 var life: int = Utils.rng.randi_range(40, 60)
 
-const DAMAGE = 1
+const DAMAGE = 70
 const HIT_ANIMATION_TIME = 0.15
 const DISTANCE_TO_PLAYER = 1.0
 const COOLDOWN_BETWEEN_ATTACKS = 1.0

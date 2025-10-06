@@ -13,7 +13,6 @@ func _physics_process(delta: float) -> void:
 	if elapsed_time >= 1.0:
 		elapsed_time = 0.0
 		var total_heal = GameState.total_stats[Item.Group.SoulHoT]
-		Log.info("Healing for %d from Soul HoT" % total_heal)
 		if total_heal > 0:
 			equipped_souls[-1].heal(total_heal)
 
