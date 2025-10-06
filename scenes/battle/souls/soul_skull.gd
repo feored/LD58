@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 
 func _ready() -> void:
     var collision_shape = %CollisionShape3D
-    collision_shape.shape.radius += GameState.total_stats[Item.Group.CollectionRange]
+    collision_shape.shape.radius = 1 + GameState.total_stats[Item.Group.CollectionRange]
     self.start_lifetime_timer()
     if item == null:
         return

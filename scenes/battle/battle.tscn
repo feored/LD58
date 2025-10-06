@@ -158,6 +158,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5moxy")
 
 [sub_resource type="Environment" id="Environment_r1e00"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+glow_enabled = true
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fisqk"]
 

@@ -177,6 +177,8 @@ draw_pass_1 = SubResource("QuadMesh_em1p2")
 [node name="OmniLight3D" type="OmniLight3D" parent="soul_blue/Blood Fire"]
 light_color = Color(0.80126345, 4.235506e-06, 2.8878452e-07, 1)
 light_energy = 2.0
+omni_range = 3.0
+omni_attenuation = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
