@@ -1,7 +1,7 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 10.0
+const WAVE_DURATION = 90.0
 const BASE_INTERMISSION_DURATION = 8.0
 
 enum State {
@@ -72,7 +72,8 @@ func enemy_died(enemy: Node3D) -> void:
     var enemy_position = enemy.global_position
     enemies.erase(enemy)
     enemy.queue_free()
-    var is_drop = Utils.rng.randi_range(0, 100) < 50:
+    var is_drop = Utils.rng.randi_range(0, 100) < 50
+    if is_drop:
         spawn_soul(enemy_position, enemy.type)
 
 func spawn_soul(spawn_position: Vector3, enemy_type : Constants.EnemyType = Constants.EnemyType.Knight) -> void:
