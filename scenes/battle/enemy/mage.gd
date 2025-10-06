@@ -1,10 +1,11 @@
 extends Node3D
+extends Node3D
 
 signal died(enemy: Node3D)
 
-var life: int = Utils.rng.randi_range(50, 100)
+var life: int = Utils.rng.randi_range(30, 60)
 
-const DAMAGE = 70
+const DAMAGE = 50
 const HIT_ANIMATION_TIME = 0.15
 const DISTANCE_TO_PLAYER = 1.0
 const COOLDOWN_BETWEEN_ATTACKS = 1.0
@@ -13,7 +14,7 @@ const COOLDOWN_BETWEEN_ATTACKS = 1.0
 @onready var mesh = %knight_001
 @onready var melee_area: Area3D = %MeleeArea3D
 
-var type: Constants.EnemyType = Constants.EnemyType.Knight
+var type: Constants.EnemyType = Constants.EnemyType.Mage
 var player_character: Node3D = null
 var speed: float = Utils.rng.randf_range(0.75, 1.25)
 var is_hit: bool = false
