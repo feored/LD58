@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cjx0nd20g7usn" path="res://scenes/battle/souls/skull_blue.tscn" id="2_0ul6o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y2cce"]
+radius = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ul6o"]
 radius = 2.0

@@ -25,7 +25,7 @@ var time_elapsed: float = 0.0
 
 
 func _ready() -> void:
-    Music.play_track(Music.Track.Battle3, true)
+    Music.play_track(Music.Track.Battle4, true)
     UI.set_wave(wave_number)
 
 func manage_spawn() -> void:

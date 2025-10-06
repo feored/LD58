@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
             return
         if self.target.global_position.distance_to(self.global_position) < DISTANCE_TO_GET:
             if item != null and target.can_add_item(item):
-                var added = target.add_item(item)
+                target.add_item(item)
                 self.queue_free()
         else:
             var direction = (target.global_position - self.global_position).normalized()

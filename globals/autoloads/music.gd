@@ -15,12 +15,14 @@ enum Track {
     Battle1,
     Battle2,
     Battle3,
+    Battle4,
 }#Untitled } # Add more tracks here
 
 const MUSIC_TRACKS = {
-    Track.Battle1: preload("res://audio/music/kolekta_battle.wav"),
+    Track.Battle1: preload("res://audio/music/kolekta_battle_1.wav"),
     Track.Battle2: preload("res://audio/music/kolekta_battle_2.wav"),
     Track.Battle3: preload("res://audio/music/kolekta_battle_3.wav"),
+    Track.Battle4: preload("res://audio/music/kolekta_battle_4.wav"),
 }
 
 var audio_stream_player: AudioStreamPlayer = null

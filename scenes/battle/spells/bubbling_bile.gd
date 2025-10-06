@@ -1,6 +1,6 @@
 extends Node3D
 
-const LIFETIME = 5.0
+const BASE_LIFETIME = 5.0
 const HIT_FREQUENCY = 1.0
 const SPEED = 5.0
 const BASE_DAMAGE = 20

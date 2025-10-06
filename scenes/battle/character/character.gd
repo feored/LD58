@@ -138,7 +138,7 @@ func add_item(item: Item) -> bool:
     self.inventory.add_item(item)
     return true
 
-func can_add_item(item: Item) -> bool:
+func can_add_item(_item: Item) -> bool:
     return inventory.items.size() < Inventory.MAX_TOTAL_SOULS
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

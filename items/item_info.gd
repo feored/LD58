@@ -25,8 +25,8 @@ const GROUP_STEP = {
     Item.Group.SoulHoT              : 0.5,
     Item.Group.SoulDuration         : 0.5,
     Item.Group.IntermissionDuration : 0.5,
-    Item.Group.GeistAbility         : 0.1,
-    Item.Group.BileAbility          : 0.1,
+    Item.Group.GeistTracking        : 1.0,
+    Item.Group.BilePoolDuration     : 0.5,
     Item.Group.BloodshardAbility    : 0.1
 }
 
@@ -40,8 +40,8 @@ const GROUP_STEP_DISPLAY = {
     Item.Group.SoulHoT              : "%.1f",
     Item.Group.SoulDuration         : "%.1f",
     Item.Group.IntermissionDuration : "%.1f",
-    Item.Group.GeistAbility         : "%.1f",
-    Item.Group.BileAbility          : "%.1f",
+    Item.Group.GeistTracking        : "%.0f",
+    Item.Group.BilePoolDuration     : "%.1f",
     Item.Group.BloodshardAbility    : "%.1f"
 }
 
@@ -53,10 +53,10 @@ const GROUP_DISPLAY_TEXT = {
     Item.Group.CollectionRange      : "%s to Collection Range",
     Item.Group.MeleeDamage          : "%s to Melee Damage",
     Item.Group.SoulHoT              : "%s to Soul Heal Per Second",
-    Item.Group.SoulDuration         : "%s to Soul Duration",
-    Item.Group.IntermissionDuration : "%s to Intermission Duration",
-    Item.Group.GeistAbility         : "%s to Howling Geist Ability",
-    Item.Group.BileAbility          : "%s to Bubbling Bile Ability",
+    Item.Group.SoulDuration         : "%ss to Soul Duration",
+    Item.Group.IntermissionDuration : "%ss to Intermission Duration",
+    Item.Group.GeistTracking        : "%s%% to Howling Geist Tracking",
+    Item.Group.BilePoolDuration     : "%ss to Bubbling Bile Pool Duration",
     Item.Group.BloodshardAbility    : "%s to Bloodshard Arrows Ability"
 }
 
@@ -68,7 +68,7 @@ const DROP_CHANCES = {
     }
 }
 
-# UNSUPPORTED YET: MAGIC FIND, INTERMISSION DURATION, 
+# UNSUPPORTED YET: MAGIC FIND,  BLOOD SHARDS
 
 var AFFIXES = {
     Item.Group.Fortitude:
@@ -206,34 +206,34 @@ var AFFIXES = {
             Item.Affix.new(Item.Group.IntermissionDuration, 2, "Impetuous", "of a Maniac", Vector2(-4, -6), true),
         ]
     },
-    Item.Group.GeistAbility:
+    Item.Group.GeistTracking:
     {
         Item.Balance.Positive:
         [
-            Item.Affix.new(Item.Group.GeistAbility, 0, "Spooky", "of a Medium", Vector2(0.1, 0.2)),
-            Item.Affix.new(Item.Group.GeistAbility, 1, "Ghastly", "of a Conjurer", Vector2(0.2, 0.3)),
-            Item.Affix.new(Item.Group.GeistAbility, 2, "Macabre", "of a Warlock", Vector2(0.3, 0.5)),
+            Item.Affix.new(Item.Group.GeistTracking, 0, "Spooky", "of a Medium", Vector2(10, 20)),
+            Item.Affix.new(Item.Group.GeistTracking, 1, "Ghastly", "of a Conjurer", Vector2(20, 50)),
+            Item.Affix.new(Item.Group.GeistTracking, 2, "Macabre", "of a Warlock", Vector2(50, 100)),
         ],
         Item.Balance.Negative:
         [
-            Item.Affix.new(Item.Group.GeistAbility, 0, "Corny", "of a Phony", Vector2(-0.1, -0.2), true),
-            Item.Affix.new(Item.Group.GeistAbility, 1, "Laughable", "of a Charlatan", Vector2(-0.2, -0.3), true),
-            Item.Affix.new(Item.Group.GeistAbility, 2, "Pathetic", "of a Sham", Vector2(-0.3, -0.5), true),
+            Item.Affix.new(Item.Group.GeistTracking, 0, "Corny", "of a Phony", Vector2(-10, -20), true),
+            Item.Affix.new(Item.Group.GeistTracking, 1, "Laughable", "of a Charlatan", Vector2(-20, -50), true),
+            Item.Affix.new(Item.Group.GeistTracking, 2, "Pathetic", "of a Sham", Vector2(-50, -100), true),
         ]
     },
-    Item.Group.BileAbility:
+    Item.Group.BilePoolDuration:
     {
         Item.Balance.Positive:
         [
-            Item.Affix.new(Item.Group.BileAbility, 0, "Sizzling", "of a Mixologist", Vector2(0.1, 0.2)),
-            Item.Affix.new(Item.Group.BileAbility, 1, "Eroding", "of a Sage", Vector2(0.2, 0.3)),
-            Item.Affix.new(Item.Group.BileAbility, 2, "Caustic", "of an Alchemist", Vector2(0.3, 0.5)),
+            Item.Affix.new(Item.Group.BilePoolDuration, 0, "Sizzling", "of a Mixologist", Vector2(0.5, 1.0)),
+            Item.Affix.new(Item.Group.BilePoolDuration, 1, "Eroding", "of a Sage", Vector2(1.0, 2.0)),
+            Item.Affix.new(Item.Group.BilePoolDuration, 2, "Caustic", "of an Alchemist", Vector2(2.0, 3.5)),
         ],
         Item.Balance.Negative:
         [
-            Item.Affix.new(Item.Group.BileAbility, 0, "Tidy", "of a Neatnik", Vector2(-0.1, -0.2), true),
-            Item.Affix.new(Item.Group.BileAbility, 1, "Untarished", "of a Clean Freak", Vector2(-0.2, -0.3), true),
-            Item.Affix.new(Item.Group.BileAbility, 2, "Spotless", "of a Germaphobe", Vector2(-0.3, -0.5), true),
+            Item.Affix.new(Item.Group.BilePoolDuration, 0, "Tidy", "of a Neatnik", Vector2(-0.5, -1.0), true),
+            Item.Affix.new(Item.Group.BilePoolDuration, 1, "Untarished", "of a Clean Freak", Vector2(-1.0, -2.0), true),
+            Item.Affix.new(Item.Group.BilePoolDuration, 2, "Spotless", "of a Germaphobe", Vector2(-2.0, -3.5), true),
         ]
     },
     Item.Group.BloodshardAbility:
