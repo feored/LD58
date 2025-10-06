@@ -109,16 +109,15 @@ size = Vector2(0.5, 0.5)
 [node name="SkullBlue" type="Node3D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../soul_blue")
 libraries = {
 &"": SubResource("AnimationLibrary_44wcl")
 }
 autoplay = "idle"
 
-[node name="soul_blue" parent="." instance=ExtResource("1_mn5tl")]
+[node name="soul_green" parent="." instance=ExtResource("1_mn5tl")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="Ghost Fire" type="GPUParticles3D" parent="soul_blue"]
+[node name="Ghost Fire" type="GPUParticles3D" parent="soul_green"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_btrxp")
 cast_shadow = 0
@@ -130,7 +129,7 @@ trail_lifetime = 6.0
 process_material = SubResource("ParticleProcessMaterial_1kki0")
 draw_pass_1 = SubResource("QuadMesh_d1lex")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="soul_blue/Ghost Fire"]
+[node name="OmniLight3D" type="OmniLight3D" parent="soul_green/Ghost Fire"]
 light_color = Color(0, 0.85639215, 0.7561138, 1)
 omni_range = 3.0
 omni_attenuation = 2.0

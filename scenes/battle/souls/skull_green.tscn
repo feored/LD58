@@ -6,20 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bko6oayqcslrd" path="res://scenes/battle/souls/Shaders/StylizedFire/FireMask.png" id="4_6uhqx"]
 [ext_resource type="Texture2D" uid="uid://b8wh1wkibxdsi" path="res://scenes/battle/souls/Shaders/StylizedFire/GreenFireGradient.tres" id="5_uyjnn"]
 
-[sub_resource type="Animation" id="Animation_4uw31"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_78447"]
-resource_name = "idle"
-length = 3.0
-loop_mode = 1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_44wcl"]
-_data = {
-&"RESET": SubResource("Animation_4uw31"),
-&"idle": SubResource("Animation_78447")
-}
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ej00r"]
 load_path = "res://.godot/imported/skulls.png-678ec3a81f3fc6475ea14806a54f292b.s3tc.ctex"
 
@@ -102,27 +88,82 @@ color_ramp = ExtResource("5_uyjnn")
 [sub_resource type="QuadMesh" id="QuadMesh_5k0ol"]
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_4uw31"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("soul_green:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("soul_green:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_78447"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("soul_green:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1.1095695, 1.1892105, 1.1095695),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0.75, 0), Vector3(0, 0.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("soul_green:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44wcl"]
+_data = {
+&"RESET": SubResource("Animation_4uw31"),
+&"idle": SubResource("Animation_78447")
+}
+
 [node name="SkullGreen" type="Node3D"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../soul_blue")
-libraries = {
-&"": SubResource("AnimationLibrary_44wcl")
-}
-autoplay = "idle"
-
-[node name="soul_blue" parent="." instance=ExtResource("1_ej00r")]
+[node name="soul_green" parent="." instance=ExtResource("1_ej00r")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="skull" parent="soul_blue" index="0"]
+[node name="skull" parent="soul_green" index="0"]
 mesh = SubResource("ArrayMesh_i1n2f")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="soul_blue"]
+[node name="OmniLight3D" type="OmniLight3D" parent="soul_green"]
 light_color = Color(0, 1, 0, 1)
 omni_range = 3.0
 omni_attenuation = 2.0
 
-[node name="Acid Fire" type="GPUParticles3D" parent="soul_blue"]
+[node name="Acid Fire" type="GPUParticles3D" parent="soul_green"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_3hdfg")
 cast_shadow = 0
@@ -133,4 +174,10 @@ draw_order = 1
 process_material = SubResource("ParticleProcessMaterial_nhbs0")
 draw_pass_1 = SubResource("QuadMesh_5k0ol")
 
-[editable path="soul_blue"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_44wcl")
+}
+autoplay = "idle"
+
+[editable path="soul_green"]
