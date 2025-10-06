@@ -38,15 +38,10 @@ func equip_soul(item: Item) -> void:
 func break_soul(soul) -> void:
 	equipped_souls.erase(soul)
 	soul.queue_free()
-	if equipped_souls.size() == 0:
-		self.died.emit()
 	GameState.total_stats = get_total_stats()
 
 
-func get_hit(damage: int) -> void:
-	if equipped_souls.size() <= 0:
-		self.died.emit()
-		return
+func get_hit(damage: int, can_die = true) -> void:
 	var leftover_damage = damage
 	var broken_souls = []
 	for i in range(equipped_souls.size() - 1, -1, -1):
@@ -58,10 +53,12 @@ func get_hit(damage: int) -> void:
 			break
 	for soul in broken_souls:
 		break_soul(soul)
+	if equipped_souls.size() == 0 and can_die:
+		self.died.emit()
 
 
-func _on_character_got_hit(damage: int) -> void:
-	get_hit(damage)
+func _on_character_got_hit(damage: int, can_die = true) -> void:
+	get_hit(damage, can_die)
 
 
 func get_total_stats() -> Dictionary:
