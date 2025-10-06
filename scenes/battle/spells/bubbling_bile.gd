@@ -3,7 +3,6 @@ extends Node3D
 const BASE_LIFETIME = 5.0
 const HIT_FREQUENCY = 1.0
 const SPEED = 5.0
-const BASE_DAMAGE = 20
 
 @onready var base: Node3D = %SkullGreen
 @onready var bile: Node3D = %Bile
@@ -24,7 +23,7 @@ func compute_lifetime() -> float:
 func compute_damage() -> int:
     var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
     var total_spellpower_pc = 1 + (total_spellpower / 100.0)
-    return BASE_DAMAGE * total_spellpower_pc
+    return Constants.BASE_SPELL_DAMAGE/3 * total_spellpower_pc
 
 func set_destination(dest: Vector3) -> void:
     var tween = create_tween()

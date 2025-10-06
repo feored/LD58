@@ -8,21 +8,4 @@ script = ExtResource("1_8ybkw")
 
 [node name="mage_anim" parent="." instance=ExtResource("2_r8v2b")]
 
-[node name="Skeleton3D" parent="mage_anim/mage armature" index="0"]
-bones/1/rotation = Quaternion(-0.08106334, -0.20525987, 0.038177796, 0.9745972)
-bones/2/rotation = Quaternion(0.7431092, 0.12214597, -0.17472778, 0.63430226)
-bones/3/rotation = Quaternion(-0.013610015, 0.013609968, -0.9609859, 0.27592713)
-bones/3/scale = Vector3(0.94954103, 1.1091049, 0.94954103)
-bones/4/rotation = Quaternion(0.9904792, -0.07491669, -0.0075976523, -0.115242474)
-bones/4/scale = Vector3(0.9877189, 1.0250218, 0.98771894)
-bones/5/rotation = Quaternion(0.18334992, 0.18334994, 0.2655115, 0.9285846)
-bones/5/scale = Vector3(0.884816, 1.2773036, 0.884816)
-bones/6/rotation = Quaternion(0.996742, -0.055534642, -0.00028247762, -0.05849092)
-bones/6/scale = Vector3(1.0064567, 0.9872105, 1.0064566)
-bones/7/position = Vector3(0.352383, 0.8610326, 0.14146955)
-bones/7/rotation = Quaternion(0.18961263, -0.377571, -0.90498394, 0.04991281)
-bones/9/position = Vector3(-0.4505366, 1.5845579, -0.06926448)
-bones/9/rotation = Quaternion(-0.24976039, 0.66423124, -0.078357875, 0.70019764)
-bones/10/rotation = Quaternion(0.030698422, -0.026136741, -0.66642237, 0.7444836)
-
 [editable path="mage_anim"]

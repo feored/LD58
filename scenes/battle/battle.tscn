@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=53 format=4 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
@@ -174,6 +174,51 @@ ambient_light_source = 2
 ambient_light_color = Color(0.20511743, 0.20511743, 0.20511743, 1)
 glow_enabled = true
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4j6m1"]
+load_path = "res://.godot/imported/misc.png-eecd46f13f7040e5fa02e48f24d1d4df.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fe4ja"]
+resource_local_to_scene = true
+resource_name = "Material.004"
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("CompressedTexture2D_4j6m1")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o21jg"]
+_surfaces = [{
+"aabb": AABB(-1.0278502, 0, -0.31397223, 2.0557003, 1e-05, 1.3408132),
+"format": 34896613377,
+"index_count": 42,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAAAFAAMAAgAEAAYAAAAHAAUABAAIAAYABwAJAAUABwAKAAkACgALAAkABAAMAAgADAANAAgADAAOAA0ADgAPAA0A"),
+"name": "Material.004",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("SlAAAMzyAAD/fwAAu7MAAP9/AAD//wAAr1cAAOarAABPqAAA5qsAAME4AAAQkQAAtK8AAMzyAADbJgAAFsMAACPZAAAWwwAAGB8AADFjAADQDgAAfngAAAAAAAAAAAAAPccAABCRAAAu8QAAfngAAObgAAAxYwAA//8AAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sgdsx"]
+resource_local_to_scene = true
+resource_name = "swoosh_Plane_002"
+_surfaces = [{
+"aabb": AABB(-1.0278502, 0, -0.31397223, 2.0557003, 1e-05, 1.3408132),
+"attribute_data": PackedByteArray("tVlg8Lh+d9C4fg73cl+AzP6dgMxzR+y+u6Ng8JA5PNjgwzzYijO2p+kmfbJrG4V1/bXsvofWfbLmybanBeKFdQ=="),
+"format": 34896613399,
+"index_count": 42,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAAAFAAMAAgAEAAYAAAAHAAUABAAIAAYABwAJAAUABwAKAAkACgALAAkABAAMAAgADAANAAgADAAOAA0ADgAPAA0A"),
+"material": SubResource("StandardMaterial3D_fe4ja"),
+"name": "Material.004",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("SlAAAMzy/7//fwAAu7P/v/9/AAD///+/r1cAAOar/79PqAAA5qv/v8E4AAAQkf+/tK8AAMzy/7/bJgAAFsP/vyPZAAAWw/+/GB8AADFj/7/QDgAAfnj/vwAAAAAAAP+/PccAABCR/78u8QAAfnj/v+bgAAAxY/+///8AAAAA/7////9/////f////3/+//9//v//f/7//3/+//9//v//f/7//3/+//9//v//f/7//3/+//9/////f////3/+//9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_o21jg")
+
 [sub_resource type="Gradient" id="Gradient_t1kk3"]
 resource_local_to_scene = true
 colors = PackedColorArray(0.21875, 1, 0, 1, 0, 0.640625, 0.145142, 0)
@@ -318,6 +363,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 battle = NodePath("..")
 
+[node name="old_swoosh" parent="Character/lich" index="0"]
+mesh = SubResource("ArrayMesh_sgdsx")
+
 [node name="Lich Smoke" parent="Character/lich" index="3"]
 process_material = SubResource("ParticleProcessMaterial_6ofp8")
 draw_pass_1 = SubResource("QuadMesh_mvulk")
@@ -354,6 +402,24 @@ offset_top = 145.915
 offset_right = 55.0
 offset_bottom = 168.91507
 text = "60.0"
+
+[node name="IntermissionTip" type="Label" parent="UI/WaveUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_right = -195.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "GTMF! Mages can become a huge problem if left to their own devices. Bubbling Bile and Bloodfire Wave are effective at hitting them behind ranks of knights… but an expertly guided Howling Geist can work just as well!
+GTMF! Mages can become a huge problem if left to their own devices. Bubbling Bile and Bloodfire Wave are effective at 
+"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellSelector" type="PanelContainer" parent="UI/WaveUI"]
 layout_mode = 1
@@ -603,6 +669,7 @@ draw_pass_1 = SubResource("QuadMesh_e48mi")
 stream = ExtResource("20_fe4ja")
 volume_db = -10.257
 autoplay = true
+bus = &"Ambience"
 
 [connection signal="got_hit" from="Character" to="UI/WaveUI/EquippedSoulsChain/EquippedSouls" method="_on_character_got_hit"]
 [connection signal="spell_changed" from="Character" to="UI/WaveUI/SpellSelector" method="_on_character_spell_changed"]

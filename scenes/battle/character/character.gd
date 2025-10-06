@@ -2,12 +2,15 @@ extends Node3D
 class_name Character
 
 @export var battle: Battle
-@export var animation_player: AnimationPlayer
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var model: Node3D = %lich
 @onready var melee_area: Area3D = %MeleeArea3D
 @onready var inventory: Inventory = %Inventory
 
+const MELEE_SELF_DAMAGE = 30
 const SPELL_CAST_WAIT_TIME: float = 0.25
+const BASE_MELEE_DAMAGE: int = 50
+const BASE_MOVEMENT_SPEED: float = 2.5
 
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
 const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
@@ -15,11 +18,11 @@ const bloodfire_wave = preload("res://scenes/battle/spells/bloodfire_wave.tscn")
 
 signal spell_changed(new_spell: Spell)
 signal spell_no_ammo()
-signal got_hit(damage: int)
+signal got_hit(damage: int, can_die: bool)
 
 func play_bark() -> void:
     var chance = Utils.rng.randi_range(0, 100)
-    if chance < 10:
+    if chance < 5:
         Sfx.play_multitrack(Sfx.MultiTrack.LichBark)
 
 enum Spell {
@@ -30,8 +33,7 @@ enum Spell {
 
 var current_spell: Spell = Spell.HowlingGeist
 
-const BASE_MELEE_DAMAGE: int = 25
-const BASE_MOVEMENT_SPEED: float = 2.5
+
 
 var time_elapsed: float = 0.0
 
@@ -137,13 +139,13 @@ func shoot_bloodfire_wave() -> void:
 
 func movement_vector() -> Vector3:
     var movement: Vector3 = Vector3.ZERO
-    if Input.is_action_pressed("left"):
+    if Input.is_action_pressed("left") and self.global_position.x > -Constants.ARENA_SIZE_X / 2.0:
         movement += Vector3.LEFT
-    elif Input.is_action_pressed("right"):
+    elif Input.is_action_pressed("right") and self.global_position.x < Constants.ARENA_SIZE_X / 2.0:
         movement += Vector3.RIGHT
-    if Input.is_action_pressed("up"):
+    if Input.is_action_pressed("up") and self.global_position.z > -Constants.ARENA_SIZE_Y / 2.0:
         movement += Vector3.FORWARD
-    elif Input.is_action_pressed("down"):
+    elif Input.is_action_pressed("down") and self.global_position.z < Constants.ARENA_SIZE_Y / 2.0:
         movement += Vector3.BACK
     return movement.normalized()
 
@@ -159,7 +161,7 @@ func hover_animation() -> void:
 func get_hit(damage: int) -> void:
     self.animation_player.play("lich_hurt")
     Sfx.play_multitrack(Sfx.MultiTrack.LichHurt, self.global_position)
-    self.emit_signal("got_hit", damage)
+    self.emit_signal("got_hit", damage, true )
 
 func add_item(item: Item) -> bool:
     play_bark()
@@ -172,10 +174,10 @@ func can_add_item(_item: Item) -> bool:
     return inventory.items.size() < Inventory.MAX_TOTAL_SOULS
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-    self.animation_player.play("lich_idle")
+    self.animation_player.play("lich_walk")
 
 func melee_hit() -> void:
-    play_bark()
+    self.emit_signal("got_hit", MELEE_SELF_DAMAGE, false)
     Sfx.play(Sfx.Track.LichMeleeAttackLaunch, self.global_position)
     var areas = self.melee_area.get_overlapping_areas()
     for area in areas:

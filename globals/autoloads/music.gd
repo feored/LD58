@@ -1,11 +1,11 @@
 extends Node
 
 const VOLUME_MIN: float = -80 # Minimum volume in dB
-const VOLUME_DEFAULT: float = 5.0 # Default volume in linear scale
+const VOLUME_DEFAULT: float = 1.0 # Default volume in linear scale
 
 const CROSSFADE_VOLUME_MIN: float = -50
 const CROSSFADE_TIME: float = 0.5
-const BATTLE_CROSSFADE_TIME = 15
+const BATTLE_CROSSFADE_TIME = 5
 
 const MUSIC_BUS_NAME: String = "Music"
 
@@ -19,22 +19,34 @@ enum Track {
     BattleIntro,
     BattleTransition1,
     BattleTransition2,
+    BattleTransition3,
+    BattleTransition4,
     Battle1,
     Battle2,
     Battle3,
     Battle4,
     Battle5,
-}#Untitled } # Add more tracks here
+    Battle6,
+    Battle7,
+    Menu,
+    MenuBass
+}
 
 const MUSIC_TRACKS = {
-    Track.BattleIntro: preload("res://audio/music/kolekta_battle_intro.wav"),
-    Track.BattleTransition1: preload("res://audio/music/kolekta_battle_transition_1.wav"),
-    Track.BattleTransition2: preload("res://audio/music/kolekta_battle_transition_2.wav"),
-    Track.Battle1: preload("res://audio/music/kolekta_battle_1.wav"),
-    Track.Battle2: preload("res://audio/music/kolekta_battle_2.wav"),
-    Track.Battle3: preload("res://audio/music/kolekta_battle_3.wav"),
-    Track.Battle4: preload("res://audio/music/kolekta_battle_4.wav"),
-    Track.Battle5: preload("res://audio/music/kolekta_battle_5_noDrums.wav"),
+    Track.BattleIntro: preload("res://audio/music/kolekta_intro.mp3"),
+    Track.BattleTransition1: preload("res://audio/music/kolekta_transition_1.mp3"),
+    Track.BattleTransition2: preload("res://audio/music/kolekta_transition_2.mp3"),
+    Track.BattleTransition3: preload("res://audio/music/kolekta_transition_3.mp3"),
+    Track.BattleTransition4: preload("res://audio/music/kolekta_transition_4.mp3"),
+    Track.Battle1: preload("res://audio/music/kolekta_battle_1.mp3"),
+    Track.Battle2: preload("res://audio/music/kolekta_battle_2.mp3"),
+    Track.Battle3: preload("res://audio/music/kolekta_battle_3.mp3"),
+    Track.Battle4: preload("res://audio/music/kolekta_battle_4.mp3"),
+    Track.Battle5: preload("res://audio/music/kolekta_battle_5.mp3"),
+    Track.Battle6: preload("res://audio/music/kolekta_battle_6.mp3"),
+    Track.Battle7: preload("res://audio/music/kolekta_battle_7.mp3"),
+    Track.Menu: preload("res://audio/music/kolekta_menu.mp3"),
+    Track.MenuBass: preload("res://audio/music/kolekta_menu_bass.mp3"),
 }
 
 
@@ -57,7 +69,8 @@ func play_track(
     loop = false,
     crossfade = true,
     volume = VOLUME_DEFAULT,
-    crossfade_time = CROSSFADE_TIME
+    crossfade_time = CROSSFADE_TIME,
+    crossfade_out_time = CROSSFADE_TIME
 ):	
     if crossfade and self.audio_stream_player.stream != null:
         var tween = self.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
@@ -102,6 +115,13 @@ func _play(track: Track):
     self.audio_stream_player.stream = MUSIC_TRACKS[track]
     self.audio_stream_player.play()
 
+func stop():
+    self.audio_stream_player.stop()
+    if timer:
+        timer.stop()
+        timer.queue_free()
+        timer = null
+
 func get_random_battle_track() -> Track:
     var battle_tracks = [
         Track.Battle1,
@@ -109,6 +129,8 @@ func get_random_battle_track() -> Track:
         Track.Battle3,
         Track.Battle4,
         Track.Battle5,
+        Track.Battle6,
+        Track.Battle7,
     ]
     return battle_tracks[randi() % battle_tracks.size()]
 
@@ -116,5 +138,7 @@ func get_random_transition_track() -> Track:
     var transition_tracks = [
         Track.BattleTransition1,
         Track.BattleTransition2,
+        Track.BattleTransition3,
+        Track.BattleTransition4,
     ]
     return transition_tracks[randi() % transition_tracks.size()]

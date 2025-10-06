@@ -2,7 +2,7 @@ extends Node3D
 
 const bloodfire_element = preload("res://scenes/battle/spells/bloodfire_element.tscn")
 
-const BASE_LIFETIME = 3.0
+const BASE_LIFETIME = 2.4
 const FREQUENCY = 0.05
 var battle : Node3D = null
 
