@@ -76,11 +76,14 @@ func get_random_enemy(wave: int) -> PackedScene:
 
 func spawn_enemy() -> void:
     var enemy_instance = get_random_enemy(min(wave_number, Constants.ENEMY_SPAWN_CHANCES.size() - 1)).instantiate()
-    enemy_instance.position = Vector3(
-        randf() * Constants.ARENA_SIZE_X - (Constants.ARENA_SIZE_X / 2.0),
-        0.5,
-        randf() * Constants.ARENA_SIZE_Y - (Constants.ARENA_SIZE_Y / 2.0)
-    )
+    const MIN_DISTANCE_FROM_PLAYER = 15.0
+    var enemy_position: Vector3 = Vector3.ZERO
+    var r = MIN_DISTANCE_FROM_PLAYER * sqrt(Utils.rng.randf())
+    var theta = Utils.rng.randf() * 2.0 * PI
+    enemy_position.x += r * cos(theta)
+    enemy_position.z += r * sin(theta)
+    enemy_position.y = 0.5
+    enemy_instance.global_position = enemy_position + player_character.global_position
     enemy_instance.died.connect(enemy_died)
     add_child(enemy_instance)
     enemy_instance.player_character = player_character
