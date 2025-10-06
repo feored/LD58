@@ -1,7 +1,7 @@
 extends Node
 
-const ARENA_SIZE_X = 29
-const ARENA_SIZE_Y = 29
+const ARENA_SIZE_X = 27
+const ARENA_SIZE_Y = 27
 
 enum EnemyType { Knight, KnightCaptain, Mage }
 

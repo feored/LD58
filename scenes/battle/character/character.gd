@@ -202,7 +202,7 @@ func melee_hit() -> void:
                 Sfx.play_multitrack(Sfx.MultiTrack.LichMeleeAttackHit, self.global_position)
 
 func die() -> void:
+    Sfx.play(Sfx.Track.LichDeath, self.global_position)
     self.animation_player.play("lich_death")
     self.is_dead = true
-    #Sfx.play_multitrack(Sfx.MultiTrack.LichDeath, self.global_position)
     %LichDeath.emitting = true

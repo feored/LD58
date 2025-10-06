@@ -64,7 +64,7 @@ cull_mode = 2
 albedo_texture = SubResource("CompressedTexture2D_pyfix")
 roughness = 0.0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_e48mi"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_fe4ja"]
 _surfaces = [{
 "aabb": AABB(-27.474762, 0, -27.474762, 54.949524, 1e-05, 41.58334),
 "format": 34896613377,
@@ -166,7 +166,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("KOAgIgAAAID/////AAAAgP//ICIAAACA//8AAAAAAIAo4AAAAAAAgCjg//8AAACAKdkhNAAAAIAp2f//AAAAgCnSPDwAAACAKdL//wAAAIBdxYNFAAAAgF3F//8AAACAN7d8SQAAAIA3t///AAAAgJubB0sAAACAm5v//wAAAID/fwdLAAAAgP9///8AAACAY2QHSwAAAIBjZP//AAAAgMdIfEkAAACAx0j//wAAAIChOoNFAAAAgKE6//8AAACA1S08PAAAAIDVLf//AAAAgNUmITQAAACA1Sb//wAAAIDWHyAiAAAAgNYf//8AAACAAAAgIgAAAIAAAP//AAAAgNYfAAAAAACAAAAAAAAAAIAAACAi1h//vwAA//8AAP+/AAAgIgAA/78AAAAAAAD/vwAAAADWH/+/AAD//9Yf/78AACE01Sb/vwAA///VJv+/AAA8PNUt/78AAP//1S3/vwAAg0WhOv+/AAD//6E6/78AAHxJx0j/vwAA///HSP+/AAAHS2Nk/78AAP//Y2T/vwAAB0v/f/+/AAD///9//78AAAdLm5v/vwAA//+bm/+/AAB8STe3/78AAP//N7f/vwAAg0Vdxf+/AAD//13F/78AADw8KdL/vwAA//8p0v+/AAAhNCnZ/78AAP//Kdn/vwAAICIo4P+/AAD//yjg/78AACAi////vwAA//////+/AAAAACjg/78AAAAA////v/7/ICIo4P+//v////7//7/+/yAi/v//v///AAD+//+//v8AACjg/7/+////KOD/v/7/ITQp2f+//v///ynZ/7/+/zw8KdL/v/7///8p0v+//v+DRV3F/7/+////XcX/v/7/fEk3t/+//v///ze3/7///wdLm5v/v/////+bm/+///8HS/9//7///////3//v///B0tjZP+//////2Nk/7///3xJx0j/v//////HSP+///+DRaE6/7//////oTr/v///PDzVLf+//////9Ut/7///yE01Sb/v//////VJv+///8gItYf/7//////1h//v/7/ICIAAP+//v///wAA/7///wAA1h//v///AAAAAP+//3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f////3/+//9/////f/7//3/+//9//v//f/7//3////9//v//f/7//3/+//9//v//f////3////9//v//f////3////9/////f/7//3/+//9/////f/7//3/+//9/////f/7//3/+//9//v//f/7//3/+//9//v//f////3/+//9/////f///")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_e48mi")
+shadow_mesh = SubResource("ArrayMesh_fe4ja")
 
 [sub_resource type="Environment" id="Environment_r1e00"]
 background_mode = 1
@@ -337,7 +337,7 @@ shader_parameter/edge_softness = 0.1
 resource_local_to_scene = true
 colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jli1o"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5moxy"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_156m4")
 width = 128
@@ -346,7 +346,7 @@ width = 128
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_jli1o"]
+[sub_resource type="CurveTexture" id="CurveTexture_156m4"]
 width = 128
 curve = SubResource("Curve_pyfix")
 
@@ -364,8 +364,8 @@ linear_accel_min = 4.0
 linear_accel_max = 4.0
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_jli1o")
-color_ramp = SubResource("GradientTexture2D_jli1o")
+scale_curve = SubResource("CurveTexture_156m4")
+color_ramp = SubResource("GradientTexture2D_5moxy")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 turbulence_noise_strength = 6.37
@@ -426,7 +426,6 @@ script = ExtResource("3_xd4uy")
 
 [node name="WaveUI" type="Control" parent="UI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -593,10 +592,14 @@ size_flags_horizontal = 0
 
 [node name="TextureRect" type="TextureRect" parent="UI/WaveUI"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -80.0
+offset_right = 540.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("12_t1kk3")
@@ -613,6 +616,7 @@ offset_top = 15.0
 offset_right = -31.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 script = ExtResource("6_pll4o")
 inventory = NodePath("../../../../Character/Inventory")
 
@@ -653,6 +657,7 @@ text = "Back to Menu"
 
 [node name="VictoryUI" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -54,6 +54,7 @@ enum Track {
     LichHurt,
     LichHurt2,
     LichHurt3,
+    LichDeath,
     LichMeleeAttackHit1,
     LichMeleeAttackHit2,
     LichMeleeAttackHit3,
@@ -128,6 +129,7 @@ const TRACKS = {
     Track.LichHurt: preload("res://audio/sfx/Player/Lich_Hurt.wav"),
     Track.LichHurt2: preload("res://audio/sfx/Player/Lich_Hurt_2.wav"),
     Track.LichHurt3: preload("res://audio/sfx/Player/Lich_Hurt_3.wav"),
+    Track.LichDeath: preload("res://audio/sfx/Player/Lich_Death.wav"),
     Track.LichMeleeAttackHit1: preload("res://audio/sfx/Player/Lich_Melee_Attack_Hit.wav"),
     Track.LichMeleeAttackHit2: preload("res://audio/sfx/Player/Lich_Melee_Attack_Hit_2.wav"),
     Track.LichMeleeAttackHit3: preload("res://audio/sfx/Player/Lich_Melee_Attack_Hit_3.wav"),
@@ -180,6 +182,7 @@ const CUSTOM_VOLUME = {
     Track.LichBark1: +5,
     Track.LichBark2: +5,
     Track.LichBark3: +5,
+    Track.LichDeath: +100
 }
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.Dungeon: +5}

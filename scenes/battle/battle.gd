@@ -99,7 +99,10 @@ func enemy_died(enemy: Node3D) -> void:
     var enemy_position = enemy.global_position
     enemies.erase(enemy)
     enemy.queue_free()
-    spawn_soul(enemy_position, enemy.type)
+    var chance_soul = Utils.rng.randi_range(0, 100)
+    var total_chance = 50 + GameState.total_stats[Item.Group.MagicFind]
+    if chance_soul < total_chance:
+        spawn_soul(enemy_position, enemy.type)
 
 func spawn_soul(spawn_position: Vector3, enemy_type : Constants.EnemyType = Constants.EnemyType.Knight) -> void:
     var soul_instance = soul_scene.instantiate()
