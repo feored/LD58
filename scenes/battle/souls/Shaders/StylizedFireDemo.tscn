@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://drlmm16er32et"]
+[gd_scene load_steps=93 format=3 uid="uid://drlmm16er32et"]
 
 [ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="3_tg5uj"]
 [ext_resource type="Texture2D" uid="uid://b8wh1wkibxdsi" path="res://scenes/battle/souls/Shaders/StylizedFire/GreenFireGradient.tres" id="4"]
@@ -153,8 +153,6 @@ linear_accel_min = -2.2351742e-06
 linear_accel_max = -2.2351742e-06
 radial_accel_min = 49.999996
 radial_accel_max = 99.99999
-scale_min = 0.19999999
-scale_max = 2.0
 scale_curve = SubResource("CurveTexture_bclxo")
 color_ramp = SubResource("GradientTexture2D_tvm4e")
 turbulence_noise_strength = 6.37
@@ -669,6 +667,52 @@ hue_variation_min = 0.10999998
 hue_variation_max = 0.21999997
 turbulence_noise_strength = 6.37
 
+[sub_resource type="Gradient" id="Gradient_ghexg"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_phiab"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_ghexg")
+width = 128
+fill_from = Vector2(0.2707775, 0.6970509)
+fill_to = Vector2(0.98659515, 0.9436997)
+
+[sub_resource type="Curve" id="Curve_tvm4e"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_asbqy"]
+width = 128
+curve = SubResource("Curve_tvm4e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kapf"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = 0.99999774
+radial_accel_max = 14.999997
+scale_min = 1.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_asbqy")
+color = Color(18.892157, 0, 0, 1)
+color_ramp = SubResource("GradientTexture2D_phiab")
+hue_variation_min = -0.27
+hue_variation_max = -0.18000002
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_le5kb"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
 [node name="WIP Shader Effects" type="CanvasLayer"]
 visible = false
 
@@ -677,8 +721,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 0)
 visible = false
 material_override = SubResource("1")
 cast_shadow = 0
+emitting = false
 amount = 1
 interp_to_end = 0.1
+one_shot = true
 fixed_fps = 15
 draw_order = 1
 process_material = SubResource("6")
@@ -701,6 +747,7 @@ draw_pass_1 = SubResource("QuadMesh_arxyv")
 
 [node name="Ghost Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 0.31094372)
+visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 amount = 30
@@ -716,10 +763,8 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 2.39
 visible = false
 material_override = SubResource("1")
 cast_shadow = 0
-emitting = false
 amount = 50
 lifetime = 0.3
-one_shot = true
 speed_scale = 0.8
 randomness = 1.0
 fixed_fps = 15
@@ -745,7 +790,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.6194572, 1.26708, 0.9
 visible = false
 material_override = SubResource("ShaderMaterial_jli1o")
 cast_shadow = 0
+emitting = false
 amount = 1
+one_shot = true
 speed_scale = 0.5
 fixed_fps = 15
 draw_order = 1
@@ -766,7 +813,6 @@ draw_pass_1 = SubResource("QuadMesh_iw26o")
 
 [node name="Acid Pool" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.5989149, 1.26708, 5.5592556)
-visible = false
 material_override = SubResource("ShaderMaterial_asbqy")
 cast_shadow = 0
 amount = 50
@@ -778,11 +824,11 @@ draw_pass_1 = SubResource("QuadMesh_4kapf")
 
 [node name="Lich Smoke" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.4818134, 1.26708, 5.258588)
-visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 amount = 15
 lifetime = 0.5
+speed_scale = 2.0
 fixed_fps = 15
 draw_order = 1
 process_material = SubResource("ParticleProcessMaterial_i442t")
@@ -790,7 +836,6 @@ draw_pass_1 = SubResource("QuadMesh_4ir1w")
 
 [node name="Fireball" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1418433, 1.26708, -0.825758)
-visible = false
 material_override = SubResource("ShaderMaterial_hwmv2")
 cast_shadow = 0
 amount = 15
@@ -803,7 +848,6 @@ draw_pass_1 = SubResource("QuadMesh_sv4b0")
 
 [node name="Fireball Explosion" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9531927, 1.26708, 0.4834354)
-visible = false
 material_override = SubResource("ShaderMaterial_b0t7e")
 cast_shadow = 0
 emitting = false
@@ -821,7 +865,6 @@ draw_pass_1 = SubResource("QuadMesh_nvdhp")
 
 [node name="Enemy Death" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.171848, 1.26708, 0.31094372)
-visible = false
 material_override = SubResource("ShaderMaterial_iw26o")
 cast_shadow = 0
 amount = 60
@@ -834,3 +877,16 @@ draw_order = 1
 trail_lifetime = 6.0
 process_material = SubResource("ParticleProcessMaterial_swddl")
 draw_pass_1 = SubResource("7")
+
+[node name="Lich Death" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.8515077, 1.26708, 6.4140487)
+material_override = SubResource("1")
+cast_shadow = 0
+amount = 30
+speed_scale = 1.5
+randomness = 1.0
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_4kapf")
+draw_pass_1 = SubResource("QuadMesh_le5kb")
