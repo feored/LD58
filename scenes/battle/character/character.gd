@@ -137,13 +137,13 @@ func shoot_bloodfire_wave() -> void:
 
 func movement_vector() -> Vector3:
     var movement: Vector3 = Vector3.ZERO
-    if Input.is_action_pressed("left"):
+    if Input.is_action_pressed("left") and self.global_position.x > -Constants.ARENA_SIZE_X / 2.0:
         movement += Vector3.LEFT
-    elif Input.is_action_pressed("right"):
+    elif Input.is_action_pressed("right") and self.global_position.x < Constants.ARENA_SIZE_X / 2.0:
         movement += Vector3.RIGHT
-    if Input.is_action_pressed("up"):
+    if Input.is_action_pressed("up") and self.global_position.z > -Constants.ARENA_SIZE_Y / 2.0:
         movement += Vector3.FORWARD
-    elif Input.is_action_pressed("down"):
+    elif Input.is_action_pressed("down") and self.global_position.z < Constants.ARENA_SIZE_Y / 2.0:
         movement += Vector3.BACK
     return movement.normalized()
 
