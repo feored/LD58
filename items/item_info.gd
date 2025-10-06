@@ -149,7 +149,7 @@ var AFFIXES = {
 	{
 		Item.Balance.Positive:
 		[
-			Item.Affix.new(Item.Group.MeleeDamage, 0, "Strong", "of a Fighter", Vector2(4, 8),
+			Item.Affix.new(Item.Group.MeleeDamage, 0, "Strong", "of a Fighter", Vector2(4, 8)),
 			Item.Affix.new(Item.Group.MeleeDamage, 1, "Powerful", "of a Soldier", Vector2(8, 16)),
 			Item.Affix.new(Item.Group.MeleeDamage, 2, "Mighty", "of a Warrior", Vector2(16, 48)),
 		],
