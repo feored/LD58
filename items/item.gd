@@ -37,9 +37,9 @@ enum Group {
 	SoulHoT,
 	SoulDuration,
 	IntermissionDuration,
-	GeistAbility,
-	BileAbility,
-	BloodshardAbility
+	GeistTracking,
+	BilePoolDuration,
+	BloodfireWaveDuration
 }
 
 

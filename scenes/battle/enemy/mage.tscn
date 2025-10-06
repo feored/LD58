@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://chtcetf6dce10"]
+
+[ext_resource type="Script" uid="uid://cswcy54mecjhs" path="res://scenes/battle/enemy/mage.gd" id="1_8ybkw"]
+[ext_resource type="PackedScene" uid="uid://crh677k1q72gv" path="res://scenes/battle/enemy/mage_anim.glb" id="2_r8v2b"]
+
+[node name="Mage" type="Node3D"]
+script = ExtResource("1_8ybkw")
+
+[node name="mage_anim" parent="." instance=ExtResource("2_r8v2b")]
+
+[editable path="mage_anim"]

@@ -1,8 +1,21 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 90.0
-var wave_number: int = 1
+const WAVE_DURATION = 10.0
+const BASE_INTERMISSION_DURATION = 8.0
+
+enum State {
+    Wave,
+    Intermission
+}
+
+enum MusicState {
+    Intro,
+    Battle,
+    Transition
+}
+
+var wave_number: int = 0
 var spawn_rate: float = 2.0 # seconds between spawns
 var next_spawn_time: float = 0.0
 
@@ -10,14 +23,32 @@ var knight_scene = preload("res://scenes/battle/enemy/knight.tscn")
 var soul_scene = preload("res://scenes/battle/souls/soul_skull.tscn")
 var enemies: Array = []
 
+var state: State = State.Wave
 var time_elapsed: float = 0.0
+var music_state: MusicState = MusicState.Intro
+
 
 @onready var UI = %UI
 @onready var player_character = %Character
 
+
 func _ready() -> void:
-    Music.play_track(Music.Track.Battle3, true)
-    UI.set_wave(wave_number)
+    Music.switched_track.connect(_on_music_finished)
+    start_next_wave()
+
+func _on_music_finished() -> void:
+    match music_state:
+        MusicState.Intro:
+            Log.info("Battle intro finished, adding one more battle track to queue")
+            music_state = MusicState.Battle
+            #Music.play_track(Music.get_random_battle_track(), false, true)
+            Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)
+        MusicState.Battle:
+            Log.info("Battle track finished, adding one more battle track to queue")
+            music_state = MusicState.Battle
+            #Music.play_track(Music.get_random_battle_track(), false, true)
+            Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)
+
 
 func manage_spawn() -> void:
     if time_elapsed > next_spawn_time: 
@@ -41,37 +72,58 @@ func enemy_died(enemy: Node3D) -> void:
     var enemy_position = enemy.global_position
     enemies.erase(enemy)
     enemy.queue_free()
-    spawn_soul(enemy_position, enemy.type)
+    var is_drop = Utils.rng.randi_range(0, 100) < 50:
+        spawn_soul(enemy_position, enemy.type)
 
 func spawn_soul(spawn_position: Vector3, enemy_type : Constants.EnemyType = Constants.EnemyType.Knight) -> void:
     var soul_instance = soul_scene.instantiate()
     var item_type: Item.Type = ItemInfo.generate_item_type(enemy_type)
-    if item_type == Item.Type.Red:
-        item_type = Item.Type.Blue if Utils.rng.randf() < 0.5 else Item.Type.Green
     soul_instance.item = ItemInfo.generate_item(item_type)
     soul_instance.position = spawn_position + Vector3(0, 0.5, 0)
     add_child(soul_instance)
 
 func check_wave() -> void:
     if time_elapsed > WAVE_DURATION:
-        get_tree().paused = true
-        UI.set_state(UI.State.MENU)
+        start_intermission()
+
+func start_intermission() -> void:
+    state = State.Intermission
+    var total_intermission = BASE_INTERMISSION_DURATION + GameState.total_stats[Item.Group.IntermissionDuration]
+    var timer = Timer.new()
+    timer.wait_time = total_intermission
+    timer.one_shot = true
+    timer.autostart = true
+    Log.info("Starting intermission for %.2f seconds" % total_intermission)
+    timer.timeout.connect(func():
+        Log.info("Intermission over, starting next wave")
+        start_next_wave()
+        timer.queue_free()
+    )
+    add_child(timer)
+
+    UI.set_intermission(total_intermission)
 
 func _process(delta: float) -> void:
     time_elapsed += delta
+    if state == State.Intermission:
+        return
     manage_spawn()
     check_wave()
 
 func _on_ui_next_wave() -> void:
-    Log.info("Starting next wave")
-    for enemy in enemies:
-        enemy.queue_free()
-    enemies.clear()
-    spawn_rate = max(0.5, spawn_rate - 0.2)
+    return
+
+func start_next_wave() -> void:
+    self.music_state = MusicState.Intro
+    Music.play_track(Music.Track.BattleIntro, false, false)
+    Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)
+    state = State.Wave
+    spawn_rate = max(0.25, spawn_rate - 0.2)
     next_spawn_time = 0.0
     time_elapsed = 0.0
     wave_number += 1
-    UI.set_wave(wave_number)
+    UI.set_wave(wave_number, WAVE_DURATION)
+
 
 func _on_equipped_souls_died() -> void:
     Log.info("Player has died")

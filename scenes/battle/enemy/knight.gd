@@ -2,9 +2,9 @@ extends Node3D
 
 signal died(enemy: Node3D)
 
-var life: int = Utils.rng.randi_range(40, 60)
+var life: int = Utils.rng.randi_range(50, 100)
 
-const DAMAGE = 1
+const DAMAGE = 70
 const HIT_ANIMATION_TIME = 0.15
 const DISTANCE_TO_PLAYER = 1.0
 const COOLDOWN_BETWEEN_ATTACKS = 1.0
@@ -79,18 +79,21 @@ func hit_red_tween() -> void:
 
 
 func melee_hit() -> void:
+    Sfx.play_multitrack(Sfx.MultiTrack.KnightSwordLaunch, self.global_position)
     for area in self.melee_area.get_overlapping_areas():
         if area.get_parent() == player_character and area.is_in_group("player_hitbox"):
             player_character.get_hit(DAMAGE)
 
 
 func die() -> void:
+    Sfx.play_multitrack(Sfx.MultiTrack.KnightDeath, self.global_position)
     self.is_dead = true
     self.animation_player.play("knightdeath")
     await Utils.wait(0.5)
     self.died.emit(self)
 
 func get_hit(damage: int, knockback = false) -> void:
+    Sfx.play_multitrack(Sfx.MultiTrack.KnightHit, self.global_position)
     life -= damage
     if life <= 0:
         die()
