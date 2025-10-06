@@ -15,7 +15,7 @@ const COOLDOWN_BETWEEN_ATTACKS = 1.0
 
 var type: Constants.EnemyType = Constants.EnemyType.Knight
 var player_character: Node3D = null
-var speed: float = Utils.rng.randf_range(2.2, 4.4)
+var speed: float = Utils.rng.randf_range(2.2, 2.8)
 var is_hit: bool = false
 var is_dead : bool = false
 var is_swinging: bool = false

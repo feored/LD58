@@ -16,7 +16,7 @@ const COOLDOWN_BETWEEN_ATTACKS = 5.0
 
 var type: Constants.EnemyType = Constants.EnemyType.Mage
 var player_character: Node3D = null
-var speed: float = Utils.rng.randf_range(2.2, 4)
+var speed: float = Utils.rng.randf_range(2, 3.4)
 var is_hit: bool = false
 var is_dead : bool = false
 var is_swinging: bool = false
