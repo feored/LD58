@@ -12,7 +12,6 @@ var target: Node3D = null
 var is_targeting: bool = false
 var item: Item = null
 
-
 func _physics_process(delta: float) -> void:
     if is_targeting and target != null and item != null:
         if not target.can_add_item(item):
@@ -22,11 +21,11 @@ func _physics_process(delta: float) -> void:
         if self.target.global_position.distance_to(self.global_position) < DISTANCE_TO_GET:
             if item != null and target.can_add_item(item):
                 target.add_item(item)
+                Sfx.play_multitrack(Sfx.MultiTrack.SoulCollection, self.global_position)
                 self.queue_free()
         else:
             var direction = (target.global_position - self.global_position).normalized()
             self.global_position += direction * SPEED * delta
-
 
 func _ready() -> void:
     var collision_shape = %CollisionShape3D
@@ -35,7 +34,13 @@ func _ready() -> void:
     if item == null:
         return
     self.add_color_skull(item.item_type)
-
+    match item.item_type:
+        Item.Type.Blue:
+            Sfx.play_multitrack(Sfx.MultiTrack.BlueSoulDropped, self.global_position)
+        Item.Type.Red:
+            Sfx.play_multitrack(Sfx.MultiTrack.RedSoulDropped, self.global_position)
+        Item.Type.Green:
+            Sfx.play_multitrack(Sfx.MultiTrack.GreenSoulDropped, self.global_position)
 
 func start_lifetime_timer() -> void:
     var computed_lifetime = BASE_LIFETIME + GameState.total_stats[Item.Group.SoulDuration]

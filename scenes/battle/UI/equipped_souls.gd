@@ -26,6 +26,7 @@ func can_equip() -> bool:
 
 
 func equip_soul(item: Item) -> void:
+	Sfx.play_multitrack(Sfx.MultiTrack.SoulEquip)
 	var soul_instance = equipped_soul_scene.instantiate()
 	soul_instance.item = item
 	self.add_child(soul_instance)

@@ -86,6 +86,7 @@ func melee_hit() -> void:
 
 
 func die() -> void:
+    Sfx.play_multitrack(Sfx.MultiTrack.KnightDeath, self.global_position)
     self.is_dead = true
     self.animation_player.play("knightdeath")
     await Utils.wait(0.5)

@@ -176,8 +176,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func melee_hit() -> void:
     play_bark()
+    Sfx.play(Sfx.Track.LichMeleeAttackLaunch, self.global_position)
     var areas = self.melee_area.get_overlapping_areas()
     for area in areas:
         if area.is_in_group("enemy_hitbox"):
             if area.get_parent().is_in_group("enemies"):
                 area.get_parent().get_hit(computed_melee_damage(), true)
+                Sfx.play_multitrack(Sfx.MultiTrack.LichMeleeAttackHit, self.global_position)

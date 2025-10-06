@@ -7,10 +7,17 @@ enum MultiTrack {
     SoulExpire,
     KnightHit,
     KnightSwordLaunch,
+    KnightDeath,
     MageChant,
     LichBark,
     LichHurt,
     LichMeleeAttackHit,
+    SoulCollection,
+    SoulDestroyed,
+    SoulEquip,
+    BlueSoulDropped,
+    RedSoulDropped,
+    GreenSoulDropped,
 }
 
 enum Track {
@@ -23,6 +30,9 @@ enum Track {
     KnightHit1,
     KnightHit2,
     KnightHit3,
+    KnightDeath1,
+    KnightDeath2,
+    KnightDeath3,
     KnightSwordLaunch1,
     KnightSwordLaunch2,
     KnightSwordLaunch3,
@@ -46,18 +56,40 @@ enum Track {
     LichMeleeAttackHit2,
     LichMeleeAttackHit3,
     LichMeleeAttackLaunch,
+    SoulCollect1,
+    SoulCollect2,
+    SoulCollect3,
+    SoulDestroyed1,
+    SoulDestroyed2,
+    SoulEquip1,
+    SoulEquip2,
+    BlueSoulDropped1,
+    BlueSoulDropped2,
+    BlueSoulDropped3,
+    RedSoulDropped1,
+    RedSoulDropped2,
+    GreenSoulDropped1,
+    GreenSoulDropped2,
+    GreenSoulDropped3,
+
 }
 enum Ambience { Dungeon}
 
 const MULTITRACKS = {
     MultiTrack.SoulExpire: [Track.SoulExpire1, Track.SoulExpire2, Track.SoulExpire3],
     MultiTrack.KnightHit: [Track.KnightHit1, Track.KnightHit2, Track.KnightHit3],
+    MultiTrack.KnightDeath: [Track.KnightDeath1, Track.KnightDeath2, Track.KnightDeath3],
     MultiTrack.KnightSwordLaunch: [Track.KnightSwordLaunch1, Track.KnightSwordLaunch2, Track.KnightSwordLaunch3],
     MultiTrack.MageChant: [Track.MageChant1, Track.MageChant2, Track.MageChant3, Track.MageChant4],
     MultiTrack.LichBark: [Track.LichBark1, Track.LichBark2, Track.LichBark3],
     MultiTrack.LichHurt: [Track.LichHurt, Track.LichHurt2, Track.LichHurt3],
     MultiTrack.LichMeleeAttackHit: [Track.LichMeleeAttackHit1, Track.LichMeleeAttackHit2, Track.LichMeleeAttackHit3],
-
+    MultiTrack.SoulCollection: [Track.SoulCollect1, Track.SoulCollect2, Track.SoulCollect3],
+    MultiTrack.SoulDestroyed: [Track.SoulDestroyed1, Track.SoulDestroyed2],
+    MultiTrack.SoulEquip: [Track.SoulEquip1, Track.SoulEquip2],
+    MultiTrack.BlueSoulDropped: [Track.BlueSoulDropped1, Track.BlueSoulDropped2, Track.BlueSoulDropped3],
+    MultiTrack.RedSoulDropped: [Track.RedSoulDropped1, Track.RedSoulDropped2],
+    MultiTrack.GreenSoulDropped: [Track.GreenSoulDropped1, Track.GreenSoulDropped2, Track.GreenSoulDropped3],
 }
 
 const TRACKS = {
@@ -70,6 +102,9 @@ const TRACKS = {
     Track.KnightHit1: preload("res://audio/sfx/Knight/Knight_Hit.wav"),
     Track.KnightHit2: preload("res://audio/sfx/Knight/Knight_Hit_2.wav"),
     Track.KnightHit3: preload("res://audio/sfx/Knight/Knight_Hit_3.wav"),
+    Track.KnightDeath1: preload("res://audio/sfx/Knight/Knight_Death.wav"),
+    Track.KnightDeath2: preload("res://audio/sfx/Knight/Knight_Death_2.wav"),
+    Track.KnightDeath3: preload("res://audio/sfx/Knight/Knight_Death_3.wav"),
     Track.KnightSwordLaunch1: preload("res://audio/sfx/Knight/Knight_Sword_Launch.wav"),
     Track.KnightSwordLaunch2: preload("res://audio/sfx/Knight/Knight_Sword_Launch_2.wav"),
     Track.KnightSwordLaunch3: preload("res://audio/sfx/Knight/Knight_Sword_Launch_3.wav"),
@@ -93,8 +128,21 @@ const TRACKS = {
     Track.LichMeleeAttackHit2: preload("res://audio/sfx/Player/Lich_Melee_Attack_Hit_2.wav"),
     Track.LichMeleeAttackHit3: preload("res://audio/sfx/Player/Lich_Melee_Attack_Hit_3.wav"),
     Track.LichMeleeAttackLaunch: preload("res://audio/sfx/Player/Lich_Melee_Attack_Launch.wav"),
-
-
+    Track.SoulDestroyed1: preload("res://audio/sfx/Player/Soul_Destroyed.wav"),
+    Track.SoulDestroyed2: preload("res://audio/sfx/Player/Soul_Destroyed_2.wav"),
+    Track.SoulEquip1: preload("res://audio/sfx/Player/Soul_Equip.wav"),
+    Track.SoulEquip2: preload("res://audio/sfx/Player/Soul_Equip_2.wav"),
+    Track.SoulCollect1: preload("res://audio/sfx/Souls/Soul_Collect.wav"),
+    Track.SoulCollect2: preload("res://audio/sfx/Souls/Soul_Collect_2.wav"),
+    Track.SoulCollect3: preload("res://audio/sfx/Souls/Soul_Collect_3.wav"),
+    Track.BlueSoulDropped1: preload("res://audio/sfx/Souls/Blue_Soul_Dropped.wav"),
+    Track.BlueSoulDropped2: preload("res://audio/sfx/Souls/Blue_Soul_Dropped_2.wav"),
+    Track.BlueSoulDropped3: preload("res://audio/sfx/Souls/Blue_Soul_Dropped_3.wav"),
+    Track.RedSoulDropped1: preload("res://audio/sfx/Souls/Red_Soul_Dropped.wav"),
+    Track.RedSoulDropped2: preload("res://audio/sfx/Souls/Red_Soul_Dropped_2.wav"),
+    Track.GreenSoulDropped1: preload("res://audio/sfx/Souls/Green_Soul_Dropped.wav"),
+    Track.GreenSoulDropped2: preload("res://audio/sfx/Souls/Green_Soul_Dropped_2.wav"),
+    Track.GreenSoulDropped3: preload("res://audio/sfx/Souls/Green_Soul_Dropped_3.wav"),
 }
 
 const AMBIENCE_TRACKS = {
