@@ -25,15 +25,22 @@ enum Spell {
 var current_spell: Spell = Spell.HowlingGeist
 
 const BASE_MELEE_DAMAGE: int = 25
-const movement_speed: float = 2.5
+const BASE_MOVEMENT_SPEED: float = 2.5
+
 var time_elapsed: float = 0.0
+
+func computed_movement_speed() -> float:
+    return BASE_MOVEMENT_SPEED + GameState.total_stats[Item.Group.MovementSpeed]
+
+func computed_melee_damage() -> int:
+    return BASE_MELEE_DAMAGE + GameState.total_stats[Item.Group.MeleeDamage]
 
 func _ready() -> void:
     self.hover_animation()
 
 func _physics_process(delta: float) -> void:
     time_elapsed += delta
-    self.global_position += movement_vector() * movement_speed * delta
+    self.global_position += movement_vector() * computed_movement_speed() * delta
     self.look_at_mouse()
 
 func _unhandled_input(event):
@@ -134,7 +141,6 @@ func add_item(item: Item) -> bool:
 func can_add_item(item: Item) -> bool:
     return inventory.items.size() < Inventory.MAX_TOTAL_SOULS
 
-
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     self.animation_player.play("lich_idle")
 
@@ -143,4 +149,4 @@ func melee_hit() -> void:
     for area in areas:
         if area.is_in_group("enemy_hitbox"):
             if area.get_parent().is_in_group("enemies"):
-                area.get_parent().get_hit(BASE_MELEE_DAMAGE, true)
+                area.get_parent().get_hit(computed_melee_damage(), true)

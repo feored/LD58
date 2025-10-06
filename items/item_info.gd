@@ -19,7 +19,7 @@ const GROUP_STEP = {
     Item.Group.Fortitude            : 1.0,
     Item.Group.MovementSpeed        : 0.01,
     Item.Group.MagicFind            : 0.01,
-    Item.Group.SpellDamage          : 0.01,
+    Item.Group.SpellDamage          : 1.0,
     Item.Group.CollectionRange      : 0.05,
     Item.Group.MeleeDamage          : 1.0,
     Item.Group.SoulHoT              : 0.5,
@@ -34,7 +34,7 @@ const GROUP_STEP_DISPLAY = {
     Item.Group.Fortitude            : "%.0f",
     Item.Group.MovementSpeed        : "%.2f",
     Item.Group.MagicFind            : "%.2f",
-    Item.Group.SpellDamage          : "%.2f",
+    Item.Group.SpellDamage          : "%.0f",
     Item.Group.CollectionRange      : "%.2f",
     Item.Group.MeleeDamage          : "%.0f",
     Item.Group.SoulHoT              : "%.1f",
@@ -49,10 +49,10 @@ const GROUP_DISPLAY_TEXT = {
     Item.Group.Fortitude            : "%s to Fortitude",
     Item.Group.MovementSpeed        : "%s to Movement Speed",
     Item.Group.MagicFind            : "%s to Magic Find",
-    Item.Group.SpellDamage          : "%s to Spell Damage",
+    Item.Group.SpellDamage          : "%s%% to Spell Damage",
     Item.Group.CollectionRange      : "%s to Collection Range",
     Item.Group.MeleeDamage          : "%s to Melee Damage",
-    Item.Group.SoulHoT              : "%s to Soul Heal over Time",
+    Item.Group.SoulHoT              : "%s to Soul Heal Per Second",
     Item.Group.SoulDuration         : "%s to Soul Duration",
     Item.Group.IntermissionDuration : "%s to Intermission Duration",
     Item.Group.GeistAbility         : "%s to Howling Geist Ability",
@@ -67,6 +67,8 @@ const DROP_CHANCES = {
         Item.Type.Red: 0.1
     }
 }
+
+# UNSUPPORTED YET: MAGIC FIND, INTERMISSION DURATION, 
 
 var AFFIXES = {
     Item.Group.Fortitude:
@@ -118,15 +120,15 @@ var AFFIXES = {
     {
         Item.Balance.Positive:
         [
-            Item.Affix.new(Item.Group.SpellDamage, 0, "Ley-touched", "of a Dabbler", Vector2(0.05, 0.1)),
-            Item.Affix.new(Item.Group.SpellDamage, 1, "Magical", "of a Mage", Vector2(0.1, 0.2)),
-            Item.Affix.new(Item.Group.SpellDamage, 2, "Arcane", "of a Wizard", Vector2(0.2, 0.5)),
+            Item.Affix.new(Item.Group.SpellDamage, 0, "Ley-touched", "of a Dabbler", Vector2(5, 10)),
+            Item.Affix.new(Item.Group.SpellDamage, 1, "Magical", "of a Mage", Vector2(10, 20)),
+            Item.Affix.new(Item.Group.SpellDamage, 2, "Arcane", "of a Wizard", Vector2(20, 50)),
         ],
         Item.Balance.Negative:
         [
-            Item.Affix.new(Item.Group.SpellDamage, 0, "Ungifted", "of a Skeptic", Vector2(-0.05, -0.1), true),
-            Item.Affix.new(Item.Group.SpellDamage, 1, "Leyless", "of a Cynic", Vector2(-0.1, -0.2), true),
-            Item.Affix.new(Item.Group.SpellDamage, 2, "Cold-Iron", "of a Realist", Vector2(-0.2, -0.5), true),
+            Item.Affix.new(Item.Group.SpellDamage, 0, "Ungifted", "of a Skeptic", Vector2(-5, -10), true),
+            Item.Affix.new(Item.Group.SpellDamage, 1, "Leyless", "of a Cynic", Vector2(-10, -20), true),
+            Item.Affix.new(Item.Group.SpellDamage, 2, "Cold-Iron", "of a Realist", Vector2(-20, -50), true),
         ]
     },
     Item.Group.CollectionRange:

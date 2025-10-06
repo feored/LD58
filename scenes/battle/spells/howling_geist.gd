@@ -2,7 +2,7 @@ extends Node3D
 
 const SPEED = 10.0
 const TURNING_SPEED = 1.0
-const DAMAGE = 50
+const BASE_DAMAGE = 50
 
 const MOUSE_RANGE = 10.0
 
@@ -11,6 +11,12 @@ var is_moving : bool = true
 @onready var base : Node3D = %SkullBlue
 @onready var explosion_area : Area3D = %ExplosionArea
 @onready var explosion_mesh : MeshInstance3D = %ExplosionMesh
+
+func compute_damage() -> int:
+    var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
+    var total_spellpower_pc = 1 + (total_spellpower / 100.0)
+    Log.info("Total damage: %.2f" % (BASE_DAMAGE * total_spellpower_pc))
+    return BASE_DAMAGE * total_spellpower_pc
 
 func _ready() -> void:
     explosion_mesh.visible = false
@@ -58,5 +64,5 @@ func start_explode():
 func end_explode():
     for area in explosion_area.get_overlapping_areas():
         if area.get_parent().is_in_group("enemies") and area.is_in_group("enemy_hitbox"):
-            area.get_parent().get_hit(DAMAGE)
+            area.get_parent().get_hit(compute_damage())
     self.queue_free()

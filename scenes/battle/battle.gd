@@ -1,7 +1,14 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 90.0
+const WAVE_DURATION = 20.0
+const BASE_INTERMISSION_DURATION = 8.0
+
+enum State {
+    Wave,
+    Intermission
+}
+
 var wave_number: int = 1
 var spawn_rate: float = 2.0 # seconds between spawns
 var next_spawn_time: float = 0.0
@@ -10,10 +17,12 @@ var knight_scene = preload("res://scenes/battle/enemy/knight.tscn")
 var soul_scene = preload("res://scenes/battle/souls/soul_skull.tscn")
 var enemies: Array = []
 
+var state: State = State.Wave
 var time_elapsed: float = 0.0
 
 @onready var UI = %UI
 @onready var player_character = %Character
+
 
 func _ready() -> void:
     Music.play_track(Music.Track.Battle3, true)
@@ -54,19 +63,40 @@ func spawn_soul(spawn_position: Vector3, enemy_type : Constants.EnemyType = Cons
 
 func check_wave() -> void:
     if time_elapsed > WAVE_DURATION:
-        get_tree().paused = true
-        UI.set_state(UI.State.MENU)
+        start_intermission()
+
+
+func start_intermission() -> void:
+    state = State.Intermission
+    var total_intermission = BASE_INTERMISSION_DURATION + GameState.total_stats[Item.Group.IntermissionDuration]
+    var timer = Timer.new()
+    timer.wait_time = total_intermission
+    timer.one_shot = true
+    timer.autostart = true
+    Log.info("Starting intermission for %.2f seconds" % total_intermission)
+    timer.timeout.connect(func():
+        Log.info("Intermission over, starting next wave")
+        start_next_wave()
+        timer.queue_free()
+    )
+    add_child(timer)
+    for enemy in enemies:
+        enemy.die()
+    UI.set_intermission()
 
 func _process(delta: float) -> void:
     time_elapsed += delta
+    if state == State.Intermission:
+        return
     manage_spawn()
     check_wave()
 
 func _on_ui_next_wave() -> void:
-    Log.info("Starting next wave")
-    for enemy in enemies:
-        enemy.queue_free()
-    enemies.clear()
+    return
+    
+
+func start_next_wave() -> void:
+    state = State.Wave
     spawn_rate = max(0.5, spawn_rate - 0.2)
     next_spawn_time = 0.0
     time_elapsed = 0.0

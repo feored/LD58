@@ -4,7 +4,7 @@ const blue_skull_scene = preload("res://scenes/battle/souls/skull_blue.tscn")
 const red_skull_scene = preload("res://scenes/battle/souls/skull_red.tscn")
 const green_skull_scene = preload("res://scenes/battle/souls/skull_green.tscn")
 
-const LIFETIME = 5.0
+const BASE_LIFETIME = 5.0
 const DISTANCE_TO_GET = 0.25
 const SPEED = 2.0
 
@@ -29,6 +29,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _ready() -> void:
+    var collision_shape = %CollisionShape3D
+    collision_shape.shape.radius += GameState.total_stats[Item.Group.CollectionRange]
     self.start_lifetime_timer()
     if item == null:
         return
@@ -36,9 +38,10 @@ func _ready() -> void:
 
 
 func start_lifetime_timer() -> void:
+    var computed_lifetime = BASE_LIFETIME + GameState.total_stats[Item.Group.SoulDuration]
     var timer := Timer.new()
     self.add_child(timer)
-    timer.wait_time = LIFETIME
+    timer.wait_time = computed_lifetime
     timer.timeout.connect(expire)
     timer.start()
 
