@@ -8,7 +8,7 @@ const MOUSE_RANGE = 10.0
 
 var is_moving : bool = true
 
-@onready var base : MeshInstance3D = %Base
+@onready var base : Node3D = %SkullBlue
 @onready var explosion_area : Area3D = %ExplosionArea
 @onready var explosion_mesh : MeshInstance3D = %ExplosionMesh
 

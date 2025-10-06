@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bsrc8jrr1br1n"
-path="res://.godot/imported/soul_blue.gltf-9e3c016cbfbc71d508460042b1a861b2.scn"
+path="res://.godot/imported/soul_blue.gltf-9c6e267cfa00d9b9ab9d5d41c5e420b3.scn"
 
 [deps]
 
-source_file="res://WIP/soul_blue.gltf"
-dest_files=["res://.godot/imported/soul_blue.gltf-9e3c016cbfbc71d508460042b1a861b2.scn"]
+source_file="res://scenes/battle/souls/soul_blue.gltf"
+dest_files=["res://.godot/imported/soul_blue.gltf-9c6e267cfa00d9b9ab9d5d41c5e420b3.scn"]
 
 [params]
 

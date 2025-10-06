@@ -448,7 +448,6 @@ _data = {
 resource_name = "Material"
 cull_mode = 2
 albedo_texture = ExtResource("2_txcok")
-roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5vx12"]
 resource_name = "lich_anim_Cylinder"

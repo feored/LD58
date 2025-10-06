@@ -1,14 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhyx2xw1o7h70"]
+[gd_scene load_steps=6 format=3 uid="uid://bhyx2xw1o7h70"]
 
 [ext_resource type="Script" uid="uid://c1siukta22sjr" path="res://scenes/battle/spells/bubbling_bile.gd" id="1_rfals"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfals"]
-albedo_color = Color(0.015587613, 0.3816435, 0, 1)
-metallic = 0.55
-metallic_specular = 1.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_qykip"]
-material = SubResource("StandardMaterial3D_rfals")
+[ext_resource type="PackedScene" uid="uid://bapdkwx7nkigc" path="res://scenes/battle/souls/skull_green.tscn" id="2_qykip"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qykip"]
 transparency = 1
@@ -29,9 +22,8 @@ radius = 2.0
 [node name="BubblingBile" type="Node3D"]
 script = ExtResource("1_rfals")
 
-[node name="Base" type="MeshInstance3D" parent="."]
+[node name="SkullGreen" parent="." instance=ExtResource("2_qykip")]
 unique_name_in_owner = true
-mesh = SubResource("SphereMesh_qykip")
 
 [node name="Bile" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true

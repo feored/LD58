@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://drlmm16er32et"]
+[gd_scene load_steps=46 format=4 uid="uid://drlmm16er32et"]
 
 [ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="3_tg5uj"]
 [ext_resource type="Texture2D" uid="uid://b8wh1wkibxdsi" path="res://scenes/battle/souls/Shaders/StylizedFire/GreenFireGradient.tres" id="4"]
@@ -28,13 +28,13 @@ width = 128
 fill_from = Vector2(0.48971194, 0.74897116)
 fill_to = Vector2(0.872428, 0.46090534)
 
-[sub_resource type="Curve" id="4"]
+[sub_resource type="Curve" id="Curve_0bdjg"]
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="5"]
 width = 128
-curve = SubResource("4")
+curve = SubResource("Curve_0bdjg")
 
 [sub_resource type="ParticleProcessMaterial" id="6"]
 resource_local_to_scene = true
@@ -100,6 +100,14 @@ color_ramp = SubResource("GradientTexture2D_asbqy")
 resource_local_to_scene = true
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve" id="4"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jli1o"]
+width = 128
+curve = SubResource("4")
+
 [sub_resource type="ParticleProcessMaterial" id="8"]
 lifetime_randomness = 0.5
 emission_shape = 1
@@ -113,7 +121,7 @@ linear_accel_min = 4.0
 linear_accel_max = 4.0
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("5")
+scale_curve = SubResource("CurveTexture_jli1o")
 color_ramp = ExtResource("7")
 turbulence_noise_strength = 6.37
 
@@ -158,6 +166,14 @@ turbulence_noise_strength = 6.37
 resource_local_to_scene = true
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_ifh1x"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tvm4e"]
+width = 128
+curve = SubResource("Curve_ifh1x")
+
 [sub_resource type="ParticleProcessMaterial" id="9"]
 lifetime_randomness = 0.81
 emission_shape_offset = Vector3(0, -0.3, 0)
@@ -169,19 +185,55 @@ gravity = Vector3(0, 0, 0)
 linear_accel_min = -2.2351742e-06
 linear_accel_max = -2.2351742e-06
 scale_max = 2.0
-scale_curve = SubResource("5")
+scale_curve = SubResource("CurveTexture_tvm4e")
 color_ramp = ExtResource("4")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asbqy"]
-emission_enabled = true
-emission = Color(0.24599987, 1, 0.13, 1)
-emission_energy_multiplier = 3.05
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ej00r"]
+load_path = "res://.godot/imported/skulls.png-678ec3a81f3fc6475ea14806a54f292b.s3tc.ctex"
 
-[sub_resource type="SphereMesh" id="SphereMesh_bclxo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asbqy"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_asbqy")
-radius = 0.01
-height = 0.02
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.11599989, 0.87, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_ej00r")
+roughness = 0.5
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bclxo"]
+_surfaces = [{
+"aabb": AABB(-0.20203553, -0.2394183, -0.23258607, 0.41343838, 0.489415, 0.49765503),
+"format": 34896613377,
+"index_count": 144,
+"index_data": PackedByteArray("EgATAAYACwAGABMACgALABMAEgAKABMACwACAAYAAAAKABIACgAMAAsADAACAAsABAAMAAoAAAAEAAoABAAJAAwADAAOAAIACQAOAAwABAABAAkACQABAA4ABAAAAAEADgAUAAIAAgAUAA0AAgANAAYADgAPABQADwANABQAAQAPAA4AFQAGAA0ADwAVAA0AFQASAAYAAQAFAA8ABQAVAA8AAwASABUABQADABUAAwAAABIAAQAWAAUABQAQAAMABQAWABAAAQAXABYAAAAXAAEAFgAYABAAAwAHAAAAAAAHABcAAwAQAAcABwAIABcAFwAZABYAFgAZABgAFwAIABkAEAAYABEAEAARAAcAEQAYABkABwARAAgAEQAZAAgA"),
+"lods": [0.1201755, PackedByteArray("AAAKAAYACgALAAYACgAMAAsACwACAAYADAACAAsAAgANAAYABAAMAAoAAAAEAAoABAAJAAwAAwAAAAYAAwAGAA0ABAAAAAEABAABAAkACQAOAAwADAAOAAIACQABAA4ADwANAAIADgAPAAIADwADAA0AAQAPAA4ABQADAA8AAQAFAA8AAwAHAAAAAAAHAAEABQAQAAMAAwAQAAcAAQAIAAUABQAIABAABwAIAAEAEQAQAAgAEAARAAcABwARAAgA"), 0.13958482, PackedByteArray("AAAEAAYABAAAAAEAAwAAAAYAAwAHAAAAAAAHAAEABwADAAgABwAIAAEABQAIAAMABQADAAYAAQAIAAUABQAGAAIAAQAFAAIABAACAAYACQABAAIABAABAAkABAAJAAIA"), 0.34040985, PackedByteArray("AAAEAAIAAwAAAAIABAAAAAEAAAADAAEABAABAAIABQABAAMAAQAFAAIABQADAAIA"), 0.41388226, PackedByteArray("AAABAAIAAQADAAIAAwAAAAIAAAADAAEA")],
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 26,
+"vertex_data": PackedByteArray("DRMRR1qKAAAd66tGqJEAAF/Rsv8uhQAA2i62SFHoAADxN0xFki4AADrGb0hv7QAA4i7//7B/AACYM+M37Z4AAPqxAABVuwAAUM8FRbAzAABzLIqhAAAAAFC9ZfGGLAAAzd81oRAGAABrOjjzzMAAAP//1aW4hAAAONOXqeP2AABNRAk9gukAAI9HMgC8twAAAABOphF8AAB5S5vxrSgAAHG/+fJLxQAA3h/sqdPwAAD2r9Y8Ju0AAJjInTf3owAAv0qYFdb8AAAnqGwV//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_iw26o"]
+resource_local_to_scene = true
+resource_name = "soul_blue_Cylinder_001"
+_surfaces = [{
+"aabb": AABB(-0.20203553, -0.2394183, -0.23258607, 0.41343838, 0.489415, 0.49765503),
+"attribute_data": PackedByteArray("YS5oF9IwHTJ5PusnKlRbLnxTkSAeRIEpElYmGrotaB+8UtEntxxiJ9wiKSncIkkdHD1nHbotpSkeRA4dB1kYKDZXLB23HBAfeiRRJ24oTSD6M8Qg7zhhJc403Sb8OHQuakv/L9pN6iZNSSggDVSNIbdZXiFuKCYmQTaeGA444yDoSMgmUE57IPRMkRaYU94mxVW+K6VVHiPnVY4leiQhHw=="),
+"format": 34896613399,
+"index_count": 144,
+"index_data": PackedByteArray("HgAfAAwAFQAMAB8AFQACAAwAHgAUAB8AFAAVAB8AAAAUAB4AAAAHABQAFAAWABUAFgACABUABwAWABQAFgAXAAIABwANABYADQAXABYADQABABcAGAAgAAUABQAgABoABQAaAA4AGAAZACAAGQAaACAAAwAZABgAIQAOABoAGQAhABoAIQAiAA4AAwAIABkACAAhABkABAAiACEACAAEACEABAAGACIABAAQAAYABAAbABAACAAbAAQAGwAcABAAAwAjAAgACAAjABsAAwAkACMAGwAlABwAIwAlABsAHAAlACYAIwAmACUAJAAmACMAHAAmAA8AJAAPACYACQALABEACQAKAAsACgAnAAsACgASACcAEgATACcAEgAdABMA"),
+"lods": [0.1201755, PackedByteArray("AAAUAAwAAAAHABQAFAAVAAwAFQACAAwABwAWABQAFAAWABUAFgACABUABwANABYAFgAXAAIADQAXABYADQABABcAGAAZAAUAAwAZABgAGQAaAAUABQAaAA4AAwAIABkAAwAPAAgAGQAEABoABAAOABoACAAEABkABAAGAA4ABAAQAAYACAAbAAQABAAbABAACAAPABsAGwAcABAAHAAbAA8ACQALABEACQAKAAsACgASAAsAEgATAAsAEgAdABMA"), 0.13958482, PackedByteArray("AAAHAAwABwACAAwABwANAAIADQABAAIAAwAIAAUACAAOAAUAAwAPAAgACAAEAA4ACAAPAAQABAAGAA4AEAAEAA8ABAAQAAYACQALABEACQAKAAsACgASAAsAEgATAAsA"), 0.34040985, PackedByteArray("AAAHAAIABwABAAIAAwAIAAUACAAEAAUACAADAAQABAAGAAUABgAEAAMACQAKAAsA"), 0.41388226, PackedByteArray("AAABAAIAAwAEAAUABAAGAAUABgAEAAMA")],
+"material": SubResource("StandardMaterial3D_asbqy"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("DRMRR1qKFSAd66tGqJGKLl/Rsv8uhTMQHeurRqiRyCraLrZIUehmPl/Rsv8uhVckDRMRR1qKHCbxN0xFki6gBTrGb0hv7Wsw8TdMRZIuLioNExFHWopbJB3rq0aokVsk4i7//7B/fTtQzwVFsDObIOIu//+wf9Ep+rEAAFW7ByOYM+M37Z7iK1DPBUWwMy4qmDPjN+2eHRT6sQAAVbvPBXMsiqEAAEQSUL1l8YYs3g7N3zWhEAbPD///1aW4hLQb///VpbiE5SU405ep4/Y2Nms6OPPMwCE0TUQJPYLpgzuPRzIAvLdaI49HMgC8t5cxAABOphF8DjN5S5vxrSjzJnG/+fJLxeU23h/sqdPwDzoAAE6mEXzVK/av1jwm7X43mMidN/ejwi6/SpgV1vwQPSeobBX//8BKmMidN/ejHRTl0+fc3BviNQmpFqLfmylM0lFDjO65qZMWRgGVRc/6zbOKJ1kOK8bWKC5r0ygua9NCrhC7ti6MQm+MdMNSc0U11jxWgg4rxtaSNWLLniyy2FXFrclks+apbDCTOh8fGi6BsahgM6EWdMiMW7P4YViRpDNZcuo4v8L7ymnWZL+8tfixTI48breig1uNs2+QA2dXhbA/tVd+h0N7IVOSNWLL")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bclxo")
 
 [sub_resource type="Gradient" id="Gradient_sv4b0"]
 colors = PackedColorArray(0.21875, 1, 0, 1, 0, 0.640625, 0.145142, 0)
@@ -244,6 +296,7 @@ draw_pass_1 = SubResource("SphereMesh_tvm4e")
 
 [node name="Blood Fire Explosion" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 1.5015091)
+visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 amount = 10
@@ -277,9 +330,6 @@ light_energy = 2.0
 
 [node name="skullblue" parent="Ghost Fire" instance=ExtResource("5_phiab")]
 
-[node name="GPUParticles3D" parent="Ghost Fire/skullblue/soul_green" index="1"]
-visible = false
-
 [node name="Ghost Fire Explosion" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 2.392034)
 visible = false
@@ -301,7 +351,6 @@ light_energy = 2.0
 
 [node name="Acid Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.66113, 1.26708, 0.007401228)
-visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 amount = 25
@@ -317,9 +366,8 @@ light_energy = 2.0
 
 [node name="skullgreen" parent="Acid Fire" instance=ExtResource("8_jli1o")]
 
-[node name="GPUParticles3D" parent="Acid Fire/skullgreen/soul_blue" index="1"]
-visible = false
-draw_pass_1 = SubResource("SphereMesh_bclxo")
+[node name="skull" parent="Acid Fire/skullgreen/soul_blue" index="0"]
+mesh = SubResource("ArrayMesh_iw26o")
 
 [node name="Acid Fire Explosion" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.66113, 1.26708, 1.8620055)
