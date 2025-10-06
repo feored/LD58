@@ -101,6 +101,9 @@ func start_intermission() -> void:
         timer.queue_free()
     )
     add_child(timer)
+    for enemy in enemies:
+        enemy.die()
+    enemies.clear()
 
     UI.set_intermission(total_intermission)
 

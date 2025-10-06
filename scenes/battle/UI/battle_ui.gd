@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
             launched_transition = true
             var random_transition_track = Music.get_random_transition_track()
             Music.remove_queued_track()
-            Music.play_track(random_transition_track, false, true, Music.VOLUME_DEFAULT, Music.BATTLE_CROSSFADE_TIME)
+            Music.play_track(random_transition_track, false, true, Music.VOLUME_DEFAULT, Music.BATTLE_CROSSFADE_TIME, 0.2)
     set_display_timer(current_time)
 
 func set_display_timer(dur: float) -> void:

@@ -5,7 +5,7 @@ const VOLUME_DEFAULT: float = 1.0 # Default volume in linear scale
 
 const CROSSFADE_VOLUME_MIN: float = -50
 const CROSSFADE_TIME: float = 0.5
-const BATTLE_CROSSFADE_TIME = 15
+const BATTLE_CROSSFADE_TIME = 5
 
 const MUSIC_BUS_NAME: String = "Music"
 
@@ -47,7 +47,6 @@ const MUSIC_TRACKS = {
     Track.Battle7: preload("res://audio/music/kolekta_battle_7.mp3"),
     Track.Menu: preload("res://audio/music/kolekta_menu.mp3"),
     Track.MenuBass: preload("res://audio/music/kolekta_menu_bass.mp3"),
-
 }
 
 
@@ -70,7 +69,8 @@ func play_track(
     loop = false,
     crossfade = true,
     volume = VOLUME_DEFAULT,
-    crossfade_time = CROSSFADE_TIME
+    crossfade_time = CROSSFADE_TIME,
+    crossfade_out_time = CROSSFADE_TIME
 ):	
     if crossfade and self.audio_stream_player.stream != null:
         var tween = self.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
