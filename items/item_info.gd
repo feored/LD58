@@ -13,8 +13,8 @@ const ITEM_TYPE_COLOR = {
 
 const BASE_FORTITUDE = {
 	Item.Type.Blue: 50,
-	Item.Type.Green: 100,
-	Item.Type.Red: 200
+	Item.Type.Green: 75,
+	Item.Type.Red: 125
 }
 
 const GROUP_STEP = {

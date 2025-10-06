@@ -9,6 +9,8 @@ class_name Character
 
 const MELEE_SELF_DAMAGE = 30
 const SPELL_CAST_WAIT_TIME: float = 0.25
+const BASE_MELEE_DAMAGE: int = 50
+const BASE_MOVEMENT_SPEED: float = 2.5
 
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
 const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
@@ -31,8 +33,7 @@ enum Spell {
 
 var current_spell: Spell = Spell.HowlingGeist
 
-const BASE_MELEE_DAMAGE: int = 25
-const BASE_MOVEMENT_SPEED: float = 2.5
+
 
 var time_elapsed: float = 0.0
 
