@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dgsdmqqw8epq0"]
+[gd_scene load_steps=43 format=4 uid="uid://dgsdmqqw8epq0"]
 
 [ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character/character.gd" id="1_efktm"]
 [ext_resource type="Texture2D" uid="uid://kthdd6o1pfw4" path="res://scenes/battle/character/lich_anims_lich Base Color.png" id="4_n3qg2"]
@@ -1431,6 +1431,62 @@ size = Vector3(1.25, 2, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dmu1"]
 size = Vector3(2, 2, 1.25)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o21jg"]
+render_priority = 0
+shader = ExtResource("5_n3qg2")
+shader_parameter/noise_texture = ExtResource("6_7dmu1")
+shader_parameter/texture_mask = ExtResource("7_q6aw8")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_y014k"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_phiab"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_y014k")
+width = 128
+fill_from = Vector2(0.2707775, 0.6970509)
+fill_to = Vector2(0.98659515, 0.9436997)
+
+[sub_resource type="Curve" id="Curve_n3qg2"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_asbqy"]
+width = 128
+curve = SubResource("Curve_n3qg2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7dmu1"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = 0.99999774
+radial_accel_max = 14.999997
+scale_min = 1.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_asbqy")
+color = Color(18.892157, 0, 0, 1)
+color_ramp = SubResource("GradientTexture2D_phiab")
+hue_variation_min = -0.27
+hue_variation_max = -0.18000002
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_q6aw8"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
 [node name="Character" type="Node3D" groups=["player"]]
 script = ExtResource("1_efktm")
 
@@ -1486,42 +1542,42 @@ bones/4/parent = 1
 bones/4/rest = Transform3D(0, -0.97956043, 0.20114958, 1.490116e-07, 0.20114955, 0.97956055, -0.99999994, 2.9973616e-08, 1.459659e-07, -0.0070808767, 0.69326997, 9.3146944e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(-0.0070808767, 0.69326997, 9.3146944e-08)
-bones/4/rotation = Quaternion(-0.12448852, 0.7389192, 0.50427, 0.42920023)
-bones/4/scale = Vector3(0.9051839, 1.2360331, 0.9051839)
+bones/4/rotation = Quaternion(-0.44359365, 0.5506583, 0.44359377, 0.55065835)
+bones/4/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/5/name = "robe_hand.L"
 bones/5/parent = 1
 bones/5/rest = Transform3D(0, 0.97956043, -0.20114958, -1.490116e-07, 0.20114955, 0.97956055, 0.99999994, 2.9973616e-08, 1.459659e-07, 0.0070808767, 0.69326997, 9.3146944e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(0.0070808767, 0.69326997, 9.3146944e-08)
-bones/5/rotation = Quaternion(-0.4755968, -0.52302027, -0.41181457, 0.575036)
-bones/5/scale = Vector3(0.9894188, 1.0215102, 0.98941886)
+bones/5/rotation = Quaternion(-0.4435938, -0.5506581, -0.44359392, 0.5506583)
+bones/5/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/6/name = "staff"
 bones/6/parent = -1
 bones/6/rest = Transform3D(-2.384186e-07, 0.13310738, 0.9911018, -7.4505815e-09, 0.9911019, -0.13310736, -1.0000001, -3.911956e-08, -2.3530535e-07, -0.43896827, 0.7873753, 1.0579082e-07)
 bones/6/enabled = true
-bones/6/position = Vector3(-0.34288526, 0.9367949, 0.31519812)
-bones/6/rotation = Quaternion(-0.04211237, 0.83857983, 0.50210667, -0.20712166)
+bones/6/position = Vector3(-0.43896824, 0.7873754, 1.0579082e-07)
+bones/6/rotation = Quaternion(0.047165584, 0.7055321, -0.047165606, 0.70553195)
 bones/6/scale = Vector3(1.0000001, 1.0000002, 1.0000001)
 bones/7/name = "Hand.R"
 bones/7/parent = 6
 bones/7/rest = Transform3D(1, 1.5727682e-07, -9.0572667e-07, 8.938368e-07, 0.06384826, 0.9979597, 2.1478502e-07, -0.9979597, 0.06384826, -4.0262496e-09, 2.2351742e-07, 3.7252885e-08)
 bones/7/enabled = true
-bones/7/position = Vector3(-1.8927317e-08, 1.3809851e-07, -2.7938636e-08)
-bones/7/rotation = Quaternion(-0.68416065, -3.8026567e-07, 2.565533e-07, 0.72933143)
+bones/7/position = Vector3(-4.026315e-09, 2.6812978e-07, 4.0107135e-08)
+bones/7/rotation = Quaternion(-0.68416077, -3.840888e-07, 2.524778e-07, 0.7293313)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "Hand.L"
 bones/8/parent = -1
 bones/8/rest = Transform3D(-1.1920929e-07, 0.9805807, -0.19611624, -2.0861626e-07, 0.19611621, 0.9805807, 1.0000001, 8.940697e-08, 1.1920929e-07, 0.43896827, 0.7873753, 1.0579082e-07)
 bones/8/enabled = true
-bones/8/position = Vector3(0.4455282, 0.7873753, -0.05247937)
-bones/8/rotation = Quaternion(-0.46675387, -0.52335507, -0.4290486, 0.5693484)
+bones/8/position = Vector3(0.43896827, 0.7873753, 1.0579082e-07)
+bones/8/rotation = Quaternion(-0.44829783, -0.54683554, -0.44829792, 0.54683554)
 bones/8/scale = Vector3(1.0000001, 1, 1)
 bones/9/name = "lantern"
 bones/9/parent = 8
 bones/9/rest = Transform3D(2.9802322e-07, 2.3841858e-07, -1.0000001, 0.98058075, -0.19611645, 3.2782555e-07, -0.19611633, -0.9805807, -3.5762787e-07, 5.378844e-10, 0.022955403, -0.00730402)
 bones/9/enabled = true
 bones/9/position = Vector3(5.378844e-10, 0.022955403, -0.00730402)
-bones/9/rotation = Quaternion(0.5468357, 0.44829786, -0.5468354, -0.4482979)
+bones/9/rotation = Quaternion(0.5468357, 0.44829783, -0.5468354, -0.44829792)
 bones/9/scale = Vector3(1.0000001, 1, 1.0000001)
 
 [node name="lich" type="MeshInstance3D" parent="lich/Lich armature/Skeleton3D"]
@@ -1563,5 +1619,20 @@ current = true
 light_color = Color(0.17199999, 0.86, 0.67653334, 1)
 omni_range = 2.0
 omni_attenuation = 2.0
+
+[node name="LichDeath" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6, 0)
+material_override = SubResource("ShaderMaterial_o21jg")
+cast_shadow = 0
+emitting = false
+amount = 30
+speed_scale = 1.5
+randomness = 1.0
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_7dmu1")
+draw_pass_1 = SubResource("QuadMesh_q6aw8")
 
 [connection signal="animation_finished" from="lich/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

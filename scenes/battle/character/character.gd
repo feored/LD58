@@ -20,22 +20,21 @@ signal spell_changed(new_spell: Spell)
 signal spell_no_ammo()
 signal got_hit(damage: int, can_die: bool)
 
-func play_bark() -> void:
-    var chance = Utils.rng.randi_range(0, 100)
-    if chance < 5:
-        Sfx.play_multitrack(Sfx.MultiTrack.LichBark)
-
 enum Spell {
     HowlingGeist,
     BubblingBile,
     BloodfireWave
 }
 
+var is_dead: bool = false
 var current_spell: Spell = Spell.HowlingGeist
-
-
-
 var time_elapsed: float = 0.0
+
+func play_bark() -> void:
+    var chance = Utils.rng.randi_range(0, 100)
+    if chance < 5:
+        Sfx.play_multitrack(Sfx.MultiTrack.LichBark)
+
 
 func computed_movement_speed() -> float:
     return BASE_MOVEMENT_SPEED + GameState.total_stats[Item.Group.MovementSpeed]
@@ -47,15 +46,21 @@ func _ready() -> void:
     self.hover_animation()
 
 func _physics_process(delta: float) -> void:
+    if is_dead:
+        return
     time_elapsed += delta
     self.global_position += movement_vector() * computed_movement_speed() * delta
     self.look_at_mouse()
 
 func _unhandled_input(event):
+    if is_dead:
+        return
     self.switch_spells(event)
     self.shoot(event)
 
 func switch_spells(event) -> void:
+    if is_dead:
+        return
     if event.is_action_pressed("wheel_up"):
         var next_index = (int(current_spell) + 1) % Spell.size()
         current_spell = Spell.values()[next_index] as Spell
@@ -165,6 +170,8 @@ func hover_animation() -> void:
     tween.tween_property(self.model, "position:y", 0, 1.0)
 
 func get_hit(damage: int) -> void:
+    if is_dead:
+        return
     self.animation_player.play("lich_hurt")
     Sfx.play_multitrack(Sfx.MultiTrack.LichHurt, self.global_position)
     self.emit_signal("got_hit", damage, true )
@@ -180,6 +187,8 @@ func can_add_item(_item: Item) -> bool:
     return inventory.items.size() < Inventory.MAX_TOTAL_SOULS
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+    if is_dead:
+        return
     self.animation_player.play("lich_walk")
 
 func melee_hit() -> void:
@@ -191,3 +200,9 @@ func melee_hit() -> void:
             if area.get_parent().is_in_group("enemies"):
                 area.get_parent().get_hit(computed_melee_damage(), true)
                 Sfx.play_multitrack(Sfx.MultiTrack.LichMeleeAttackHit, self.global_position)
+
+func die() -> void:
+    self.animation_player.play("lich_death")
+    self.is_dead = true
+    #Sfx.play_multitrack(Sfx.MultiTrack.LichDeath, self.global_position)
+    %LichDeath.emitting = true

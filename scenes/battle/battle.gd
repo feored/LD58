@@ -147,5 +147,7 @@ func start_next_wave() -> void:
 
 
 func _on_equipped_souls_died() -> void:
-    Log.info("Player has died")
-    SceneTransition.change_scene(SceneTransition.Scene.MainMenu)
+    player_character.die()
+    await Utils.wait(3.0)
+    # SceneTransition.change_scene(SceneTransition.Scene.MainMenu)
+    UI.set_game_over(wave_number)

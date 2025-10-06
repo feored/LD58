@@ -682,7 +682,7 @@ fill_to = Vector2(0.98659515, 0.9436997)
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_asbqy"]
+[sub_resource type="CurveTexture" id="CurveTexture_b0t7e"]
 width = 128
 curve = SubResource("Curve_tvm4e")
 
@@ -702,7 +702,7 @@ radial_accel_min = 0.99999774
 radial_accel_max = 14.999997
 scale_min = 1.5
 scale_max = 3.0
-scale_curve = SubResource("CurveTexture_asbqy")
+scale_curve = SubResource("CurveTexture_b0t7e")
 color = Color(18.892157, 0, 0, 1)
 color_ramp = SubResource("GradientTexture2D_phiab")
 hue_variation_min = -0.27
@@ -836,6 +836,7 @@ draw_pass_1 = SubResource("QuadMesh_4ir1w")
 
 [node name="Fireball" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1418433, 1.26708, -0.825758)
+visible = false
 material_override = SubResource("ShaderMaterial_hwmv2")
 cast_shadow = 0
 amount = 15
@@ -848,6 +849,7 @@ draw_pass_1 = SubResource("QuadMesh_sv4b0")
 
 [node name="Fireball Explosion" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9531927, 1.26708, 0.4834354)
+visible = false
 material_override = SubResource("ShaderMaterial_b0t7e")
 cast_shadow = 0
 emitting = false

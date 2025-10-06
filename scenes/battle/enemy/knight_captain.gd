@@ -2,7 +2,7 @@ extends Node3D
 
 signal died(enemy: Node3D)
 
-var life: int = Utils.rng.randi_range(750, 1500)
+var life: int = Utils.rng.randi_range(375, 500)
 
 const DAMAGE = 70
 const HIT_ANIMATION_TIME = 0.15
@@ -15,7 +15,7 @@ const COOLDOWN_BETWEEN_ATTACKS = 1.0
 
 var type: Constants.EnemyType = Constants.EnemyType.Knight
 var player_character: Node3D = null
-var speed: float = Utils.rng.randf_range(2.5, 5.7)
+var speed: float = Utils.rng.randf_range(2.2, 5.4)
 var is_hit: bool = false
 var is_dead : bool = false
 var is_swinging: bool = false
