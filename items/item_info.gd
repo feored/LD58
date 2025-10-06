@@ -68,7 +68,7 @@ const DROP_CHANCES = {
     }
 }
 
-# UNSUPPORTED YET: MAGIC FIND,  BLOOD SHARDS
+# UNSUPPORTED YET: MAGIC FIND, BLOOD SHARDS
 
 var AFFIXES = {
     Item.Group.Fortitude:

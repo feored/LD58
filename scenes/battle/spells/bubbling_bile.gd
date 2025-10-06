@@ -16,6 +16,9 @@ func _ready() -> void:
     bile.visible = false
     bile_area.monitoring = false
 
+func compute_lifetime() -> float:
+    return BASE_LIFETIME + GameState.total_stats[Item.Group.BilePoolDuration]
+
 func compute_damage() -> int:
     var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
     var total_spellpower_pc = 1 + (total_spellpower / 100.0)
@@ -48,7 +51,7 @@ func explode_bile():
     self.bile_area.monitoring = true
     var timer := Timer.new()
     self.add_child(timer)
-    timer.wait_time = LIFETIME
+    timer.wait_time = compute_lifetime()
     timer.timeout.connect(queue_free)
     timer.start()
     is_biled = true
