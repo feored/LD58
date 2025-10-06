@@ -29,11 +29,13 @@ Sfx="*res://globals/autoloads/sfx.gd"
 TileInfo="*res://globals/autoloads/tile_info.gd"
 Utils="*res://globals/autoloads/utils.gd"
 ItemInfo="*res://items/item_info.gd"
+GameState="*res://globals/autoloads/state.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [filesystem]
 
@@ -44,6 +46,8 @@ import/blender/enabled=false
 enemies=""
 items=""
 player=""
+player_hitbox=""
+enemy_hitbox=""
 
 [input]
 

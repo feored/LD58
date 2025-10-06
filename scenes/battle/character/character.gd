@@ -14,6 +14,7 @@ const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
 
 signal spell_changed(new_spell: Spell)
 signal spell_no_ammo()
+signal got_hit(damage: int)
 
 enum Spell {
     HowlingGeist,
@@ -23,17 +24,23 @@ enum Spell {
 
 var current_spell: Spell = Spell.HowlingGeist
 
-const BASE_MELEE_DAMAGE: int = 50
-const movement_speed: float = 2.5
+const BASE_MELEE_DAMAGE: int = 25
+const BASE_MOVEMENT_SPEED: float = 2.5
+
 var time_elapsed: float = 0.0
 
+func computed_movement_speed() -> float:
+    return BASE_MOVEMENT_SPEED + GameState.total_stats[Item.Group.MovementSpeed]
+
+func computed_melee_damage() -> int:
+    return BASE_MELEE_DAMAGE + GameState.total_stats[Item.Group.MeleeDamage]
+
 func _ready() -> void:
-    ##$AudioListener3D.make_current()
     self.hover_animation()
 
 func _physics_process(delta: float) -> void:
     time_elapsed += delta
-    self.global_position += movement_vector() * movement_speed * delta
+    self.global_position += movement_vector() * computed_movement_speed() * delta
     self.look_at_mouse()
 
 func _unhandled_input(event):
@@ -123,6 +130,7 @@ func hover_animation() -> void:
 
 func get_hit(damage: int) -> void:
     self.animation_player.play("lich_hurt")
+    self.emit_signal("got_hit", damage)
 
 func add_item(item: Item) -> bool:
     if inventory.items.size() >= Inventory.MAX_TOTAL_SOULS:
@@ -130,12 +138,15 @@ func add_item(item: Item) -> bool:
     self.inventory.add_item(item)
     return true
 
+func can_add_item(_item: Item) -> bool:
+    return inventory.items.size() < Inventory.MAX_TOTAL_SOULS
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     self.animation_player.play("lich_idle")
-    self.melee_area.monitoring = false
 
-
-func _on_melee_area_3d_area_entered(area: Area3D) -> void:
-    if area.get_parent().is_in_group("enemies"):
-        area.get_parent().get_hit(BASE_MELEE_DAMAGE, true)
+func melee_hit() -> void:
+    var areas = self.melee_area.get_overlapping_areas()
+    for area in areas:
+        if area.is_in_group("enemy_hitbox"):
+            if area.get_parent().is_in_group("enemies"):
+                area.get_parent().get_hit(computed_melee_damage(), true)

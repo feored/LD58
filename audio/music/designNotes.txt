@@ -1,0 +1,22 @@
+INTRO (to start battle music)
+kolekta_battle_intro
+
+MAIN LOOP (for fighting) [each number is a different variation]
+kolekta_battle_1
+kolekta_battle_2
+kolekta_battle_3
+kolekta_battle_4
+kolekta_battle_5_noDrums
+
+BATTLE END
+kolekta_battle_end_1
+kolekta_battle_end_2
+
+TRANSITION (between waves) [two variations]
+kolekta_battle_transition_1
+kolekta_battle_transition_2
+
+INTRO > MAIN LOOP > BATTLE END > TRANSITION // >INTRO again
+
+depending on round length, we can either loop MAIN LOOPs or play a MAIN LOOP just once, and then loop BATTLE END until final enemy is killed.
+

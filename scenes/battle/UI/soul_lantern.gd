@@ -3,10 +3,11 @@ extends Control
 const soul_item_scene = preload("res://scenes/battle/UI/soul_item.tscn")
 
 @export var inventory : Inventory
+@export var equipped_souls : EquippedSouls
 
-@onready var blue_soul_container : VBoxContainer = %BlueSoulContainer
-@onready var green_soul_container : VBoxContainer = %GreenSoulContainer
-@onready var red_soul_container : VBoxContainer = %RedSoulContainer
+@onready var blue_soul_container = %BlueSoulContainer
+@onready var green_soul_container = %GreenSoulContainer
+@onready var red_soul_container = %RedSoulContainer
 
 func _ready():
     inventory.updated.connect(_on_inventory_updated)
@@ -32,6 +33,12 @@ func _on_inventory_updated():
     var item_count = inventory.items.size()
     for i in range(item_count):
         var soul_item_instance = soul_item_scene.instantiate()
+        soul_item_instance.equipped.connect(func(item):
+            if not equipped_souls.can_equip():
+                return
+            equipped_souls.equip_soul(item)
+            inventory.remove_item(item)
+        )
         soul_item_instance.item = inventory.items[i]
         match inventory.items[i].item_type:
             Item.Type.Blue:

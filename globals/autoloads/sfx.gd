@@ -82,7 +82,7 @@ func play_ambience(ambience: Ambience):
 func play(track: Track, position: Vector3 = Vector3.ZERO):
     if track in RANDOM_PITCH_SCALE:
         self.players[track].pitch_scale = randf_range(RANDOM_PITCH_SCALE[track][0], RANDOM_PITCH_SCALE[track][1])
-    self.players[track].global_transform.origin = position
+        self.players[track].global_transform.origin = position
     self.players[track].play()
 
 func play_multitrack(multi_track: MultiTrack, position: Vector3 = Vector3.ZERO):

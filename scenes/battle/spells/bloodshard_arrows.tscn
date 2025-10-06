@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnt5saq500qgi"]
+
+[ext_resource type="Script" uid="uid://biycbqqtungmu" path="res://scenes/battle/spells/bloodshard_arrows.gd" id="1_eds72"]
+[ext_resource type="PackedScene" uid="uid://bacajla3hm5jt" path="res://scenes/battle/souls/skull_red.tscn" id="2_4js52"]
+
+[node name="BloodshardArrows" type="Node3D"]
+script = ExtResource("1_eds72")
+
+[node name="SkullRed" parent="." instance=ExtResource("2_4js52")]
