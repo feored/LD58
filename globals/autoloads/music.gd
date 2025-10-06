@@ -17,6 +17,8 @@ signal switched_track()
 ## Tracks
 enum Track {
     BattleIntro,
+    BattleIntro2,
+    BattleIntro3,
     BattleTransition1,
     BattleTransition2,
     BattleTransition3,
@@ -34,6 +36,8 @@ enum Track {
 
 const MUSIC_TRACKS = {
     Track.BattleIntro: preload("res://audio/music/kolekta_intro.mp3"),
+    Track.BattleIntro2: preload("res://audio/music/kolekta_intro_2.mp3"),
+    Track.BattleIntro3: preload("res://audio/music/kolekta_intro_3.mp3"),
     Track.BattleTransition1: preload("res://audio/music/kolekta_transition_1.mp3"),
     Track.BattleTransition2: preload("res://audio/music/kolekta_transition_2.mp3"),
     Track.BattleTransition3: preload("res://audio/music/kolekta_transition_3.mp3"),
@@ -142,3 +146,11 @@ func get_random_transition_track() -> Track:
         Track.BattleTransition4,
     ]
     return transition_tracks[randi() % transition_tracks.size()]
+
+func get_random_intro_track() -> Track:
+    var intro_tracks = [
+        Track.BattleIntro,
+        Track.BattleIntro2,
+        Track.BattleIntro3,
+    ]
+    return intro_tracks[randi() % intro_tracks.size()]

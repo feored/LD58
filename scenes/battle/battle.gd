@@ -136,7 +136,7 @@ func _on_ui_next_wave() -> void:
 
 func start_next_wave() -> void:
     self.music_state = MusicState.Intro
-    Music.play_track(Music.Track.BattleIntro, false, false)
+    Music.play_track(Music.get_random_intro_track(), false, false)
     Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)
     state = State.Wave
     spawn_rate = max(0.25, spawn_rate - 0.2)
