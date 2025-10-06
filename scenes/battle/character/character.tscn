@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=4 uid="uid://dgsdmqqw8epq0"]
+[gd_scene load_steps=18 format=4 uid="uid://dgsdmqqw8epq0"]
 
 [ext_resource type="Script" uid="uid://juy52bicdgcc" path="res://scenes/battle/character/character.gd" id="1_efktm"]
 [ext_resource type="Animation" uid="uid://djj2siknxqhg1" path="res://scenes/battle/character/lich_m1.res" id="2_o21jg"]
-[ext_resource type="PackedScene" uid="uid://dwuhcvq555vv3" path="res://WIP/lich_mesh.gltf" id="2_sytih"]
 [ext_resource type="Texture2D" uid="uid://bga75m6eufye" path="res://scenes/battle/character/lich_anim_lich Base Color.png" id="2_txcok"]
 [ext_resource type="Animation" uid="uid://j1yt7ta2et70" path="res://scenes/battle/character/lich_idle.res" id="3_y014k"]
 [ext_resource type="Script" uid="uid://5re8071q4w06" path="res://scenes/battle/character/inventory.gd" id="4_nonsa"]
@@ -503,8 +502,6 @@ bind/9/name = &"lantern"
 bind/9/bone = -1
 bind/9/pose = Transform3D(1, -7.4505806e-08, 2.6424593e-07, -5.960464e-08, -1.0000001, -3.7658356e-08, 1.9671373e-07, -1.3838248e-08, -1, -0.46291026, 0.7847151, 2.5201837e-08)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7gynk"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffvsa"]
 size = Vector3(1.25, 2, 1)
 
@@ -603,25 +600,6 @@ bones/9/scale = Vector3(1, 1, 1)
 mesh = SubResource("ArrayMesh_5vx12")
 skin = SubResource("Skin_m1udi")
 
-[node name="lich_mesh" parent="." instance=ExtResource("2_sytih")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-visible = false
-
-[node name="OmniLight3D" type="OmniLight3D" parent="lich_mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46, 0.56, 0.02)
-visible = false
-layers = 3
-light_color = Color(0.51, 1, 0.6488333, 1)
-light_energy = 3.51
-omni_range = 0.222
-omni_attenuation = 2.96
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-visible = false
-mesh = SubResource("BoxMesh_7gynk")
-skeleton = NodePath("../..")
-
 [node name="Area3D" type="Area3D" parent="." groups=["player_hitbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
@@ -641,5 +619,10 @@ shape = SubResource("BoxShape3D_7dmu1")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.17199999, 0.86, 0.67653334, 1)
+omni_range = 2.0
+omni_attenuation = 2.0
 
 [connection signal="animation_finished" from="lich/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

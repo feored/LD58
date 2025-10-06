@@ -5,8 +5,27 @@ const red_skull_scene = preload("res://scenes/battle/souls/skull_red.tscn")
 const green_skull_scene = preload("res://scenes/battle/souls/skull_green.tscn")
 
 const LIFETIME = 5.0
+const DISTANCE_TO_GET = 0.25
+const SPEED = 2.0
 
+var target: Node3D = null
+var is_targeting: bool = false
 var item: Item = null
+
+
+func _physics_process(delta: float) -> void:
+    if is_targeting and target != null and item != null:
+        if not target.can_add_item(item):
+            is_targeting = false
+            target = null
+            return
+        if self.target.global_position.distance_to(self.global_position) < DISTANCE_TO_GET:
+            if item != null and target.can_add_item(item):
+                var added = target.add_item(item)
+                self.queue_free()
+        else:
+            var direction = (target.global_position - self.global_position).normalized()
+            self.global_position += direction * SPEED * delta
 
 
 func _ready() -> void:
@@ -43,6 +62,12 @@ func add_color_skull(color: Item.Type) -> void:
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
     if area.get_parent().is_in_group("player"):
-        if item != null:
-            if area.get_parent().add_item(item):
-                self.queue_free()
+        if item != null and area.get_parent().can_add_item(item):
+            self.is_targeting = true
+            self.target = area.get_parent()
+
+
+func _on_area_3d_area_exited(area: Area3D) -> void:
+    if area.get_parent().is_in_group("player"):
+        is_targeting = false
+        target = null
