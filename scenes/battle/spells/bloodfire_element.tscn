@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnt5saq500qgi"]
+
+[ext_resource type="Script" uid="uid://biycbqqtungmu" path="res://scenes/battle/spells/bloodfire_element.gd" id="1_hpgw0"]
+[ext_resource type="Shader" uid="uid://d2qu2h8fw4kic" path="res://scenes/battle/souls/Shaders/stylized_fire.gdshader" id="2_0mglm"]
+[ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="3_057gd"]
+[ext_resource type="Texture2D" uid="uid://bko6oayqcslrd" path="res://scenes/battle/souls/Shaders/StylizedFire/FireMask.png" id="4_q5an4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_um7qe"]
+render_priority = 0
+shader = ExtResource("2_0mglm")
+shader_parameter/noise_texture = ExtResource("3_057gd")
+shader_parameter/texture_mask = ExtResource("4_q5an4")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_rvict"]
+colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ghexg"]
+gradient = SubResource("Gradient_rvict")
+width = 128
+fill_from = Vector2(0.48971194, 0.74897116)
+fill_to = Vector2(0.872428, 0.46090534)
+
+[sub_resource type="Curve" id="Curve_icwn5"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hwmv2"]
+width = 128
+curve = SubResource("Curve_icwn5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uw4mp"]
+resource_local_to_scene = true
+emission_shape_scale = Vector3(1, 1, 2.11)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_hwmv2")
+color = Color(0.7764706, 0, 0, 1)
+color_ramp = SubResource("GradientTexture2D_ghexg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0nvcb"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bqi17"]
+
+[node name="BloodfireElement" type="Node3D"]
+script = ExtResource("1_hpgw0")
+
+[node name="Blood Fire" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_um7qe")
+cast_shadow = 0
+amount = 10
+fixed_fps = 15
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_uw4mp")
+draw_pass_1 = SubResource("QuadMesh_0nvcb")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_bqi17")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

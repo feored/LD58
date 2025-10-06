@@ -12,17 +12,30 @@ const MUSIC_BUS_NAME: String = "Music"
 
 ## Tracks
 enum Track {
+    BattleIntro,
+    BattleTransition1,
+    BattleTransition2,
     Battle1,
     Battle2,
     Battle3,
     Battle4,
+    Battle5,
+    BattleEnd1,
+    BattleEnd2,
+
 }#Untitled } # Add more tracks here
 
 const MUSIC_TRACKS = {
+    Track.BattleIntro: preload("res://audio/music/kolekta_battle_intro.wav"),
+    Track.BattleTransition1: preload("res://audio/music/kolekta_battle_transition_1.wav"),
+    Track.BattleTransition2: preload("res://audio/music/kolekta_battle_transition_2.wav"),
     Track.Battle1: preload("res://audio/music/kolekta_battle_1.wav"),
     Track.Battle2: preload("res://audio/music/kolekta_battle_2.wav"),
     Track.Battle3: preload("res://audio/music/kolekta_battle_3.wav"),
     Track.Battle4: preload("res://audio/music/kolekta_battle_4.wav"),
+    Track.Battle5: preload("res://audio/music/kolekta_battle_5_noDrums.wav"),
+    Track.BattleEnd1: preload("res://audio/music/kolekta_battle_end_1.wav"),
+    Track.BattleEnd2: preload("res://audio/music/kolekta_battle_end_2.wav"),
 }
 
 var audio_stream_player: AudioStreamPlayer = null

@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkms0mmqd167a"
-path.s3tc="res://.godot/imported/shart.png-27b72784d917eb8b237455404d9fabca.s3tc.ctex"
+uid="uid://dud8t1lvb4l0w"
+path.s3tc="res://.godot/imported/mage_anim_knight texture.png-248f9a35d18c7de86f03f6b8ace4f28e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "42ba46f7c235631cb011963d27be316d"
+}
 
 [deps]
 
-source_file="res://WIP/shart.png"
-dest_files=["res://.godot/imported/shart.png-27b72784d917eb8b237455404d9fabca.s3tc.ctex"]
+source_file="res://scenes/battle/enemy/mage_anim_knight texture.png"
+dest_files=["res://.godot/imported/mage_anim_knight texture.png-248f9a35d18c7de86f03f6b8ace4f28e.s3tc.ctex"]
 
 [params]
 

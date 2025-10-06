@@ -11,6 +11,7 @@ const SPELL_CAST_WAIT_TIME: float = 0.25
 
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
 const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
+const bloodfire_wave = preload("res://scenes/battle/spells/bloodfire_wave.tscn")
 
 signal spell_changed(new_spell: Spell)
 signal spell_no_ammo()
@@ -19,7 +20,7 @@ signal got_hit(damage: int)
 enum Spell {
     HowlingGeist,
     BubblingBile,
-    BloodshardArrows
+    BloodfireWave
 }
 
 var current_spell: Spell = Spell.HowlingGeist
@@ -65,15 +66,15 @@ func shoot(event) -> void:
     elif event.is_action_pressed("spell_2"):
         shoot_bubbling_bile()
     elif event.is_action_pressed("spell_3"):
-        pass
+        shoot_bloodfire_wave()
     if event.is_action_pressed("right_click"):
         match current_spell:
             Spell.HowlingGeist:
                 shoot_howling_geist()
             Spell.BubblingBile:
                 shoot_bubbling_bile()
-            Spell.BloodshardArrows:
-                pass
+            Spell.BloodfireWave:
+                shoot_bloodfire_wave()
 
 func shoot_howling_geist() -> void:
     self.spell_changed.emit(Spell.HowlingGeist)
@@ -105,6 +106,23 @@ func shoot_bubbling_bile() -> void:
     spell_instance.look_at(spell_instance.global_position + spell_direction)
     spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
     inventory.use_last_item_of_type(Item.Type.Green)
+
+func shoot_bloodfire_wave() -> void:
+    self.spell_changed.emit(Spell.BloodfireWave)
+    if inventory.count_items_of_type(Item.Type.Red) <= 0:
+        #Sfx.play(Sfx.Track.Cancel)
+        self.spell_no_ammo.emit()
+        return
+    self.animation_player.play("lich_spec")
+    await Utils.wait(SPELL_CAST_WAIT_TIME)
+    var spell_instance = bloodfire_wave.instantiate()
+    spell_instance.battle = battle
+    self.add_child(spell_instance)
+    spell_instance.global_position = self.global_position + Vector3(0, 0.5, 0) - transform.basis.z * 1.5
+    #var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
+    #spell_instance.look_at(spell_instance.global_position + spell_direction)
+    #spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
+    inventory.use_last_item_of_type(Item.Type.Red)
 
 
 func movement_vector() -> Vector3:
