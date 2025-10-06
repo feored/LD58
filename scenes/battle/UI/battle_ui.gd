@@ -5,7 +5,8 @@ signal next_wave
 enum State {
     NONE,
     IN_WAVE,
-    GAME_OVER
+    GAME_OVER,
+    VICTORY
 }
 
 var state: State = State.NONE

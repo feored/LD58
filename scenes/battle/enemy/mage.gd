@@ -8,7 +8,7 @@ var life: int = Utils.rng.randi_range(30, 60)
 
 const DAMAGE = 50
 const HIT_ANIMATION_TIME = 0.15
-const DISTANCE_TO_PLAYER = 10.0
+const DISTANCE_TO_PLAYER = 5.0
 const COOLDOWN_BETWEEN_ATTACKS = 5.0
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer

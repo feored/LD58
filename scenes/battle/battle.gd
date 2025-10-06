@@ -2,6 +2,7 @@ extends Node3D
 class_name Battle
 
 const WAVE_DURATION = 40.0
+const MAX_WAVES = 5
 const BASE_INTERMISSION_DURATION = 8.0
 
 enum State {
@@ -83,9 +84,9 @@ func spawn_enemy() -> void:
     enemy_position.x += r * cos(theta)
     enemy_position.z += r * sin(theta)
     enemy_position.y = 0.5
-    enemy_instance.global_position = enemy_position + player_character.global_position
     enemy_instance.died.connect(enemy_died)
     add_child(enemy_instance)
+    enemy_instance.global_position = enemy_position + player_character.global_position
     enemy_instance.player_character = player_character
     # enemy_instance.get_enemies = func(): return self.enemies
     enemies.push_back(enemy_instance)
@@ -138,6 +139,10 @@ func _on_ui_next_wave() -> void:
     return
 
 func start_next_wave() -> void:
+    wave_number += 1
+    if wave_number > MAX_WAVES:
+        UI.set_victory()
+        return
     self.music_state = MusicState.Intro
     Music.play_track(Music.get_random_intro_track(), false, false)
     Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)
@@ -145,7 +150,7 @@ func start_next_wave() -> void:
     spawn_rate = max(0.25, spawn_rate - 0.2)
     next_spawn_time = 0.0
     time_elapsed = 0.0
-    wave_number += 1
+    
     UI.set_wave(wave_number, WAVE_DURATION)
 
 

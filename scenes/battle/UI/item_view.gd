@@ -31,7 +31,7 @@ func set_item(item: Item) -> void:
         child.queue_free()
     for affix in item.rolled_affixes:
         var affix_label = Label.new()
-        affix_label.add_theme_font_size_override("font_size", 12)
+        affix_label.add_theme_font_size_override("font_size", 24)
         affix_label.horizontal_alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_CENTER
         var sign = ""
         if affix.value > 0:

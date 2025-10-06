@@ -2,8 +2,11 @@ extends HBoxContainer
 class_name EquippedSouls
 
 signal died
+
+const STARTING_SOULS: int = 3
 const MAX_SOULS: int = 5
 const equipped_soul_scene = preload("res://scenes/battle/UI/equipped_soul.tscn")
+
 var equipped_souls: Array = []
 var elapsed_time: float = 0.0
 
@@ -18,6 +21,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _ready() -> void:
+	for i in range(STARTING_SOULS):
+		self.equip_soul(ItemInfo.generate_item(Item.Type.Blue), false)
 	GameState.total_stats = get_total_stats()
 
 
@@ -25,8 +30,9 @@ func can_equip() -> bool:
 	return equipped_souls.size() < MAX_SOULS
 
 
-func equip_soul(item: Item) -> void:
-	Sfx.play_multitrack(Sfx.MultiTrack.SoulEquip)
+func equip_soul(item: Item, play_sound = true) -> void:
+	if play_sound:
+		Sfx.play_multitrack(Sfx.MultiTrack.SoulEquip)
 	var soul_instance = equipped_soul_scene.instantiate()
 	soul_instance.item = item
 	self.add_child(soul_instance)
