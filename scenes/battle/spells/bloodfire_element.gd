@@ -6,7 +6,7 @@ const SPEED = 20.0
 func compute_damage() -> int:
 	var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
 	var total_spellpower_pc = 1 + (total_spellpower / 100.0)
-	return Constants.BASE_SPELL_DAMAGE / 40 * total_spellpower_pc
+	return Constants.BASE_SPELL_DAMAGE / 20 * total_spellpower_pc
 
 
 func _physics_process(delta: float) -> void:
