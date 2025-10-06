@@ -1,19 +1,32 @@
 extends Node3D
 
-const SPEED = 10.0
-const TURNING_SPEED = 1.0
-const DAMAGE = 50
+const SPEED = 8.0
+const BASE_TURNING_SPEED = 1.0
+const BASE_DAMAGE = 50
 
 const MOUSE_RANGE = 10.0
 
 var is_moving : bool = true
+var turning_speed : float = BASE_TURNING_SPEED
 
 @onready var base : Node3D = %SkullBlue
 @onready var explosion_area : Area3D = %ExplosionArea
 @onready var explosion_mesh : MeshInstance3D = %ExplosionMesh
 
+func compute_damage() -> int:
+    var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
+    var total_spellpower_pc = 1 + (total_spellpower / 100.0)
+    Log.info("Total damage: %.2f" % (BASE_DAMAGE * total_spellpower_pc))
+    return BASE_DAMAGE * total_spellpower_pc
+
+func compute_tracking() -> float:
+    var total_tracking = GameState.total_stats[Item.Group.GeistTracking]
+    var total_tracking_pc = 1 + (total_tracking / 100.0)
+    return BASE_TURNING_SPEED * total_tracking_pc
+
 func _ready() -> void:
     explosion_mesh.visible = false
+    turning_speed = compute_tracking()
 
 func _physics_process(delta: float) -> void:
     self.check_bounds()
@@ -23,7 +36,7 @@ func _physics_process(delta: float) -> void:
     if self.global_position.distance_to(mouse_pos) < MOUSE_RANGE:
         var target_direction = (Vector3(mouse_pos.x, self.global_position.y, mouse_pos.z) - self.global_position).normalized()
         var current_direction = -transform.basis.z
-        var new_direction = current_direction.slerp(target_direction, TURNING_SPEED * delta).normalized()
+        var new_direction = current_direction.slerp(target_direction, turning_speed * delta).normalized()
         self.rotation.y = atan2(-new_direction.x, -new_direction.z)
     self.global_position += -transform.basis.z * SPEED * delta
 
@@ -58,5 +71,5 @@ func start_explode():
 func end_explode():
     for area in explosion_area.get_overlapping_areas():
         if area.get_parent().is_in_group("enemies") and area.is_in_group("enemy_hitbox"):
-            area.get_parent().get_hit(DAMAGE)
+            area.get_parent().get_hit(compute_damage())
     self.queue_free()

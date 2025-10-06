@@ -21,6 +21,9 @@ func set_wave(number: int) -> void:
     wave_label.text = "Wave %d" % number
     self.set_state(State.IN_WAVE)
 
+func set_intermission() -> void:
+    wave_label.text = "Intermission"
+
 func set_state(new_state: State) -> void:
     state = new_state
     match state:

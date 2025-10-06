@@ -27,3 +27,8 @@ func get_hit(damage : int) -> int:
         return leftover_damage
     else:
         return damage
+    
+func heal(amount : int) -> void:
+    if item:
+        current_fortitude = min(current_fortitude + amount, max_fortitude)
+        progress_bar.value = float(current_fortitude) / float(max_fortitude) * 100.0
