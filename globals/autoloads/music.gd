@@ -18,7 +18,6 @@ signal switched_track()
 enum Track {
     BattleIntro,
     BattleIntro2,
-    BattleIntro3,
     BattleTransition1,
     BattleTransition2,
     BattleTransition3,
@@ -35,20 +34,19 @@ enum Track {
 }
 
 const MUSIC_TRACKS = {
-    Track.BattleIntro: preload("res://audio/music/kolekta_intro.mp3"),
-    Track.BattleIntro2: preload("res://audio/music/kolekta_intro_2.mp3"),
-    Track.BattleIntro3: preload("res://audio/music/kolekta_intro_3.mp3"),
+    Track.BattleIntro: preload("res://audio/music/kolekta_intro_1.wav"),
+    Track.BattleIntro2: preload("res://audio/music/kolekta_intro_2.wav"),
     Track.BattleTransition1: preload("res://audio/music/kolekta_transition_1.mp3"),
     Track.BattleTransition2: preload("res://audio/music/kolekta_transition_2.mp3"),
     Track.BattleTransition3: preload("res://audio/music/kolekta_transition_3.mp3"),
     Track.BattleTransition4: preload("res://audio/music/kolekta_transition_4.mp3"),
-    Track.Battle1: preload("res://audio/music/kolekta_battle_1.mp3"),
-    Track.Battle2: preload("res://audio/music/kolekta_battle_2.mp3"),
-    Track.Battle3: preload("res://audio/music/kolekta_battle_3.mp3"),
-    Track.Battle4: preload("res://audio/music/kolekta_battle_4.mp3"),
-    Track.Battle5: preload("res://audio/music/kolekta_battle_5.mp3"),
-    Track.Battle6: preload("res://audio/music/kolekta_battle_6.mp3"),
-    Track.Battle7: preload("res://audio/music/kolekta_battle_7.mp3"),
+    Track.Battle1: preload("res://audio/music/kolekta_battle_1.wav"),
+    Track.Battle2: preload("res://audio/music/kolekta_battle_2.wav"),
+    Track.Battle3: preload("res://audio/music/kolekta_battle_3.wav"),
+    Track.Battle4: preload("res://audio/music/kolekta_battle_4.wav"),
+    Track.Battle5: preload("res://audio/music/kolekta_battle_5.wav"),
+    Track.Battle6: preload("res://audio/music/kolekta_battle_6.wav"),
+    Track.Battle7: preload("res://audio/music/kolekta_battle_7.wav"),
     Track.Menu: preload("res://audio/music/kolekta_menu.mp3"),
     Track.MenuBass: preload("res://audio/music/kolekta_menu_bass.mp3"),
 }
@@ -151,6 +149,5 @@ func get_random_intro_track() -> Track:
     var intro_tracks = [
         Track.BattleIntro,
         Track.BattleIntro2,
-        Track.BattleIntro3,
     ]
     return intro_tracks[randi() % intro_tracks.size()]
