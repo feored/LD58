@@ -18,7 +18,7 @@ shader_parameter/edge_softness = 0.1
 [sub_resource type="Gradient" id="2"]
 colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
 
-[sub_resource type="GradientTexture2D" id="3"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ghexg"]
 gradient = SubResource("2")
 width = 128
 fill_from = Vector2(0.48971194, 0.74897116)
@@ -28,7 +28,7 @@ fill_to = Vector2(0.872428, 0.46090534)
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="5"]
+[sub_resource type="CurveTexture" id="CurveTexture_hwmv2"]
 width = 128
 curve = SubResource("Curve_0bdjg")
 
@@ -41,9 +41,9 @@ initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 4.0
-scale_curve = SubResource("5")
+scale_curve = SubResource("CurveTexture_hwmv2")
 color = Color(0.7764706, 0, 0, 1)
-color_ramp = SubResource("3")
+color_ramp = SubResource("GradientTexture2D_ghexg")
 
 [sub_resource type="QuadMesh" id="7"]
 size = Vector2(0.5, 0.5)
@@ -244,7 +244,7 @@ size = Vector2(0.5, 0.5)
 [sub_resource type="Gradient" id="Gradient_hwmv2"]
 colors = PackedColorArray(0.21875, 1, 0, 1, 0, 0.640625, 0.145142, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_phiab"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nvdhp"]
 gradient = SubResource("Gradient_hwmv2")
 width = 128
 fill_from = Vector2(0.52674896, 0.63374484)
@@ -254,7 +254,7 @@ fill_to = Vector2(0.6872428, 0.40329218)
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_asbqy"]
+[sub_resource type="CurveTexture" id="CurveTexture_swddl"]
 width = 128
 curve = SubResource("Curve_b0t7e")
 
@@ -280,25 +280,25 @@ radial_accel_min = -2.2351742e-06
 radial_accel_max = -2.2351742e-06
 scale_min = 0.19999999
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_asbqy")
-color_ramp = SubResource("GradientTexture2D_phiab")
+scale_curve = SubResource("CurveTexture_swddl")
+color_ramp = SubResource("GradientTexture2D_nvdhp")
 
 [sub_resource type="QuadMesh" id="QuadMesh_iw26o"]
 resource_local_to_scene = true
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jli1o"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4ir1w"]
 load_path = "res://.godot/imported/HoleNoise.png-0ef0af8c7b5f5f294890593d1f1aa872.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tvm4e"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4kapf"]
 load_path = "res://.godot/imported/FireMask.png-aa0d27a77b9e212aa873e26ef5df344d.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_asbqy"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("5")
-shader_parameter/noise_texture = SubResource("CompressedTexture2D_jli1o")
-shader_parameter/texture_mask = SubResource("CompressedTexture2D_tvm4e")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_4ir1w")
+shader_parameter/texture_mask = SubResource("CompressedTexture2D_4kapf")
 shader_parameter/emission_intensity = 2.0
 shader_parameter/time_scale = 3.0
 shader_parameter/texture_scale = Vector2(1, 1)
@@ -308,7 +308,7 @@ shader_parameter/edge_softness = 0.1
 resource_local_to_scene = true
 colors = PackedColorArray(0.21875, 1, 0, 1, 0, 0.640625, 0.145142, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yeaj0"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_le5kb"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_iw26o")
 width = 128
@@ -319,7 +319,7 @@ fill_to = Vector2(0.92493296, 0.24664879)
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_swddl"]
+[sub_resource type="CurveTexture" id="CurveTexture_p1s1o"]
 width = 128
 curve = SubResource("Curve_arxyv")
 
@@ -346,9 +346,9 @@ radial_accel_max = -2.2351742e-06
 attractor_interaction_enabled = false
 scale_min = 0.099999994
 scale_max = 0.19999999
-scale_curve = SubResource("CurveTexture_swddl")
+scale_curve = SubResource("CurveTexture_p1s1o")
 color = Color(1.3196628, 8.825439, 0, 1)
-color_ramp = SubResource("GradientTexture2D_yeaj0")
+color_ramp = SubResource("GradientTexture2D_le5kb")
 
 [sub_resource type="QuadMesh" id="QuadMesh_4kapf"]
 resource_local_to_scene = true
@@ -358,7 +358,7 @@ size = Vector2(0.5, 0.5)
 resource_local_to_scene = true
 colors = PackedColorArray(0.21875, 1, 0, 1, 0, 0.640625, 0.145142, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_p1s1o"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hwmv2"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_le5kb")
 width = 128
@@ -369,7 +369,7 @@ fill_to = Vector2(0.92493296, 0.24664879)
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_nvdhp"]
+[sub_resource type="CurveTexture" id="CurveTexture_phiab"]
 width = 128
 curve = SubResource("Curve_sv4b0")
 
@@ -395,9 +395,9 @@ radial_accel_min = -2.2351742e-06
 radial_accel_max = -2.2351742e-06
 scale_min = 0.099999994
 scale_max = 0.19999999
-scale_curve = SubResource("CurveTexture_nvdhp")
+scale_curve = SubResource("CurveTexture_phiab")
 color = Color(0.6841589, 1.1274614, 8.959895, 1)
-color_ramp = SubResource("GradientTexture2D_p1s1o")
+color_ramp = SubResource("GradientTexture2D_hwmv2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_4ir1w"]
 resource_local_to_scene = true
@@ -504,7 +504,7 @@ color_ramp = SubResource("GradientTexture2D_bclxo")
 resource_local_to_scene = true
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="Shader" id="Shader_tvm4e"]
+[sub_resource type="Shader" id="Shader_ghexg"]
 code = "// ANCHOR: all
 // This shader is based on Minionsart's stylized fire
 // https://twitter.com/minionsart/status/1132593681452683264?s=20
@@ -611,18 +611,18 @@ void fragment() {
 }
 // END: all"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asbqy"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jli1o"]
 load_path = "res://.godot/imported/HoleNoise.png-0ef0af8c7b5f5f294890593d1f1aa872.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bclxo"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tvm4e"]
 load_path = "res://.godot/imported/FireMask.png-aa0d27a77b9e212aa873e26ef5df344d.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iw26o"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_tvm4e")
-shader_parameter/noise_texture = SubResource("CompressedTexture2D_asbqy")
-shader_parameter/texture_mask = SubResource("CompressedTexture2D_bclxo")
+shader = SubResource("Shader_ghexg")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_jli1o")
+shader_parameter/texture_mask = SubResource("CompressedTexture2D_tvm4e")
 shader_parameter/emission_intensity = 2.0
 shader_parameter/time_scale = 3.0
 shader_parameter/texture_scale = Vector2(1, 1)
@@ -632,7 +632,7 @@ shader_parameter/edge_softness = 0.1
 resource_local_to_scene = true
 colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sv4b0"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yeaj0"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_arxyv")
 width = 128
@@ -641,7 +641,7 @@ width = 128
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_i442t"]
+[sub_resource type="CurveTexture" id="CurveTexture_nvdhp"]
 width = 128
 curve = SubResource("Curve_nvdhp")
 
@@ -663,8 +663,8 @@ linear_accel_min = 4.0
 linear_accel_max = 4.0
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_i442t")
-color_ramp = SubResource("GradientTexture2D_sv4b0")
+scale_curve = SubResource("CurveTexture_nvdhp")
+color_ramp = SubResource("GradientTexture2D_yeaj0")
 hue_variation_min = 0.10999998
 hue_variation_max = 0.21999997
 turbulence_noise_strength = 6.37
@@ -701,7 +701,6 @@ draw_pass_1 = SubResource("QuadMesh_arxyv")
 
 [node name="Ghost Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.78327, 1.26708, 0.31094372)
-visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 amount = 30

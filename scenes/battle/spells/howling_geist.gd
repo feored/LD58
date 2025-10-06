@@ -11,7 +11,7 @@ var turning_speed : float = BASE_TURNING_SPEED
 
 @onready var base : Node3D = %SkullBlue
 @onready var explosion_area : Area3D = %ExplosionArea
-@onready var explosion_mesh : MeshInstance3D = %ExplosionMesh
+@onready var ghost_fire_explosion: GPUParticles3D = %GhostFireExplosion
 
 func compute_damage() -> int:
     var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
@@ -25,7 +25,6 @@ func compute_tracking() -> float:
     return BASE_TURNING_SPEED * total_tracking_pc
 
 func _ready() -> void:
-    explosion_mesh.visible = false
     turning_speed = compute_tracking()
 
 func _physics_process(delta: float) -> void:
@@ -59,11 +58,11 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 func start_explode():
     self.is_moving = false
     self.base.visible = false
-    self.explosion_mesh.visible = true
+    self.ghost_fire_explosion.emitting = true
     self.explosion_area.monitoring = true
     var timer := Timer.new()
     self.add_child(timer)
-    timer.wait_time = 0.25
+    timer.wait_time = 0.4
     timer.one_shot = true
     timer.timeout.connect(end_explode)
     timer.start()

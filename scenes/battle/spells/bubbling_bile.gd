@@ -6,8 +6,9 @@ const SPEED = 5.0
 const BASE_DAMAGE = 20
 
 @onready var base: Node3D = %SkullGreen
-@onready var bile: MeshInstance3D = %Bile
+@onready var bile: Node3D = %Bile
 @onready var bile_area: Area3D = %BileArea3D
+@onready var explosion: GPUParticles3D = %Explosion
 
 var time_elapsed: float = 0.0
 var is_biled: bool = false
@@ -54,6 +55,7 @@ func explode_bile():
     timer.wait_time = compute_lifetime()
     timer.timeout.connect(queue_free)
     timer.start()
+    explosion.emitting = true
     is_biled = true
 
 func check_bounds() -> void:
