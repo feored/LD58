@@ -89,6 +89,7 @@ func die() -> void:
     Sfx.play_multitrack(Sfx.MultiTrack.KnightDeath, self.global_position)
     self.is_dead = true
     self.animation_player.play("knightdeath")
+    %EnemyDeath.emitting = true
     await Utils.wait(0.5)
     self.died.emit(self)
 

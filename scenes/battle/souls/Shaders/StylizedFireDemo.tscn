@@ -422,7 +422,7 @@ width = 128
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_yeaj0"]
+[sub_resource type="CurveTexture" id="CurveTexture_jli1o"]
 width = 128
 curve = SubResource("Curve_jli1o")
 
@@ -437,7 +437,7 @@ gravity = Vector3(0, 0, 0)
 linear_accel_min = 3.9999976
 linear_accel_max = 3.9999976
 scale_max = 2.0
-scale_curve = SubResource("CurveTexture_yeaj0")
+scale_curve = SubResource("CurveTexture_jli1o")
 color = Color(1, 0.5254902, 0.40392157, 1)
 color_ramp = SubResource("GradientTexture2D_b0t7e")
 
@@ -445,18 +445,18 @@ color_ramp = SubResource("GradientTexture2D_b0t7e")
 resource_local_to_scene = true
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hwmv2"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asbqy"]
 load_path = "res://.godot/imported/HoleNoise.png-0ef0af8c7b5f5f294890593d1f1aa872.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_phiab"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bclxo"]
 load_path = "res://.godot/imported/FireMask.png-aa0d27a77b9e212aa873e26ef5df344d.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0t7e"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("5")
-shader_parameter/noise_texture = SubResource("CompressedTexture2D_hwmv2")
-shader_parameter/texture_mask = SubResource("CompressedTexture2D_phiab")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_asbqy")
+shader_parameter/texture_mask = SubResource("CompressedTexture2D_bclxo")
 shader_parameter/emission_intensity = 2.0
 shader_parameter/time_scale = 3.0
 shader_parameter/texture_scale = Vector2(1, 1)
@@ -466,7 +466,7 @@ shader_parameter/edge_softness = 0.1
 resource_local_to_scene = true
 colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bclxo"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_arxyv"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_asbqy")
 width = 128
@@ -476,7 +476,7 @@ fill_from = Vector2(0.077747986, 0.18230563)
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_arxyv"]
+[sub_resource type="CurveTexture" id="CurveTexture_4ir1w"]
 width = 128
 curve = SubResource("Curve_iw26o")
 
@@ -494,9 +494,9 @@ radial_accel_min = 0.99999774
 radial_accel_max = 0.99999774
 scale_min = 3.0
 scale_max = 3.0
-scale_curve = SubResource("CurveTexture_arxyv")
+scale_curve = SubResource("CurveTexture_4ir1w")
 color = Color(1, 0.5254902, 0.40392157, 1)
-color_ramp = SubResource("GradientTexture2D_bclxo")
+color_ramp = SubResource("GradientTexture2D_arxyv")
 
 [sub_resource type="QuadMesh" id="QuadMesh_nvdhp"]
 resource_local_to_scene = true
@@ -836,7 +836,6 @@ draw_pass_1 = SubResource("QuadMesh_4ir1w")
 
 [node name="Fireball" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1418433, 1.26708, -0.825758)
-visible = false
 material_override = SubResource("ShaderMaterial_hwmv2")
 cast_shadow = 0
 amount = 15
@@ -849,7 +848,6 @@ draw_pass_1 = SubResource("QuadMesh_sv4b0")
 
 [node name="Fireball Explosion" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9531927, 1.26708, 0.4834354)
-visible = false
 material_override = SubResource("ShaderMaterial_b0t7e")
 cast_shadow = 0
 emitting = false

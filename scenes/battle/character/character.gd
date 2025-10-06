@@ -98,7 +98,9 @@ func shoot_howling_geist() -> void:
     await Utils.wait(SPELL_CAST_WAIT_TIME)
     var spell_instance = howling_geist.instantiate()
     battle.add_child(spell_instance)
-    spell_instance.global_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
+    var spell_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
+    spell_position.y = 0.5
+    spell_instance.global_position = spell_position
     var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
     spell_instance.look_at(spell_instance.global_position + spell_direction)
     inventory.use_last_item_of_type(Item.Type.Blue)
@@ -113,7 +115,9 @@ func shoot_bubbling_bile() -> void:
     await Utils.wait(SPELL_CAST_WAIT_TIME)
     var spell_instance = bubbling_bile.instantiate()
     battle.add_child(spell_instance)
-    spell_instance.global_position = self.global_position + Vector3(0, 0.5, 0) - transform.basis.z * 1.5
+    var spell_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
+    spell_position.y = 0.5
+    spell_instance.global_position = spell_position
     var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
     spell_instance.look_at(spell_instance.global_position + spell_direction)
     spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))
@@ -130,7 +134,9 @@ func shoot_bloodfire_wave() -> void:
     var spell_instance = bloodfire_wave.instantiate()
     spell_instance.battle = battle
     self.add_child(spell_instance)
-    spell_instance.global_position = self.global_position + Vector3(0, 0.5, 0) - transform.basis.z * 1.5
+    var spell_position = self.global_position + Vector3(0, 1.0, 0) - transform.basis.z * 1.5
+    spell_position.y = 0.5
+    spell_instance.global_position = spell_position
     #var spell_direction = (Utils.get_mouse_pos(get_viewport().get_camera_3d()) - self.global_position).normalized()
     #spell_instance.look_at(spell_instance.global_position + spell_direction)
     #spell_instance.set_destination(Utils.get_mouse_pos(get_viewport().get_camera_3d()))

@@ -1,16 +1,13 @@
 [gd_scene load_steps=23 format=4 uid="uid://duqafrqcxrv8v"]
 
 [ext_resource type="Script" uid="uid://l3ev27lon7t2" path="res://scenes/battle/enemy/knight_captain.gd" id="1_yb0ex"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yb0ex"]
-load_path = "res://.godot/imported/knight texture - Copy.png-3ac10f2e88f675f3139db821499a244b.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://10803l02r13u" path="res://WIP/knight texture_red.png" id="2_2ngkf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ngkf"]
 resource_local_to_scene = true
 resource_name = "Material.002"
 cull_mode = 2
-albedo_color = Color(1, 0.3, 0.3, 1)
-albedo_texture = SubResource("CompressedTexture2D_yb0ex")
+albedo_texture = ExtResource("2_2ngkf")
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_530ug"]
@@ -205,7 +202,7 @@ tracks/17/keys = PackedFloat32Array(0, 1, -0.34406304, 0.0018085311, 0.36689302,
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../Enemy Death:emitting")
+tracks/18/path = NodePath("../EnemyDeath:emitting")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -634,7 +631,7 @@ radius = 0.84
 [sub_resource type="BoxShape3D" id="BoxShape3D_a20df"]
 size = Vector3(1.485, 2, 1)
 
-[sub_resource type="Shader" id="Shader_tvm4e"]
+[sub_resource type="Shader" id="Shader_2ngkf"]
 code = "// ANCHOR: all
 // This shader is based on Minionsart's stylized fire
 // https://twitter.com/minionsart/status/1132593681452683264?s=20
@@ -741,18 +738,18 @@ void fragment() {
 }
 // END: all"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asbqy"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_530ug"]
 load_path = "res://.godot/imported/HoleNoise.png-0ef0af8c7b5f5f294890593d1f1aa872.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bclxo"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2dm06"]
 load_path = "res://.godot/imported/FireMask.png-aa0d27a77b9e212aa873e26ef5df344d.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u8vpq"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_tvm4e")
-shader_parameter/noise_texture = SubResource("CompressedTexture2D_asbqy")
-shader_parameter/texture_mask = SubResource("CompressedTexture2D_bclxo")
+shader = SubResource("Shader_2ngkf")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_530ug")
+shader_parameter/texture_mask = SubResource("CompressedTexture2D_2dm06")
 shader_parameter/emission_intensity = 2.0
 shader_parameter/time_scale = 3.0
 shader_parameter/texture_scale = Vector2(1, 1)
@@ -762,7 +759,7 @@ shader_parameter/edge_softness = 0.1
 resource_local_to_scene = true
 colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sv4b0"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rvq3w"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_a20df")
 width = 128
@@ -771,7 +768,7 @@ width = 128
 _data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_i442t"]
+[sub_resource type="CurveTexture" id="CurveTexture_4bb0o"]
 width = 128
 curve = SubResource("Curve_r78qc")
 
@@ -793,8 +790,8 @@ linear_accel_min = 4.0
 linear_accel_max = 4.0
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_i442t")
-color_ramp = SubResource("GradientTexture2D_sv4b0")
+scale_curve = SubResource("CurveTexture_4bb0o")
+color_ramp = SubResource("GradientTexture2D_rvq3w")
 hue_variation_min = 0.10999998
 hue_variation_max = 0.21999997
 turbulence_noise_strength = 6.37
@@ -925,7 +922,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.76)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeArea3D"]
 shape = SubResource("BoxShape3D_a20df")
 
-[node name="Enemy Death" type="GPUParticles3D" parent="."]
+[node name="EnemyDeath" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
 material_override = SubResource("ShaderMaterial_u8vpq")
 cast_shadow = 0

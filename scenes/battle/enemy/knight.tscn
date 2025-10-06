@@ -204,7 +204,7 @@ tracks/17/keys = PackedFloat32Array(0, 1, -0.34406304, 0.0018085311, 0.36689302,
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../Enemy Death:emitting")
+tracks/18/path = NodePath("../EnemyDeath:emitting")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -924,7 +924,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.76)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeArea3D"]
 shape = SubResource("BoxShape3D_a20df")
 
-[node name="Enemy Death" type="GPUParticles3D" parent="."]
+[node name="EnemyDeath" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
 material_override = SubResource("ShaderMaterial_u8vpq")
 cast_shadow = 0
