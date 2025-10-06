@@ -17,6 +17,11 @@ signal spell_changed(new_spell: Spell)
 signal spell_no_ammo()
 signal got_hit(damage: int)
 
+func play_bark() -> void:
+    var chance = Utils.rng.randi_range(0, 100)
+    if chance < 10:
+        Sfx.play_multitrack(Sfx.MultiTrack.LichBark)
+
 enum Spell {
     HowlingGeist,
     BubblingBile,
@@ -60,14 +65,19 @@ func switch_spells(event) -> void:
 
 func shoot(event) -> void:
     if event.is_action_pressed("left_click"):
+        play_bark()
         self.animation_player.play("lich_m1")
     if event.is_action_pressed("spell_1"):
+        play_bark()
         shoot_howling_geist()
     elif event.is_action_pressed("spell_2"):
+        play_bark()
         shoot_bubbling_bile()
     elif event.is_action_pressed("spell_3"):
+        play_bark()
         shoot_bloodfire_wave()
     if event.is_action_pressed("right_click"):
+        play_bark()
         match current_spell:
             Spell.HowlingGeist:
                 shoot_howling_geist()
@@ -148,9 +158,11 @@ func hover_animation() -> void:
 
 func get_hit(damage: int) -> void:
     self.animation_player.play("lich_hurt")
+    Sfx.play_multitrack(Sfx.MultiTrack.LichHurt, self.global_position)
     self.emit_signal("got_hit", damage)
 
 func add_item(item: Item) -> bool:
+    play_bark()
     if inventory.items.size() >= Inventory.MAX_TOTAL_SOULS:
         return false
     self.inventory.add_item(item)
@@ -163,8 +175,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     self.animation_player.play("lich_idle")
 
 func melee_hit() -> void:
+    play_bark()
+    Sfx.play(Sfx.Track.LichMeleeAttackLaunch, self.global_position)
     var areas = self.melee_area.get_overlapping_areas()
     for area in areas:
         if area.is_in_group("enemy_hitbox"):
             if area.get_parent().is_in_group("enemies"):
                 area.get_parent().get_hit(computed_melee_damage(), true)
+                Sfx.play_multitrack(Sfx.MultiTrack.LichMeleeAttackHit, self.global_position)
