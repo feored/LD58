@@ -4,11 +4,13 @@ extends Node
 enum Scene {
     MainMenu,
     Battle,
+    Instructions,
     SettingsMenu
 }
 
 const PACKED_SCENES = {
     Scene.MainMenu: preload("res://scenes/main_menu/main_menu.tscn"),
+    Scene.Instructions: preload("res://scenes/instructions/instructions.tscn"),
     Scene.Battle: preload("res://scenes/battle/battle.tscn"),
     Scene.SettingsMenu: preload("res://scenes/settings_menu/settings_menu.tscn")
 }

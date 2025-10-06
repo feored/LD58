@@ -48,6 +48,10 @@ text = "LD58"
 layout_mode = 2
 text = "play"
 
+[node name="InstructionsButton" type="Button" parent="UI/PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "instructions"
+
 [node name="ExitButton" type="Button" parent="UI/PanelContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "exit"
@@ -65,4 +69,5 @@ autoplay = true
 bus = &"Music"
 
 [connection signal="pressed" from="UI/PanelContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/PanelContainer/CenterContainer/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="pressed" from="UI/PanelContainer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

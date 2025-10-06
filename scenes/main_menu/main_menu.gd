@@ -12,3 +12,7 @@ func _on_play_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
     get_tree().quit()
+
+
+func _on_instructions_button_pressed() -> void:
+    SceneTransition.change_scene(SceneTransition.Scene.Instructions)
