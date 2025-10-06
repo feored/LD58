@@ -669,7 +669,7 @@ hue_variation_min = 0.10999998
 hue_variation_max = 0.21999997
 turbulence_noise_strength = 6.37
 
-[node name="StylizedFireDemo" type="CanvasLayer"]
+[node name="WIP Shader Effects" type="CanvasLayer"]
 visible = false
 
 [node name="Blood Fire" type="GPUParticles3D" parent="."]
