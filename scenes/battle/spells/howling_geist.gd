@@ -16,7 +16,6 @@ var turning_speed : float = BASE_TURNING_SPEED
 func compute_damage() -> int:
     var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
     var total_spellpower_pc = 1 + (total_spellpower / 100.0)
-    Log.info("Total damage: %.2f" % (BASE_DAMAGE * total_spellpower_pc))
     return BASE_DAMAGE * total_spellpower_pc
 
 func compute_tracking() -> float:
