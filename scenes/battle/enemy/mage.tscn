@@ -995,7 +995,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_r8v2b")
 
-[node name="Enemy Death" type="GPUParticles3D" parent="."]
+[node name="EnemyDeath" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
 material_override = SubResource("ShaderMaterial_x6ppw")
