@@ -39,7 +39,7 @@ enum Group {
 	IntermissionDuration,
 	GeistTracking,
 	BilePoolDuration,
-	BloodshardAbility
+	BloodfireWaveDuration
 }
 
 

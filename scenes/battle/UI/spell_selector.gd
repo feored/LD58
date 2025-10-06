@@ -2,7 +2,7 @@ extends PanelContainer
 
 const howling_geist_icon: Texture2D = preload("res://assets/icons/blue_icon.png")
 const bubbling_bile_icon: Texture2D = preload("res://assets/icons/green_icon.png")
-const bloodshard_arrows_icon: Texture2D = preload("res://assets/icons/red_icon.png")
+const bloodfire_wave_icon: Texture2D = preload("res://assets/icons/red_icon.png")
 
 @onready var spell_label: Label = %SpellLabel
 @onready var spell_texture: TextureRect = %SpellTexture
@@ -23,9 +23,9 @@ func set_spell(spell: Character.Spell) -> void:
         Character.Spell.BubblingBile:
             spell_label.text = "Bubbling Bile"
             spell_texture.texture = bubbling_bile_icon
-        Character.Spell.BloodshardArrows:
-            spell_label.text = "Bloodshard Arrows"
-            spell_texture.texture = bloodshard_arrows_icon
+        Character.Spell.BloodfireWave:
+            spell_label.text = "Bloodfire Wave"
+            spell_texture.texture = bloodfire_wave_icon
 
 func _on_character_spell_changed(new_spell: Character.Spell) -> void:
     set_spell(new_spell)

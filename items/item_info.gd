@@ -29,7 +29,7 @@ const GROUP_STEP = {
     Item.Group.IntermissionDuration : 0.5,
     Item.Group.GeistTracking        : 1.0,
     Item.Group.BilePoolDuration     : 0.5,
-    Item.Group.BloodshardAbility    : 0.1
+    Item.Group.BloodfireWaveDuration: 0.2
 }
 
 const GROUP_STEP_DISPLAY = {
@@ -44,7 +44,7 @@ const GROUP_STEP_DISPLAY = {
     Item.Group.IntermissionDuration : "%.1f",
     Item.Group.GeistTracking        : "%.0f",
     Item.Group.BilePoolDuration     : "%.1f",
-    Item.Group.BloodshardAbility    : "%.1f"
+    Item.Group.BloodfireWaveDuration    : "%.1f"
 }
 
 const GROUP_DISPLAY_TEXT = {
@@ -59,7 +59,7 @@ const GROUP_DISPLAY_TEXT = {
     Item.Group.IntermissionDuration : "%ss to Intermission Duration",
     Item.Group.GeistTracking        : "%s%% to Howling Geist Tracking",
     Item.Group.BilePoolDuration     : "%ss to Bubbling Bile Pool Duration",
-    Item.Group.BloodshardAbility    : "%s to Bloodshard Arrows Ability"
+    Item.Group.BloodfireWaveDuration: "%ss to Bloodfire Wave Duration"
 }
 
 const DROP_CHANCES = {
@@ -237,19 +237,19 @@ var AFFIXES = {
             Item.Affix.new(Item.Group.BilePoolDuration, 2, "Spotless", "of a Germaphobe", Vector2(-2.0, -3.5), true),
         ]
     },
-    Item.Group.BloodshardAbility:
+    Item.Group.BloodfireWaveDuration:
     {
         Item.Balance.Positive:
         [
-            Item.Affix.new(Item.Group.BloodshardAbility, 0, "Dripping", "of a Killer", Vector2(0.1, 0.2)),
-            Item.Affix.new(Item.Group.BloodshardAbility, 1, "Gushing", "of a Murderer", Vector2(0.2, 0.3)),
-            Item.Affix.new(Item.Group.BloodshardAbility, 2, "Hemorraging", "of a Diablerist", Vector2(0.3, 0.5)),
+            Item.Affix.new(Item.Group.BloodfireWaveDuration, 0, "Dripping", "of a Killer", Vector2(0.2, 0.4)),
+            Item.Affix.new(Item.Group.BloodfireWaveDuration, 1, "Gushing", "of a Murderer", Vector2(0.4, 0.8)),
+            Item.Affix.new(Item.Group.BloodfireWaveDuration, 2, "Hemorraging", "of a Diablerist", Vector2(0.8, 2.4)),
         ],
         Item.Balance.Negative:
         [
-            Item.Affix.new(Item.Group.BloodshardAbility, 0, "Staunched", "of a Thinblood", Vector2(-0.1, -0.2), true),
-            Item.Affix.new(Item.Group.BloodshardAbility, 1, "Cauterized", "of an Anemic", Vector2(-0.2, -0.3), true),
-            Item.Affix.new(Item.Group.BloodshardAbility, 2, "Bloodless", "of a Goner", Vector2(-0.3, -0.5), true),
+            Item.Affix.new(Item.Group.BloodfireWaveDuration, 0, "Staunched", "of a Thinblood", Vector2(-0.2, -0.4), true),
+            Item.Affix.new(Item.Group.BloodfireWaveDuration, 1, "Cauterized", "of an Anemic", Vector2(-0.4, -0.8), true),
+            Item.Affix.new(Item.Group.BloodfireWaveDuration, 2, "Bloodless", "of a Goner", Vector2(-0.8, -2.4), true),
         ]
     },
 }

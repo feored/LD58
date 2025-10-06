@@ -50,6 +50,7 @@ func explode_bile():
     self.base.visible = false
     self.bile.visible = true
     self.bile_area.monitoring = true
+    self.rotation = Vector3.ZERO
     var timer := Timer.new()
     self.add_child(timer)
     timer.wait_time = compute_lifetime()

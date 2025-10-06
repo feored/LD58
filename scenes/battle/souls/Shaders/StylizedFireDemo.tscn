@@ -718,7 +718,6 @@ visible = false
 
 [node name="Blood Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 0)
-visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 emitting = false

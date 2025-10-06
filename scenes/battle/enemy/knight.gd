@@ -2,7 +2,7 @@ extends Node3D
 
 signal died(enemy: Node3D)
 
-var life: int = Utils.rng.randi_range(40, 60)
+var life: int = Utils.rng.randi_range(50, 100)
 
 const DAMAGE = 70
 const HIT_ANIMATION_TIME = 0.15

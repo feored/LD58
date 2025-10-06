@@ -52,7 +52,7 @@ func check_bounds() -> void:
         self.queue_free()
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-    if area.get_parent().is_in_group("enemies"):
+    if area.get_parent().is_in_group("enemies") and area.is_in_group("enemy_hitbox"):
         self.start_explode()
 
 func start_explode():
