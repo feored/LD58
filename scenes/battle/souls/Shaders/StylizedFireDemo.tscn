@@ -718,21 +718,17 @@ visible = false
 
 [node name="Blood Fire" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 0)
-visible = false
 material_override = SubResource("1")
 cast_shadow = 0
-emitting = false
 amount = 1
 interp_to_end = 0.1
-one_shot = true
 fixed_fps = 15
 draw_order = 1
 process_material = SubResource("6")
 draw_pass_1 = SubResource("7")
 
-[node name="Blood Fire Explosion" type="GPUParticles3D" parent="."]
+[node name="Bloodflame Wave" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.26708, 1.5015091)
-visible = false
 material_override = SubResource("1")
 cast_shadow = 0
 emitting = false
