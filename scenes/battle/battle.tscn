@@ -652,7 +652,7 @@ layout_mode = 2
 text = "Back to Menu"
 
 [node name="VictoryUI" type="PanelContainer" parent="UI"]
-visible = false
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -676,10 +676,19 @@ horizontal_alignment = 1
 
 [node name="GameOverWaveLabel" type="Label" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "You Reached Wave 7"
+text = "You defeated all waves!
+"
 horizontal_alignment = 1
 
-[node name="GameOverMenuButton" type="Button" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
+[node name="GameOverWaveLabel2" type="Label" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7488956, 0.5185086, 0.14095366, 1)
+text = "Post a comment referencing 
+the secret wave 6 enemy so
+we know you've beaten it!"
+horizontal_alignment = 1
+
+[node name="VictoryMenuButton" type="Button" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
 text = "Back to Menu"
@@ -778,6 +787,7 @@ bus = &"Ambience"
 [connection signal="next_wave" from="UI" to="." method="_on_ui_next_wave"]
 [connection signal="died" from="UI/WaveUI/EquippedSoulsChain/EquippedSouls" to="." method="_on_equipped_souls_died"]
 [connection signal="pressed" from="UI/GameOverUI/CenterContainer/VBoxContainer/GameOverMenuButton" to="UI" method="_on_game_over_menu_button_pressed"]
+[connection signal="pressed" from="UI/VictoryUI/CenterContainer/VBoxContainer/VictoryMenuButton" to="UI" method="_on_victory_menu_button_pressed"]
 
 [editable path="arena_final"]
 [editable path="Character"]

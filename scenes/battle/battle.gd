@@ -1,7 +1,7 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 40.0
+const WAVE_DURATION = 90.0
 const MAX_WAVES = 5
 const BASE_INTERMISSION_DURATION = 8.0
 
@@ -110,6 +110,9 @@ func spawn_soul(spawn_position: Vector3, enemy_type : Constants.EnemyType = Cons
 
 func check_wave() -> void:
     if time_elapsed > WAVE_DURATION:
+        if wave_number >= MAX_WAVES:
+            UI.set_victory()
+            return
         start_intermission()
 
 func start_intermission() -> void:
@@ -144,9 +147,6 @@ func _on_ui_next_wave() -> void:
 
 func start_next_wave() -> void:
     wave_number += 1
-    if wave_number > MAX_WAVES:
-        UI.set_victory()
-        return
     self.music_state = MusicState.Intro
     Music.play_track(Music.get_random_intro_track(), false, false)
     Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)

@@ -20,6 +20,7 @@ var launched_transition: bool = false
 @onready var wave_ui : Control = %WaveUI
 @onready var game_over_ui : Control = %GameOverUI
 @onready var game_over_wave_label: Label = %GameOverWaveLabel
+@onready var victory_ui : Control = %VictoryUI
 @onready var wave_timer: Label = %WaveTimer
 @onready var intermission_tip_label: Label = %IntermissionTip
 
@@ -66,18 +67,31 @@ func set_game_over(wave_number: int) -> void:
     #Music.play_track(Music.Track.GameOver, false, true, Music.VOLUME_DEFAULT, 0.5, 0.2)
     #get_tree().paused = true
 
+func set_victory() -> void:
+    self.set_state(State.VICTORY)
+    self.get_tree().paused = true
+    #Music.play_track(Music.Track.Victory, false, true, Music.VOLUME_DEFAULT, 0.5, 0.2)
+    #get_tree().paused = true
+
 func set_state(new_state: State) -> void:
     state = new_state
     match state:
         State.IN_WAVE:
             game_over_ui.visible = false
             wave_ui.visible = true
+            victory_ui.visible = false
         State.GAME_OVER:
             game_over_ui.visible = true
             wave_ui.visible = false
+            victory_ui.visible = false
+        State.VICTORY:
+            victory_ui.visible = true
+            wave_ui.visible = false
+            game_over_ui.visible = false
         State.NONE:
             game_over_ui.visible = false
             wave_ui.visible = false
+            victory_ui.visible = false
 
 func _on_button_pressed() -> void:
     Log.info("Menu button pressed")
@@ -113,5 +127,10 @@ func get_random_tip() -> String:
     return INTERMISSION_TIPS[Utils.rng.randi_range(0, INTERMISSION_TIPS.size() - 1)]
 
 func _on_game_over_menu_button_pressed() -> void:
+    get_tree().paused = false
+    SceneTransition.change_scene(SceneTransition.Scene.MainMenu)
+
+
+func _on_victory_menu_button_pressed() -> void:
     get_tree().paused = false
     SceneTransition.change_scene(SceneTransition.Scene.MainMenu)
