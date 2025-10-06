@@ -9,6 +9,8 @@ class_name Character
 
 const MELEE_SELF_DAMAGE = 30
 const SPELL_CAST_WAIT_TIME: float = 0.25
+const BASE_MELEE_DAMAGE: int = 50
+const BASE_MOVEMENT_SPEED: float = 2.5
 
 const howling_geist = preload("res://scenes/battle/spells/howling_geist.tscn")
 const bubbling_bile = preload("res://scenes/battle/spells/bubbling_bile.tscn")
@@ -20,7 +22,7 @@ signal got_hit(damage: int, can_die: bool)
 
 func play_bark() -> void:
     var chance = Utils.rng.randi_range(0, 100)
-    if chance < 10:
+    if chance < 5:
         Sfx.play_multitrack(Sfx.MultiTrack.LichBark)
 
 enum Spell {
@@ -31,8 +33,7 @@ enum Spell {
 
 var current_spell: Spell = Spell.HowlingGeist
 
-const BASE_MELEE_DAMAGE: int = 25
-const BASE_MOVEMENT_SPEED: float = 2.5
+
 
 var time_elapsed: float = 0.0
 
@@ -176,7 +177,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     self.animation_player.play("lich_walk")
 
 func melee_hit() -> void:
-    play_bark()
     self.emit_signal("got_hit", MELEE_SELF_DAMAGE, false)
     Sfx.play(Sfx.Track.LichMeleeAttackLaunch, self.global_position)
     var areas = self.melee_area.get_overlapping_areas()

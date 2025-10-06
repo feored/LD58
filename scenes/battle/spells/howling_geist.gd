@@ -2,7 +2,6 @@ extends Node3D
 
 const SPEED = 8.0
 const BASE_TURNING_SPEED = 1.0
-const BASE_DAMAGE = 50
 
 const MOUSE_RANGE = 10.0
 
@@ -16,7 +15,7 @@ var turning_speed : float = BASE_TURNING_SPEED
 func compute_damage() -> int:
     var total_spellpower = GameState.total_stats[Item.Group.SpellDamage]
     var total_spellpower_pc = 1 + (total_spellpower / 100.0)
-    return BASE_DAMAGE * total_spellpower_pc
+    return Constants.BASE_SPELL_DAMAGE * total_spellpower_pc
 
 func compute_tracking() -> float:
     var total_tracking = GameState.total_stats[Item.Group.GeistTracking]
