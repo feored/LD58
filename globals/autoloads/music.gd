@@ -5,6 +5,7 @@ const VOLUME_DEFAULT: float = 5.0 # Default volume in linear scale
 
 const CROSSFADE_VOLUME_MIN: float = -50
 const CROSSFADE_TIME: float = 0.5
+const BATTLE_CROSSFADE_TIME = 15
 
 const MUSIC_BUS_NAME: String = "Music"
 
@@ -35,8 +36,6 @@ const MUSIC_TRACKS = {
     Track.Battle4: preload("res://audio/music/kolekta_battle_4.wav"),
     Track.Battle5: preload("res://audio/music/kolekta_battle_5_noDrums.wav"),
 }
-
-const BATTLE_CROSSFADE_TIME = 2.5
 
 
 var audio_stream_player: AudioStreamPlayer = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=49 format=4 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
@@ -19,6 +19,7 @@
 [ext_resource type="Shader" uid="uid://d2qu2h8fw4kic" path="res://scenes/battle/souls/Shaders/stylized_fire.gdshader" id="16_w40i5"]
 [ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="17_fe4ja"]
 [ext_resource type="Texture2D" uid="uid://bko6oayqcslrd" path="res://scenes/battle/souls/Shaders/StylizedFire/FireMask.png" id="18_sgdsx"]
+[ext_resource type="AudioStream" uid="uid://d268d7eeophhb" path="res://audio/sfx/Dungeon_Ambience.wav" id="20_fe4ja"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1e00"]
 albedo_color = Color(0, 0, 0, 1)
@@ -597,6 +598,11 @@ draw_order = 1
 trail_lifetime = 6.0
 process_material = SubResource("ParticleProcessMaterial_8eh2s")
 draw_pass_1 = SubResource("QuadMesh_e48mi")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_fe4ja")
+volume_db = -10.257
+autoplay = true
 
 [connection signal="got_hit" from="Character" to="UI/WaveUI/EquippedSoulsChain/EquippedSouls" method="_on_character_got_hit"]
 [connection signal="spell_changed" from="Character" to="UI/WaveUI/SpellSelector" method="_on_character_spell_changed"]

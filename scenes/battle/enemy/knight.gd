@@ -79,6 +79,7 @@ func hit_red_tween() -> void:
 
 
 func melee_hit() -> void:
+    Sfx.play_multitrack(Sfx.MultiTrack.KnightSwordLaunch, self.global_position)
     for area in self.melee_area.get_overlapping_areas():
         if area.get_parent() == player_character and area.is_in_group("player_hitbox"):
             player_character.get_hit(DAMAGE)
@@ -91,6 +92,7 @@ func die() -> void:
     self.died.emit(self)
 
 func get_hit(damage: int, knockback = false) -> void:
+    Sfx.play_multitrack(Sfx.MultiTrack.KnightHit, self.global_position)
     life -= damage
     if life <= 0:
         die()

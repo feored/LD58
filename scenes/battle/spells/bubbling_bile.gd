@@ -14,6 +14,7 @@ var time_elapsed: float = 0.0
 var is_biled: bool = false
 
 func _ready() -> void:
+    Sfx.play(Sfx.Track.BubblingBileLaunch, self.global_position)
     bile.visible = false
     bile_area.monitoring = false
 
@@ -46,6 +47,7 @@ func hit_bile() -> void:
             area.get_parent().get_hit(compute_damage())
     
 func explode_bile():
+    Sfx.play(Sfx.Track.BubblingBileExplosion, self.global_position)
     self.base.visible = false
     self.bile.visible = true
     self.bile_area.monitoring = true

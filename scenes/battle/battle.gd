@@ -1,7 +1,7 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 30.0
+const WAVE_DURATION = 40.0
 const BASE_INTERMISSION_DURATION = 8.0
 
 enum State {
@@ -114,10 +114,10 @@ func _on_ui_next_wave() -> void:
 
 func start_next_wave() -> void:
     self.music_state = MusicState.Intro
-    Music.play_track(Music.Track.BattleIntro, false, true)
+    Music.play_track(Music.Track.BattleIntro, false, false)
     Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)
     state = State.Wave
-    spawn_rate = max(0.5, spawn_rate - 0.2)
+    spawn_rate = max(0.25, spawn_rate - 0.2)
     next_spawn_time = 0.0
     time_elapsed = 0.0
     wave_number += 1

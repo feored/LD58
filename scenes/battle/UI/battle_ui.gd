@@ -27,7 +27,6 @@ func _process(delta: float) -> void:
     current_time -= delta
     if not in_intermission:
         if current_time < Music.BATTLE_CROSSFADE_TIME and not launched_transition:
-            current_time = 0.0
             launched_transition = true
             var random_transition_track = Music.get_random_transition_track()
             Music.remove_queued_track()

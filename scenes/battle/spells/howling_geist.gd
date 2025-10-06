@@ -24,6 +24,7 @@ func compute_tracking() -> float:
     return BASE_TURNING_SPEED * total_tracking_pc
 
 func _ready() -> void:
+    Sfx.play(Sfx.Track.HowlingGeistLaunch, self.global_position)
     turning_speed = compute_tracking()
 
 func _physics_process(delta: float) -> void:
@@ -55,6 +56,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
         self.start_explode()
 
 func start_explode():
+    Sfx.play(Sfx.Track.HowlingGeistExplosion, self.global_position)
     self.is_moving = false
     self.base.visible = false
     self.ghost_fire_explosion.emitting = true
