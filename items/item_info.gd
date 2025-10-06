@@ -80,7 +80,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.Fortitude, 0, "Plucky", "of a Tough Guy", Vector2(5, 20)),
 			Item.Affix.new(Item.Group.Fortitude, 1, "Enduring", "of a Bruiser", Vector2(20, 35)),
 			Item.Affix.new(Item.Group.Fortitude, 2, "Unstoppable", "of a Giant", Vector2(35, 65)),
-			Item.Affix.new(Item.Group.Fortitude, 3, "INVINCIBLE", "of an EMPERYEAN ", Vector2(65, 130)),
+			#Item.Affix.new(Item.Group.Fortitude, 3, "INVINCIBLE", "of an EMPERYEAN ", Vector2(65, 130)),
 		],
 		Item.Balance.Negative:
 		[
@@ -96,7 +96,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.MovementSpeed, 0, "Fleet", "of a Health Nut", Vector2(0.5, 1)),
 			Item.Affix.new(Item.Group.MovementSpeed, 1, "Swift", "of a Jock", Vector2(1, 1.5)),
 			Item.Affix.new(Item.Group.MovementSpeed, 2, "Hasty", "of an Athlete", Vector2(1.5, 2.5)),
-			Item.Affix.new(Item.Group.MovementSpeed, 3, "GODSPEED", "of a SPEED DEMON", Vector2(2.5, 5)),
+			#Item.Affix.new(Item.Group.MovementSpeed, 3, "GODSPEED", "of a SPEED DEMON", Vector2(2.5, 5)),
 		],
 		Item.Balance.Negative:
 		[
@@ -112,7 +112,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.MagicFind, 0, "Fortunate", "of a Winner", Vector2(0.01, 0.02)),
 			Item.Affix.new(Item.Group.MagicFind, 1, "Lucky", "of a Lucky Dog", Vector2(0.02, 0.03)),
 			Item.Affix.new(Item.Group.MagicFind, 2, "Blessed", "of a Born Winner", Vector2(0.03, 0.06)),
-			Item.Affix.new(Item.Group.MagicFind, 3, "DESTINED", "of a CHOSEN ONE", Vector2(.06, 0.12)),
+			#Item.Affix.new(Item.Group.MagicFind, 3, "DESTINED", "of a CHOSEN ONE", Vector2(.06, 0.12)),
 		],
 		Item.Balance.Negative:
 		[
@@ -128,7 +128,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.SpellDamage, 0, "Ley-touched", "of a Dabbler", Vector2(8, 16)),
 			Item.Affix.new(Item.Group.SpellDamage, 1, "Magical", "of a Mage", Vector2(16, 24)),
 			Item.Affix.new(Item.Group.SpellDamage, 2, "Arcane", "of a Wizard", Vector2(24, 48)),
-			Item.Affix.new(Item.Group.SpellDamage, 3, "LEY-INFUSED", "of an ARCHMAGE", Vector2(48, 96)),
+			#Item.Affix.new(Item.Group.SpellDamage, 3, "LEY-INFUSED", "of an ARCHMAGE", Vector2(48, 96)),
 		],
 		Item.Balance.Negative:
 		[
@@ -144,7 +144,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.CollectionRange, 0, "Greedy", "of a Cheapskate", Vector2(0.5, 1)),
 			Item.Affix.new(Item.Group.CollectionRange, 1, "Voracious", "of a Hoarder", Vector2(1, 2)),
 			Item.Affix.new(Item.Group.CollectionRange, 2, "Insatiable", "of a Miser", Vector2(2, 3)),
-			Item.Affix.new(Item.Group.CollectionRange, 3, "ALL-CONSUMING", "of a DRAGON", Vector2(3, 4)),
+			#Item.Affix.new(Item.Group.CollectionRange, 3, "ALL-CONSUMING", "of a DRAGON", Vector2(3, 4)),
 		],
 		Item.Balance.Negative:
 		[
@@ -159,7 +159,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.MeleeDamage, 0, "Strong", "of a Fighter", Vector2(4, 8)),
 			Item.Affix.new(Item.Group.MeleeDamage, 1, "Powerful", "of a Soldier", Vector2(8, 16)),
 			Item.Affix.new(Item.Group.MeleeDamage, 2, "Mighty", "of a Warrior", Vector2(16, 48)),
-			Item.Affix.new(Item.Group.MeleeDamage, 3, "UNDEFEATABLE", "of a WAR GOD", Vector2(48, 96)),
+			#Item.Affix.new(Item.Group.MeleeDamage, 3, "UNDEFEATABLE", "of a WAR GOD", Vector2(48, 96)),
 		],
 		Item.Balance.Negative:
 		[
@@ -175,7 +175,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.SoulHoT, 0, "Healing", "of a Fast Healer", Vector2(2, 4)),
 			Item.Affix.new(Item.Group.SoulHoT, 1, "Regenerating", "of a Mutant", Vector2(4, 8)),
 			Item.Affix.new(Item.Group.SoulHoT, 2, "Resurrecting", "of an Demi-God", Vector2(8, 24)),
-			Item.Affix.new(Item.Group.SoulHoT, 3, "MIRACULOUS", "of an IMMORTAL", Vector2(24, 48)),
+			#Item.Affix.new(Item.Group.SoulHoT, 3, "MIRACULOUS", "of an IMMORTAL", Vector2(24, 48)),
 		],
 		Item.Balance.Negative:
 		[
@@ -191,7 +191,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.SoulDuration, 0, "Thoughtful", "of a Window-Shopper", Vector2(1, 2)),
 			Item.Affix.new(Item.Group.SoulDuration, 1, "Deliberate", "of a Trader", Vector2(3, 4)),
 			Item.Affix.new(Item.Group.SoulDuration, 2, "Calculating", "of a Monger", Vector2(5, 8)),
-			Item.Affix.new(Item.Group.SoulDuration, 3, "PRICELESS", "of a EMPEROR", Vector2(8, 16)),
+			#Item.Affix.new(Item.Group.SoulDuration, 3, "PRICELESS", "of a EMPEROR", Vector2(8, 16)),
 		],
 		Item.Balance.Negative:
 		[
@@ -207,7 +207,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.IntermissionDuration, 0, "Lingering", "of a Stroller", Vector2(1, 2)),
 			Item.Affix.new(Item.Group.IntermissionDuration, 1, "Patient", "of a Stoic", Vector2(3, 4)),
 			Item.Affix.new(Item.Group.IntermissionDuration, 2, "Zen", "of a Saint", Vector2(5, 8)),
-			Item.Affix.new(Item.Group.IntermissionDuration, 3, "UNMOVABLE", "of a MESSIAH", Vector2(8, 16)),
+			#Item.Affix.new(Item.Group.IntermissionDuration, 3, "UNMOVABLE", "of a MESSIAH", Vector2(8, 16)),
 		],
 		Item.Balance.Negative:
 		[
@@ -223,7 +223,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.GeistTracking, 0, "Spooky", "of a Medium", Vector2(10, 20)),
 			Item.Affix.new(Item.Group.GeistTracking, 1, "Ghastly", "of a Conjurer", Vector2(20, 50)),
 			Item.Affix.new(Item.Group.GeistTracking, 2, "Macabre", "of a Warlock", Vector2(50, 100)),
-			Item.Affix.new(Item.Group.GeistTracking, 3, "HELLISH", "of a DEVIL", Vector2(100, 200)),
+			#Item.Affix.new(Item.Group.GeistTracking, 3, "HELLISH", "of a DEVIL", Vector2(100, 200)),
 		],
 		Item.Balance.Negative:
 		[
@@ -239,7 +239,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.BilePoolDuration, 0, "Sizzling", "of a Mixologist", Vector2(0.5, 1.0)),
 			Item.Affix.new(Item.Group.BilePoolDuration, 1, "Eroding", "of a Sage", Vector2(1.0, 2.0)),
 			Item.Affix.new(Item.Group.BilePoolDuration, 2, "Caustic", "of an Alchemist", Vector2(2.0, 3.5)),
-			Item.Affix.new(Item.Group.BilePoolDuration, 3, "UNMUTABLE", "of an ALKEHEST", Vector2(3.5, 7)),
+			#Item.Affix.new(Item.Group.BilePoolDuration, 3, "UNMUTABLE", "of an ALKEHEST", Vector2(3.5, 7)),
 		],
 		Item.Balance.Negative:
 		[
@@ -255,7 +255,7 @@ var AFFIXES = {
 			Item.Affix.new(Item.Group.BloodfireWaveDuration, 0, "Dripping", "of a Killer", Vector2(0.2, 0.4)),
 			Item.Affix.new(Item.Group.BloodfireWaveDuration, 1, "Gushing", "of a Murderer", Vector2(0.4, 0.8)),
 			Item.Affix.new(Item.Group.BloodfireWaveDuration, 2, "Hemorraging", "of a Diablerist", Vector2(0.8, 2.4)),
-			Item.Affix.new(Item.Group.BloodfireWaveDuration, 3, "BLOOD-BOILING", "of a BLOODMAGE", Vector2(2.4, 4.8)),
+			#Item.Affix.new(Item.Group.BloodfireWaveDuration, 3, "BLOOD-BOILING", "of a BLOODMAGE", Vector2(2.4, 4.8)),
 		],
 		Item.Balance.Negative:
 		[
