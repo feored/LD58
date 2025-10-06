@@ -73,185 +73,185 @@ const DROP_CHANCES = {
 # UNSUPPORTED YET: MAGIC FIND, BLOOD SHARDS
 
 var AFFIXES = {
-	Item.Group.Fortitude:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.Fortitude, 0, "Plucky", "of a Tough Guy", Vector2(5, 20)),
-			Item.Affix.new(Item.Group.Fortitude, 1, "Enduring", "of a Bruiser", Vector2(20, 35)),
-			Item.Affix.new(Item.Group.Fortitude, 2, "Unstoppable", "of a Giant", Vector2(35, 65)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.Fortitude, 0, "Sickly", "of a Wimp", Vector2(-5, -20), true),
-			Item.Affix.new(Item.Group.Fortitude, 1, "Frail", "of a Pushover", Vector2(-20, -35), true),
-			Item.Affix.new(Item.Group.Fortitude, 2, "Feeble", "of a Weakling", Vector2(-35, -65), true),
-		]
-	},
-	Item.Group.MovementSpeed:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.MovementSpeed, 0, "Fleet", "of a Health Nut", Vector2(0.5, 1)),
-			Item.Affix.new(Item.Group.MovementSpeed, 1, "Swift", "of a Jock", Vector2(1, 1.5)),
-			Item.Affix.new(Item.Group.MovementSpeed, 2, "Hasty", "of an Athlete", Vector2(1.5, 2.5)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.MovementSpeed, 0, "Lazy", "of a Dawdler", Vector2(-0.5, -1), true),
-			Item.Affix.new(Item.Group.MovementSpeed, 1, "Lethargic", "of an Idler", Vector2(-1, -1.5), true),
-			Item.Affix.new(Item.Group.MovementSpeed, 2, "Indolent", "of a Sluggard", Vector2(-1.5, -2.5), true),
-		]
-	},
-	Item.Group.MagicFind:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.MagicFind, 0, "Fortunate", "of a Winner", Vector2(0.01, 0.02)),
-			Item.Affix.new(Item.Group.MagicFind, 1, "Lucky", "of a Lucky Dog", Vector2(0.02, 0.03)),
-			Item.Affix.new(Item.Group.MagicFind, 2, "Blessed", "of a Born Winner", Vector2(0.03, 0.06)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.MagicFind, 0, "Unfortunate", "of a Loser", Vector2(-0.01, -0.02), true),
-			Item.Affix.new(Item.Group.MagicFind, 1, "Unlucky", "of an Unlucky Bastard", Vector2(-0.02, 0.03), true),
-			Item.Affix.new(Item.Group.MagicFind, 2, "Cursed", "of a Born Loser", Vector2(-0.03, -0.06), true),
-		]
-	},
-	Item.Group.SpellDamage:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.SpellDamage, 0, "Ley-touched", "of a Dabbler", Vector2(8, 16)),
-			Item.Affix.new(Item.Group.SpellDamage, 1, "Magical", "of a Mage", Vector2(16, 24)),
-			Item.Affix.new(Item.Group.SpellDamage, 2, "Arcane", "of a Wizard", Vector2(24, 48)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.SpellDamage, 0, "Ungifted", "of a Skeptic", Vector2(-8, -16), true),
-			Item.Affix.new(Item.Group.SpellDamage, 1, "Leyless", "of a Cynic", Vector2(-16, -24), true),
-			Item.Affix.new(Item.Group.SpellDamage, 2, "Cold-Iron", "of a Realist", Vector2(-24, -48), true),
-		]
-	},
-	Item.Group.CollectionRange:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.CollectionRange, 0, "Greedy", "of a Cheapskate", Vector2(0.5, 1)),
-			Item.Affix.new(Item.Group.CollectionRange, 1, "Voracious", "of a Hoarder", Vector2(1, 2)),
-			Item.Affix.new(Item.Group.CollectionRange, 2, "Insatiable", "of a Miser", Vector2(2, 3)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.CollectionRange, 0, "Austere", "of a Cottager", Vector2(-0.5, -1), true),
-			Item.Affix.new(Item.Group.CollectionRange, 1, "Spartan", "of a Hermit", Vector2(-1, -2), true),			Item.Affix.new(Item.Group.CollectionRange, 2, "Ascetic", "of a Monk", Vector2(-2, -3), true),
-		]
-	},
-	Item.Group.MeleeDamage:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.MeleeDamage, 0, "Strong", "of a Fighter", Vector2(4, 8)),
-			Item.Affix.new(Item.Group.MeleeDamage, 1, "Powerful", "of a Soldier", Vector2(8, 16)),
-			Item.Affix.new(Item.Group.MeleeDamage, 2, "Mighty", "of a Warrior", Vector2(16, 48)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.MeleeDamage, 0, "Timid", "of a Scaredycat", Vector2(-4, -8), true),
-			Item.Affix.new(Item.Group.MeleeDamage, 1, "Cowardly", "of a Poltroon", Vector2(-8, -16), true),
-			Item.Affix.new(Item.Group.MeleeDamage, 2, "Craven", "of a Chickenheart", Vector2(-16, -48), true),
-		]
-	},
-	Item.Group.SoulHoT:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.SoulHoT, 0, "Healing", "of a Fast Healer", Vector2(2, 4)),
-			Item.Affix.new(Item.Group.SoulHoT, 1, "Regenerating", "of a Mutant", Vector2(4, 8)),
-			Item.Affix.new(Item.Group.SoulHoT, 2, "Resurrecting", "of an Immortal", Vector2(8, 24)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.SoulHoT, 0, "Poisoned", "of a Seoc", Vector2(-2, -4), true),
-			Item.Affix.new(Item.Group.SoulHoT, 1, "Decaying", "of a Lunger", Vector2(-4, -8), true),
-			Item.Affix.new(Item.Group.SoulHoT, 2, "Ephemeral", "of a Leper", Vector2(-8, -24), true),
-		]
-	},
-	Item.Group.SoulDuration:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.SoulDuration, 0, "Thoughtful", "of a Window-Shopper", Vector2(1, 2)),
-			Item.Affix.new(Item.Group.SoulDuration, 1, "Deliberate", "of a Trader", Vector2(3, 4)),
-			Item.Affix.new(Item.Group.SoulDuration, 2, "Calculating", "of a Monger", Vector2(5, 8)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.SoulDuration, 0, "Negligent", "of an Airhead", Vector2(-1, -2), true),
-			Item.Affix.new(Item.Group.SoulDuration, 1, "Carefree", "of a Ninny", Vector2(-2, -3), true),
-			Item.Affix.new(Item.Group.SoulDuration, 2, "Reckless", "of a Dingbat", Vector2(-4, -8), true),
-		]
-	},
-	Item.Group.IntermissionDuration:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.IntermissionDuration, 0, "Lingering", "of a Stroller", Vector2(1, 2)),
-			Item.Affix.new(Item.Group.IntermissionDuration, 1, "Patient", "of a Stoic", Vector2(3, 4)),
-			Item.Affix.new(Item.Group.IntermissionDuration, 2, "Zen", "of a Saint", Vector2(5, 8)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.IntermissionDuration, 0, "Hurried", "of a Fidgeter", Vector2(-1, -2), true),
-			Item.Affix.new(Item.Group.IntermissionDuration, 1, "Impatient", "of an Eager Beaver", Vector2(-2, -3), true),
-			Item.Affix.new(Item.Group.IntermissionDuration, 2, "Impetuous", "of a Maniac", Vector2(-4, -8), true),
-		]
-	},
-	Item.Group.GeistTracking:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.GeistTracking, 0, "Spooky", "of a Medium", Vector2(10, 20)),
-			Item.Affix.new(Item.Group.GeistTracking, 1, "Ghastly", "of a Conjurer", Vector2(20, 50)),
-			Item.Affix.new(Item.Group.GeistTracking, 2, "Macabre", "of a Warlock", Vector2(50, 100)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.GeistTracking, 0, "Corny", "of a Phony", Vector2(-10, -20), true),
-			Item.Affix.new(Item.Group.GeistTracking, 1, "Laughable", "of a Charlatan", Vector2(-20, -50), true),
-			Item.Affix.new(Item.Group.GeistTracking, 2, "Pathetic", "of a Sham", Vector2(-50, -100), true),
-		]
-	},
-	Item.Group.BilePoolDuration:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.BilePoolDuration, 0, "Sizzling", "of a Mixologist", Vector2(0.5, 1.0)),
-			Item.Affix.new(Item.Group.BilePoolDuration, 1, "Eroding", "of a Sage", Vector2(1.0, 2.0)),
-			Item.Affix.new(Item.Group.BilePoolDuration, 2, "Caustic", "of an Alchemist", Vector2(2.0, 3.5)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.BilePoolDuration, 0, "Tidy", "of a Neatnik", Vector2(-0.5, -1.0), true),
-			Item.Affix.new(Item.Group.BilePoolDuration, 1, "Untarished", "of a Clean Freak", Vector2(-1.0, -2.0), true),
-			Item.Affix.new(Item.Group.BilePoolDuration, 2, "Spotless", "of a Germaphobe", Vector2(-2.0, -3.5), true),
-		]
-	},
-	Item.Group.BloodshardAbility:
-	{
-		Item.Balance.Positive:
-		[
-			Item.Affix.new(Item.Group.BloodshardAbility, 0, "Dripping", "of a Killer", Vector2(0.1, 0.2)),
-			Item.Affix.new(Item.Group.BloodshardAbility, 1, "Gushing", "of a Murderer", Vector2(0.2, 0.3)),
-			Item.Affix.new(Item.Group.BloodshardAbility, 2, "Hemorraging", "of a Diablerist", Vector2(0.3, 0.5)),
-		],
-		Item.Balance.Negative:
-		[
-			Item.Affix.new(Item.Group.BloodshardAbility, 0, "Staunched", "of a Thinblood", Vector2(-0.1, -0.2), true),
-			Item.Affix.new(Item.Group.BloodshardAbility, 1, "Cauterized", "of an Anemic", Vector2(-0.2, -0.3), true),
-			Item.Affix.new(Item.Group.BloodshardAbility, 2, "Bloodless", "of a Goner", Vector2(-0.3, -0.5), true),
-		]
-	},
+    Item.Group.Fortitude:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.Fortitude, 0, "Plucky", "of a Tough Guy", Vector2(5, 20)),
+            Item.Affix.new(Item.Group.Fortitude, 1, "Enduring", "of a Bruiser", Vector2(20, 35)),
+            Item.Affix.new(Item.Group.Fortitude, 2, "Unstoppable", "of a Giant", Vector2(35, 65)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.Fortitude, 0, "Sickly", "of a Wimp", Vector2(-5, -20), true),
+            Item.Affix.new(Item.Group.Fortitude, 1, "Frail", "of a Pushover", Vector2(-20, -35), true),
+            Item.Affix.new(Item.Group.Fortitude, 2, "Feeble", "of a Weakling", Vector2(-35, -65), true),
+        ]
+    },
+    Item.Group.MovementSpeed:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.MovementSpeed, 0, "Fleet", "of a Health Nut", Vector2(0.5, 1)),
+            Item.Affix.new(Item.Group.MovementSpeed, 1, "Swift", "of a Jock", Vector2(1, 1.5)),
+            Item.Affix.new(Item.Group.MovementSpeed, 2, "Hasty", "of an Athlete", Vector2(1.5, 2.5)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.MovementSpeed, 0, "Lazy", "of a Dawdler", Vector2(-0.5, -1), true),
+            Item.Affix.new(Item.Group.MovementSpeed, 1, "Lethargic", "of an Idler", Vector2(-1, -1.5), true),
+            Item.Affix.new(Item.Group.MovementSpeed, 2, "Indolent", "of a Sluggard", Vector2(-1.5, -2.5), true),
+        ]
+    },
+    Item.Group.MagicFind:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.MagicFind, 0, "Fortunate", "of a Winner", Vector2(0.01, 0.02)),
+            Item.Affix.new(Item.Group.MagicFind, 1, "Lucky", "of a Lucky Dog", Vector2(0.02, 0.03)),
+            Item.Affix.new(Item.Group.MagicFind, 2, "Blessed", "of a Born Winner", Vector2(0.03, 0.06)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.MagicFind, 0, "Unfortunate", "of a Loser", Vector2(-0.01, -0.02), true),
+            Item.Affix.new(Item.Group.MagicFind, 1, "Unlucky", "of an Unlucky Bastard", Vector2(-0.02, 0.03), true),
+            Item.Affix.new(Item.Group.MagicFind, 2, "Cursed", "of a Born Loser", Vector2(-0.03, -0.06), true),
+        ]
+    },
+    Item.Group.SpellDamage:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.SpellDamage, 0, "Ley-touched", "of a Dabbler", Vector2(8, 16)),
+            Item.Affix.new(Item.Group.SpellDamage, 1, "Magical", "of a Mage", Vector2(16, 24)),
+            Item.Affix.new(Item.Group.SpellDamage, 2, "Arcane", "of a Wizard", Vector2(24, 48)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.SpellDamage, 0, "Ungifted", "of a Skeptic", Vector2(-8, -16), true),
+            Item.Affix.new(Item.Group.SpellDamage, 1, "Leyless", "of a Cynic", Vector2(-16, -24), true),
+            Item.Affix.new(Item.Group.SpellDamage, 2, "Cold-Iron", "of a Realist", Vector2(-24, -48), true),
+        ]
+    },
+    Item.Group.CollectionRange:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.CollectionRange, 0, "Greedy", "of a Cheapskate", Vector2(0.5, 1)),
+            Item.Affix.new(Item.Group.CollectionRange, 1, "Voracious", "of a Hoarder", Vector2(1, 2)),
+            Item.Affix.new(Item.Group.CollectionRange, 2, "Insatiable", "of a Miser", Vector2(2, 3)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.CollectionRange, 0, "Austere", "of a Cottager", Vector2(-0.5, -1), true),
+            Item.Affix.new(Item.Group.CollectionRange, 1, "Spartan", "of a Hermit", Vector2(-1, -2), true),			Item.Affix.new(Item.Group.CollectionRange, 2, "Ascetic", "of a Monk", Vector2(-2, -3), true),
+        ]
+    },
+    Item.Group.MeleeDamage:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.MeleeDamage, 0, "Strong", "of a Fighter", Vector2(4, 8)),
+            Item.Affix.new(Item.Group.MeleeDamage, 1, "Powerful", "of a Soldier", Vector2(8, 16)),
+            Item.Affix.new(Item.Group.MeleeDamage, 2, "Mighty", "of a Warrior", Vector2(16, 48)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.MeleeDamage, 0, "Timid", "of a Scaredycat", Vector2(-4, -8), true),
+            Item.Affix.new(Item.Group.MeleeDamage, 1, "Cowardly", "of a Poltroon", Vector2(-8, -16), true),
+            Item.Affix.new(Item.Group.MeleeDamage, 2, "Craven", "of a Chickenheart", Vector2(-16, -48), true),
+        ]
+    },
+    Item.Group.SoulHoT:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.SoulHoT, 0, "Healing", "of a Fast Healer", Vector2(2, 4)),
+            Item.Affix.new(Item.Group.SoulHoT, 1, "Regenerating", "of a Mutant", Vector2(4, 8)),
+            Item.Affix.new(Item.Group.SoulHoT, 2, "Resurrecting", "of an Immortal", Vector2(8, 24)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.SoulHoT, 0, "Poisoned", "of a Seoc", Vector2(-2, -4), true),
+            Item.Affix.new(Item.Group.SoulHoT, 1, "Decaying", "of a Lunger", Vector2(-4, -8), true),
+            Item.Affix.new(Item.Group.SoulHoT, 2, "Ephemeral", "of a Leper", Vector2(-8, -24), true),
+        ]
+    },
+    Item.Group.SoulDuration:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.SoulDuration, 0, "Thoughtful", "of a Window-Shopper", Vector2(1, 2)),
+            Item.Affix.new(Item.Group.SoulDuration, 1, "Deliberate", "of a Trader", Vector2(3, 4)),
+            Item.Affix.new(Item.Group.SoulDuration, 2, "Calculating", "of a Monger", Vector2(5, 8)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.SoulDuration, 0, "Negligent", "of an Airhead", Vector2(-1, -2), true),
+            Item.Affix.new(Item.Group.SoulDuration, 1, "Carefree", "of a Ninny", Vector2(-2, -3), true),
+            Item.Affix.new(Item.Group.SoulDuration, 2, "Reckless", "of a Dingbat", Vector2(-4, -8), true),
+        ]
+    },
+    Item.Group.IntermissionDuration:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.IntermissionDuration, 0, "Lingering", "of a Stroller", Vector2(1, 2)),
+            Item.Affix.new(Item.Group.IntermissionDuration, 1, "Patient", "of a Stoic", Vector2(3, 4)),
+            Item.Affix.new(Item.Group.IntermissionDuration, 2, "Zen", "of a Saint", Vector2(5, 8)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.IntermissionDuration, 0, "Hurried", "of a Fidgeter", Vector2(-1, -2), true),
+            Item.Affix.new(Item.Group.IntermissionDuration, 1, "Impatient", "of an Eager Beaver", Vector2(-2, -3), true),
+            Item.Affix.new(Item.Group.IntermissionDuration, 2, "Impetuous", "of a Maniac", Vector2(-4, -8), true),
+        ]
+    },
+    Item.Group.GeistTracking:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.GeistTracking, 0, "Spooky", "of a Medium", Vector2(10, 20)),
+            Item.Affix.new(Item.Group.GeistTracking, 1, "Ghastly", "of a Conjurer", Vector2(20, 50)),
+            Item.Affix.new(Item.Group.GeistTracking, 2, "Macabre", "of a Warlock", Vector2(50, 100)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.GeistTracking, 0, "Corny", "of a Phony", Vector2(-10, -20), true),
+            Item.Affix.new(Item.Group.GeistTracking, 1, "Laughable", "of a Charlatan", Vector2(-20, -50), true),
+            Item.Affix.new(Item.Group.GeistTracking, 2, "Pathetic", "of a Sham", Vector2(-50, -100), true),
+        ]
+    },
+    Item.Group.BilePoolDuration:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.BilePoolDuration, 0, "Sizzling", "of a Mixologist", Vector2(0.5, 1.0)),
+            Item.Affix.new(Item.Group.BilePoolDuration, 1, "Eroding", "of a Sage", Vector2(1.0, 2.0)),
+            Item.Affix.new(Item.Group.BilePoolDuration, 2, "Caustic", "of an Alchemist", Vector2(2.0, 3.5)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.BilePoolDuration, 0, "Tidy", "of a Neatnik", Vector2(-0.5, -1.0), true),
+            Item.Affix.new(Item.Group.BilePoolDuration, 1, "Untarished", "of a Clean Freak", Vector2(-1.0, -2.0), true),
+            Item.Affix.new(Item.Group.BilePoolDuration, 2, "Spotless", "of a Germaphobe", Vector2(-2.0, -3.5), true),
+        ]
+    },
+    Item.Group.BloodshardAbility:
+    {
+        Item.Balance.Positive:
+        [
+            Item.Affix.new(Item.Group.BloodshardAbility, 0, "Dripping", "of a Killer", Vector2(0.1, 0.2)),
+            Item.Affix.new(Item.Group.BloodshardAbility, 1, "Gushing", "of a Murderer", Vector2(0.2, 0.3)),
+            Item.Affix.new(Item.Group.BloodshardAbility, 2, "Hemorraging", "of a Diablerist", Vector2(0.3, 0.5)),
+        ],
+        Item.Balance.Negative:
+        [
+            Item.Affix.new(Item.Group.BloodshardAbility, 0, "Staunched", "of a Thinblood", Vector2(-0.1, -0.2), true),
+            Item.Affix.new(Item.Group.BloodshardAbility, 1, "Cauterized", "of an Anemic", Vector2(-0.2, -0.3), true),
+            Item.Affix.new(Item.Group.BloodshardAbility, 2, "Bloodless", "of a Goner", Vector2(-0.3, -0.5), true),
+        ]
+    },
 }
 
 func generate_item_type(enemy_type: Constants.EnemyType) -> Item.Type:
