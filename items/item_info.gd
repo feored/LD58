@@ -90,15 +90,15 @@ var AFFIXES = {
 	{
 		Item.Balance.Positive:
 		[
-			Item.Affix.new(Item.Group.MovementSpeed, 0, "Fleet", "of a Health Nut", Vector2(0.05, 0.1)),
-			Item.Affix.new(Item.Group.MovementSpeed, 1, "Swift", "of a Jock", Vector2(0.1, 0.2)),
-			Item.Affix.new(Item.Group.MovementSpeed, 2, "Hasty", "of an Athlete", Vector2(0.2, 0.5)),
+			Item.Affix.new(Item.Group.MovementSpeed, 0, "Fleet", "of a Health Nut", Vector2(0.5, 1)),
+			Item.Affix.new(Item.Group.MovementSpeed, 1, "Swift", "of a Jock", Vector2(1, 1.5)),
+			Item.Affix.new(Item.Group.MovementSpeed, 2, "Hasty", "of an Athlete", Vector2(1.5, 2.5)),
 		],
 		Item.Balance.Negative:
 		[
-			Item.Affix.new(Item.Group.MovementSpeed, 0, "Lazy", "of a Dawdler", Vector2(-0.05, -0.1), true),
-			Item.Affix.new(Item.Group.MovementSpeed, 1, "Lethargic", "of an Idler", Vector2(-0.1, -0.2), true),
-			Item.Affix.new(Item.Group.MovementSpeed, 2, "Indolent", "of a Sluggard", Vector2(-0.2, -0.5), true),
+			Item.Affix.new(Item.Group.MovementSpeed, 0, "Lazy", "of a Dawdler", Vector2(-0.5, -1), true),
+			Item.Affix.new(Item.Group.MovementSpeed, 1, "Lethargic", "of an Idler", Vector2(-1, -1.5), true),
+			Item.Affix.new(Item.Group.MovementSpeed, 2, "Indolent", "of a Sluggard", Vector2(-1.5, -2.5), true),
 		]
 	},
 	Item.Group.MagicFind:
@@ -135,14 +135,14 @@ var AFFIXES = {
 	{
 		Item.Balance.Positive:
 		[
-			Item.Affix.new(Item.Group.CollectionRange, 0, "Greedy", "of a Cheapskate", Vector2(0.2, 0.4)),
-			Item.Affix.new(Item.Group.CollectionRange, 1, "Voracious", "of a Hoarder", Vector2(0.4, 0.8)),
-			Item.Affix.new(Item.Group.CollectionRange, 2, "Insatiable", "of a Miser", Vector2(0.8, 2.4)),
+			Item.Affix.new(Item.Group.CollectionRange, 0, "Greedy", "of a Cheapskate", Vector2(0.5, 1)),
+			Item.Affix.new(Item.Group.CollectionRange, 1, "Voracious", "of a Hoarder", Vector2(1, 2)),
+			Item.Affix.new(Item.Group.CollectionRange, 2, "Insatiable", "of a Miser", Vector2(2, 3)),
 		],
 		Item.Balance.Negative:
 		[
-			Item.Affix.new(Item.Group.CollectionRange, 0, "Austere", "of a Cottager", Vector2(-0.2, -0.4), true),
-			Item.Affix.new(Item.Group.CollectionRange, 1, "Spartan", "of a Hermit", Vector2(-0.4, -0.8), true),			Item.Affix.new(Item.Group.CollectionRange, 2, "Ascetic", "of a Monk", Vector2(-0.8, -2.4), true),
+			Item.Affix.new(Item.Group.CollectionRange, 0, "Austere", "of a Cottager", Vector2(-0.5, -1), true),
+			Item.Affix.new(Item.Group.CollectionRange, 1, "Spartan", "of a Hermit", Vector2(-1, -2), true),			Item.Affix.new(Item.Group.CollectionRange, 2, "Ascetic", "of a Monk", Vector2(-2, -3), true),
 		]
 	},
 	Item.Group.MeleeDamage:
