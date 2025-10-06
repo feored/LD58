@@ -22,7 +22,7 @@ signal got_hit(damage: int, can_die: bool)
 
 func play_bark() -> void:
     var chance = Utils.rng.randi_range(0, 100)
-    if chance < 10:
+    if chance < 5:
         Sfx.play_multitrack(Sfx.MultiTrack.LichBark)
 
 enum Spell {
@@ -177,7 +177,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     self.animation_player.play("lich_walk")
 
 func melee_hit() -> void:
-    play_bark()
     self.emit_signal("got_hit", MELEE_SELF_DAMAGE, false)
     Sfx.play(Sfx.Track.LichMeleeAttackLaunch, self.global_position)
     var areas = self.melee_area.get_overlapping_areas()
