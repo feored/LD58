@@ -129,6 +129,8 @@ func get_random_battle_track() -> Track:
         Track.Battle3,
         Track.Battle4,
         Track.Battle5,
+        Track.Battle6,
+        Track.Battle7,
     ]
     return battle_tracks[randi() % battle_tracks.size()]
 
@@ -136,5 +138,7 @@ func get_random_transition_track() -> Track:
     var transition_tracks = [
         Track.BattleTransition1,
         Track.BattleTransition2,
+        Track.BattleTransition3,
+        Track.BattleTransition4,
     ]
     return transition_tracks[randi() % transition_tracks.size()]
