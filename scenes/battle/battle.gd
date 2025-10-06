@@ -1,7 +1,7 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 20.0
+const WAVE_DURATION = 90.0
 const BASE_INTERMISSION_DURATION = 8.0
 
 enum State {

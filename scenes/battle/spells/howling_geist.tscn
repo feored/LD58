@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhpv0mgqfcaky"]
+[gd_scene load_steps=15 format=3 uid="uid://dhpv0mgqfcaky"]
 
 [ext_resource type="Script" uid="uid://cewwbsbik6pmu" path="res://scenes/battle/spells/howling_geist.gd" id="1_y2cce"]
 [ext_resource type="PackedScene" uid="uid://cjx0nd20g7usn" path="res://scenes/battle/souls/skull_blue.tscn" id="2_0ul6o"]
+[ext_resource type="Shader" uid="uid://d2qu2h8fw4kic" path="res://scenes/battle/souls/Shaders/stylized_fire.gdshader" id="3_xgo3t"]
+[ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="4_jbnia"]
+[ext_resource type="Texture2D" uid="uid://bko6oayqcslrd" path="res://scenes/battle/souls/Shaders/StylizedFire/FireMask.png" id="5_6yyxp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y2cce"]
 radius = 0.75
@@ -9,14 +12,56 @@ radius = 0.75
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ul6o"]
 radius = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2cce"]
-transparency = 1
-albedo_color = Color(0.9843137, 0.039215688, 0, 0.3529412)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xyr2n"]
+render_priority = 0
+shader = ExtResource("3_xgo3t")
+shader_parameter/noise_texture = ExtResource("4_jbnia")
+shader_parameter/texture_mask = ExtResource("5_6yyxp")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
 
-[sub_resource type="SphereMesh" id="SphereMesh_y2cce"]
-material = SubResource("StandardMaterial3D_y2cce")
-radius = 2.0
-height = 4.0
+[sub_resource type="Gradient" id="Gradient_jcnp8"]
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5fa6s"]
+gradient = SubResource("Gradient_jcnp8")
+width = 128
+fill_from = Vector2(0.3580247, 0.55144036)
+fill_to = Vector2(0.781893, 0.69135803)
+
+[sub_resource type="Curve" id="Curve_u6bs8"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_62r3u"]
+width = 128
+curve = SubResource("Curve_u6bs8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pyysg"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = 49.999996
+radial_accel_max = 99.99999
+scale_min = 0.19999999
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_62r3u")
+color_ramp = SubResource("GradientTexture2D_5fa6s")
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_g3ccl"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
 
 [node name="HowlingGeist" type="Node3D"]
 script = ExtResource("1_y2cce")
@@ -37,9 +82,21 @@ monitoring = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea"]
 shape = SubResource("SphereShape3D_0ul6o")
 
-[node name="ExplosionMesh" type="MeshInstance3D" parent="."]
+[node name="GhostFireExplosion" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-visible = false
-mesh = SubResource("SphereMesh_y2cce")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_xyr2n")
+cast_shadow = 0
+emitting = false
+amount = 50
+lifetime = 0.3
+one_shot = true
+speed_scale = 0.8
+randomness = 1.0
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_pyysg")
+draw_pass_1 = SubResource("QuadMesh_g3ccl")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

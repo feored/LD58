@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://brujc4w7d4n8o"]
+[gd_scene load_steps=23 format=4 uid="uid://brujc4w7d4n8o"]
 
 [ext_resource type="Script" uid="uid://oip3wdk0ok5o" path="res://scenes/battle/enemy/knight.gd" id="1_a20df"]
 
@@ -345,6 +345,18 @@ tracks/17/path = NodePath("knight armature/Skeleton3D:foot.R")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = PackedFloat32Array(0, 1, -0.34406304, 0.0018085311, 0.36689302, 0.033333335, 1, -0.33975205, 0.0033106273, 0.31267706, 0.06666667, 1, -0.33096427, 0.0063725924, 0.20215996, 0.1, 1, -0.31968936, 0.01030115, 0.060364433, 0.13333334, 1, -0.30791703, 0.0144030275, -0.08768682, 0.16666667, 1, -0.297637, 0.017984949, -0.21697104, 0.2, 1, -0.293326, 0.019487044, -0.27118692, 0.23333333, 1, -0.29455113, 0.019060167, -0.25577936, 0.26666668, 1, -0.29992452, 0.017187895, -0.18820247, 0.3, 1, -0.3081765, 0.014312621, -0.08442372, 0.36666667, 1, -0.3281348, 0.0073584733, 0.16657594, 0.4, 1, -0.33638677, 0.0044832015, 0.27035472, 0.43333334, 1, -0.34176016, 0.0026109326, 0.33793154, 0.45833334, 1, -0.34406304, 0.0018085311, 0.36689302)
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Enemy Death:emitting")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ywsa5"]
 resource_name = "knighthit"
@@ -621,6 +633,174 @@ radius = 0.84
 [sub_resource type="BoxShape3D" id="BoxShape3D_a20df"]
 size = Vector3(1.485, 2, 1)
 
+[sub_resource type="Shader" id="Shader_tvm4e"]
+code = "// ANCHOR: all
+// This shader is based on Minionsart's stylized fire
+// https://twitter.com/minionsart/status/1132593681452683264?s=20
+shader_type spatial;
+render_mode blend_mix;
+
+// This texture must be seamless!
+// Experiment with the different noises provided in the res://Demos/StylizedFire/ folder
+uniform sampler2D noise_texture;
+
+uniform sampler2D texture_mask;
+uniform float emission_intensity = 2.0;
+uniform float time_scale = 3.0;
+uniform vec2 texture_scale = vec2(1.0);
+uniform float edge_softness = 0.1;
+
+// ANCHOR: varying
+varying vec3 world_coord;
+varying float world_x_dot;
+// END: varying
+
+void vertex() {
+	// ANCHOR: matworld_1
+	// Billboard code, taken directly from a spatial material
+	// create a spatial material, enable billboard with billboard keep scale, and then convert
+	// to shader material, and it will create a shader with this code.
+	mat4 mat_world = mat4(
+			normalize(INV_VIEW_MATRIX[0]) * length(MODEL_MATRIX[0]),
+			normalize(INV_VIEW_MATRIX[1]) * length(MODEL_MATRIX[0]),
+			normalize(INV_VIEW_MATRIX[2]) * length(MODEL_MATRIX[2]),
+			MODEL_MATRIX[3]);
+	// END: matworld_1
+	// ANCHOR: matworld_2
+	mat_world *= mat4(
+			vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(0.0, 0.0, 1.0, 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+	// END: matworld_2
+	// ANCHOR: modelview
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
+	// END: modelview
+	// ANCHOR: varying_calculations
+	// We map the coordinates on the vertical planes xy and zy
+	// we also calculate how to blend between the two based on where the world space normal
+	// is pointing.
+	world_coord = (mat_world * vec4(VERTEX, 1.0)).xyz;
+	vec4 world_normal = (mat_world * vec4(NORMAL, 0.0));
+	world_x_dot =  abs(dot(normalize(world_normal.xyz), vec3(1.0, 0.0, 0.0)));
+	// END: varying_calculations
+}
+
+void fragment() {
+	// ANCHOR: mask
+	// We sample the mask texture based on regular UV
+	// We don't want the particles to show their square shape
+	// so we use a round, black and white, mask texture
+	float mask = texture(texture_mask, UV).r;
+	// END: mask
+	// ANCHOR: pan
+	vec2 time_based_pan = vec2(0.2, 1.0) * (-TIME * time_scale);
+	// END: pan
+	// ANCHOR: noise_planes
+	// We sample the noise both from the xy plane and from the zy plane, adding a time-based
+	// panning. If we didn't do this, we would see the holes of the noise will always be in the
+	// same space in global coordinates. Set the time_scale to zero to see how it would look like.
+	// To add more variation, we could sample from another noise that has a different scale and panning speed.
+	// The additional offset on the zy noise is to avoid mirroring effects when
+	// the view vector is between same-sign x and z axes
+	float noise_xy = texture(noise_texture, world_coord.xy * texture_scale + time_based_pan).r;
+	float noise_zy = texture(noise_texture,
+			world_coord.zy * texture_scale + time_based_pan + vec2(0.7, 0.3)).r;
+	// END: noise_planes
+	// ANCHOR: noise_mix
+	// We blend the noise based on world_x_dot, which is the dot product between
+	// the normal of the billboard plane, and the global x axis. If we face the global
+	// x axis, then we sample from the xy plane, otherwise, we sample from the zy plane
+	float noise = mix(noise_xy, noise_zy, clamp(world_x_dot, 0.0, 1.0));
+	// END: noise_mix
+	// The particle color is assigned to the vertex color, which is called COLOR
+	ALBEDO = COLOR.rgb;
+	// ANCHOR: emission
+	// Assign the same color for emission, multiplied by the emission intensity
+	EMISSION = ALBEDO * emission_intensity;
+	// END: emission
+	// ANCHOR: alpha_erosion
+	// Instead of blending out the particle, we apply a technique called alpha erosion, where we
+	// subtract an erosion amount from the alpha.
+	float alpha = noise * mask;
+	alpha += COLOR.a - 1.0;
+	// END: alpha_erosion
+	// ANCHOR: alpha_clamp
+	// Because we perform a subtraction, we ensure that the alpha is always between 0 and 1.
+	// If the alpha goes negative or above 1, a number of visual artifacts appear.
+	alpha = clamp(alpha, 0.0, 1.0);
+	// END: alpha_clamp
+	// ANCHOR: smoothstep
+	// In order to give this fire a stylized vibe, we use smoothstep to remap the alpha value
+	// We could use step(0.1, alpha), but then there would be an abrupt cut between transparent and
+	// non transparent (exactly as if we discarded the fragment with discard)
+	// smoothstep gives a nice blend on the edges instead
+	ALPHA = smoothstep(0.0, edge_softness, alpha);
+	// END: smoothstep
+}
+// END: all"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asbqy"]
+load_path = "res://.godot/imported/HoleNoise.png-0ef0af8c7b5f5f294890593d1f1aa872.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bclxo"]
+load_path = "res://.godot/imported/FireMask.png-aa0d27a77b9e212aa873e26ef5df344d.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u8vpq"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_tvm4e")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_asbqy")
+shader_parameter/texture_mask = SubResource("CompressedTexture2D_bclxo")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_a20df"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sv4b0"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_a20df")
+width = 128
+
+[sub_resource type="Curve" id="Curve_r78qc"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i442t"]
+width = 128
+curve = SubResource("Curve_r78qc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qpcj3"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape_offset = Vector3(0, -1, 0)
+emission_shape_scale = Vector3(3, 5, 3)
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+radial_velocity_min = 0.49997765
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_i442t")
+color_ramp = SubResource("GradientTexture2D_sv4b0")
+hue_variation_min = 0.10999998
+hue_variation_max = 0.21999997
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_skeop"]
+size = Vector2(0.5, 0.5)
+
 [node name="Enemy" type="Node3D" groups=["enemies"]]
 script = ExtResource("1_a20df")
 
@@ -645,63 +825,63 @@ bones/1/parent = -1
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8573839, 0)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 0.8573839, 0)
-bones/1/rotation = Quaternion(0, -0.3096958, 0, 0.9508357)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "head"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, -3.258414e-07, -3.258414e-07, 0, -1, 0, 1, 0, 0, 0.64552075, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.64552075, 0)
-bones/2/rotation = Quaternion(0.66320646, 0.24526937, -0.24526958, 0.6632066)
+bones/2/rotation = Quaternion(0.7071068, -1.1520234e-07, -1.1520234e-07, 0.7071068)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "arm.L"
 bones/3/parent = 1
 bones/3/rest = Transform3D(0, 1, -3.5527137e-15, -1, 0, 7.549791e-08, 7.549791e-08, -3.5527137e-15, 1, 0.1423456, 0.34096736, -2.2683599e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(0.1423456, 0.34096736, -2.2683599e-08)
-bones/3/rotation = Quaternion(-0.016868416, 0.016868355, -0.92175674, 0.38703436)
-bones/3/scale = Vector3(0.9199075, 1.181712, 0.91990757)
+bones/3/rotation = Quaternion(0.20113422, -0.20113426, -0.91271627, 0.29332453)
+bones/3/scale = Vector3(1.0276785, 0.9468593, 1.0276784)
 bones/4/name = "leg.L"
 bones/4/parent = 1
 bones/4/rest = Transform3D(0.9999533, -0.009661385, -1.5098874e-07, -0.009661388, -0.99995303, 1.458829e-09, -1.5099579e-07, -8.5114615e-17, -1, 0.10593162, -0.1522767, -5.3373173e-09)
 bones/4/enabled = true
 bones/4/position = Vector3(0.10593162, -0.1522767, -5.3373173e-09)
-bones/4/rotation = Quaternion(0.9989203, -0.018654115, -0.00038341613, -0.042545687)
-bones/4/scale = Vector3(0.9978629, 1.0042876, 0.9978629)
+bones/4/rotation = Quaternion(0.9999883, -0.0048307506, -7.5497e-08, -3.6471148e-10)
+bones/4/scale = Vector3(1, 0.99999964, 1)
 bones/5/name = "arm.R"
 bones/5/parent = 1
 bones/5/rest = Transform3D(0, -1, 3.5527137e-15, 1, 0, 7.549791e-08, -7.549791e-08, -3.5527137e-15, 1, -0.1423456, 0.34096736, -2.2683599e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.1423456, 0.34096736, -2.2683599e-08)
-bones/5/rotation = Quaternion(0.011329354, 0.011329391, 0.579779, 0.8146162)
-bones/5/scale = Vector3(0.97343105, 1.0553333, 0.97343105)
+bones/5/rotation = Quaternion(0.33152625, 0.33152637, 0.4435174, 0.76385415)
+bones/5/scale = Vector3(0.86748874, 1.3288383, 0.86748886)
 bones/6/name = "leg.R"
 bones/6/parent = 1
 bones/6/rest = Transform3D(0.9999533, 0.009661385, 1.5098874e-07, 0.009661388, -0.99995303, 1.458829e-09, 1.5099579e-07, -8.5114615e-17, -1, -0.10593162, -0.1522767, -5.3373173e-09)
 bones/6/enabled = true
 bones/6/position = Vector3(-0.10593162, -0.1522767, -5.3373173e-09)
-bones/6/rotation = Quaternion(0.9989203, 0.018679196, 0.0002055233, 0.042534675)
-bones/6/scale = Vector3(0.99786294, 1.0042877, 0.99786294)
+bones/6/rotation = Quaternion(0.9999883, 0.00483075, 7.549701e-08, -3.647114e-10)
+bones/6/scale = Vector3(1, 0.9999998, 1)
 bones/7/name = "hand.L"
 bones/7/parent = -1
 bones/7/rest = Transform3D(0, 1, -3.5527137e-15, -1, 0, 7.549791e-08, 7.549791e-08, -3.5527137e-15, 1, 0.54289955, 1.1983513, -2.2683599e-08)
 bones/7/enabled = true
-bones/7/position = Vector3(0.4000764, 0.86708945, 0.2656854)
-bones/7/rotation = Quaternion(0.9224855, -0.06039064, -0.34305897, -0.166386)
+bones/7/position = Vector3(0.314736, 0.9150336, 0.18400274)
+bones/7/rotation = Quaternion(0.69171435, -0.49356776, -0.45728955, 0.2623137)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "shield"
 bones/8/parent = 7
 bones/8/rest = Transform3D(1, -7.549789e-08, -7.549789e-08, 7.549791e-08, 1.7881393e-07, 0.99999994, -7.549788e-08, -0.99999994, 1.7881393e-07, -1.7763568e-15, 0.0690853, 1.7763568e-15)
 bones/8/enabled = true
-bones/8/position = Vector3(6.9849576e-10, 0.06908527, 4.4703476e-08)
+bones/8/position = Vector3(3.1664968e-08, 0.0690853, 1.4901159e-08)
 bones/8/rotation = Quaternion(-0.70710665, -5.024295e-15, 5.338507e-08, 0.7071069)
 bones/8/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/9/name = "hand.R"
 bones/9/parent = -1
 bones/9/rest = Transform3D(0, -1, 3.5527137e-15, 1, 0, 7.549791e-08, -7.549791e-08, -3.5527137e-15, 1, -0.54289955, 1.1983513, -2.2683599e-08)
 bones/9/enabled = true
-bones/9/position = Vector3(-0.44552127, 1.3367728, -0.30813706)
-bones/9/rotation = Quaternion(-0.46209037, 0.025395574, -0.048645146, 0.88513356)
+bones/9/position = Vector3(-0.38599062, 1.4042155, 0.42611024)
+bones/9/rotation = Quaternion(0.11550355, 0.6897163, 0.15585741, 0.6976094)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "foot.L"
 bones/10/parent = -1
@@ -743,6 +923,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.76)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeArea3D"]
 shape = SubResource("BoxShape3D_a20df")
+
+[node name="Enemy Death" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_u8vpq")
+cast_shadow = 0
+emitting = false
+amount = 60
+lifetime = 0.5
+speed_scale = 2.5
+explosiveness = 0.1
+randomness = 0.3
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_qpcj3")
+draw_pass_1 = SubResource("QuadMesh_skeop")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
