@@ -1,0 +1,149 @@
+[gd_scene load_steps=22 format=3 uid="uid://32wxyboadww5"]
+
+[ext_resource type="Script" uid="uid://bqf0x41wo5oo5" path="res://scenes/battle/enemy/mage_fireball.gd" id="1_goyuy"]
+[ext_resource type="Shader" uid="uid://d2qu2h8fw4kic" path="res://scenes/battle/souls/Shaders/stylized_fire.gdshader" id="1_ocvu0"]
+[ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="2_goyuy"]
+[ext_resource type="Texture2D" uid="uid://bko6oayqcslrd" path="res://scenes/battle/souls/Shaders/StylizedFire/FireMask.png" id="3_ksu7h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5pa0"]
+render_priority = 0
+shader = ExtResource("1_ocvu0")
+shader_parameter/noise_texture = ExtResource("2_goyuy")
+shader_parameter/texture_mask = ExtResource("3_ksu7h")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_mk6yn"]
+colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b0t7e"]
+gradient = SubResource("Gradient_mk6yn")
+width = 128
+
+[sub_resource type="Curve" id="Curve_1f6ho"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yeaj0"]
+width = 128
+curve = SubResource("Curve_1f6ho")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wsrpc"]
+resource_local_to_scene = true
+lifetime_randomness = 0.81
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 3.9999976
+linear_accel_max = 3.9999976
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_yeaj0")
+color = Color(1, 0.5254902, 0.40392157, 1)
+color_ramp = SubResource("GradientTexture2D_b0t7e")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6cjm5"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hwmv2"]
+load_path = "res://.godot/imported/HoleNoise.png-0ef0af8c7b5f5f294890593d1f1aa872.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_phiab"]
+load_path = "res://.godot/imported/FireMask.png-aa0d27a77b9e212aa873e26ef5df344d.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_456np"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_ocvu0")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_hwmv2")
+shader_parameter/texture_mask = SubResource("CompressedTexture2D_phiab")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_spim3"]
+resource_local_to_scene = true
+colors = PackedColorArray(0.980957, 0.801817, 0, 1, 1, 0, 0.447059, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bclxo"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_spim3")
+width = 128
+fill_from = Vector2(0.077747986, 0.18230563)
+
+[sub_resource type="Curve" id="Curve_djnko"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_arxyv"]
+width = 128
+curve = SubResource("Curve_djnko")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fx5iw"]
+resource_local_to_scene = true
+lifetime_randomness = 0.81
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 0.19999775
+linear_accel_max = 0.19999775
+radial_accel_min = 0.99999774
+radial_accel_max = 0.99999774
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_arxyv")
+color = Color(1, 0.5254902, 0.40392157, 1)
+color_ramp = SubResource("GradientTexture2D_bclxo")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yopyw"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fnj4i"]
+radius = 0.2
+
+[node name="MageFireball" type="Node3D"]
+script = ExtResource("1_goyuy")
+
+[node name="Fireball" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+material_override = SubResource("ShaderMaterial_w5pa0")
+cast_shadow = 0
+amount = 15
+lifetime = 0.6
+randomness = 0.6
+fixed_fps = 15
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_wsrpc")
+draw_pass_1 = SubResource("QuadMesh_6cjm5")
+
+[node name="FireballExplosion" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+material_override = SubResource("ShaderMaterial_456np")
+cast_shadow = 0
+emitting = false
+amount = 15
+lifetime = 2.0
+interp_to_end = 0.02
+one_shot = true
+preprocess = 0.44
+speed_scale = 2.0
+explosiveness = 1.0
+fixed_fps = 15
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_fx5iw")
+draw_pass_1 = SubResource("QuadMesh_yopyw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_fnj4i")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

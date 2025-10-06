@@ -1,7 +1,8 @@
 extends Node3D
 class_name Battle
 
-const WAVE_DURATION = 40.0
+const WAVE_DURATION = 90.0
+const MAX_WAVES = 5
 const BASE_INTERMISSION_DURATION = 8.0
 
 enum State {
@@ -76,13 +77,20 @@ func get_random_enemy(wave: int) -> PackedScene:
 
 func spawn_enemy() -> void:
     var enemy_instance = get_random_enemy(min(wave_number, Constants.ENEMY_SPAWN_CHANCES.size() - 1)).instantiate()
-    enemy_instance.position = Vector3(
-        randf() * Constants.ARENA_SIZE_X - (Constants.ARENA_SIZE_X / 2.0),
-        0.5,
-        randf() * Constants.ARENA_SIZE_Y - (Constants.ARENA_SIZE_Y / 2.0)
-    )
+    const MIN_DISTANCE_FROM_PLAYER = 15.0
+    var enemy_position: Vector3 = Vector3.ZERO
+    var r = MIN_DISTANCE_FROM_PLAYER * sqrt(Utils.rng.randf())
+    var theta = Utils.rng.randf() * 2.0 * PI
+    enemy_position.x += r * cos(theta)
+    enemy_position.z += r * sin(theta)
+    enemy_position.y = 0.5
+    if (enemy_position.z - self.player_character.global_position.x) < MIN_DISTANCE_FROM_PLAYER:
+        enemy_position.x += MIN_DISTANCE_FROM_PLAYER
+    if (enemy_position.z - self.player_character.global_position.z) < MIN_DISTANCE_FROM_PLAYER:
+        enemy_position.z += MIN_DISTANCE_FROM_PLAYER
     enemy_instance.died.connect(enemy_died)
     add_child(enemy_instance)
+    enemy_instance.global_position = enemy_position + player_character.global_position
     enemy_instance.player_character = player_character
     # enemy_instance.get_enemies = func(): return self.enemies
     enemies.push_back(enemy_instance)
@@ -102,6 +110,9 @@ func spawn_soul(spawn_position: Vector3, enemy_type : Constants.EnemyType = Cons
 
 func check_wave() -> void:
     if time_elapsed > WAVE_DURATION:
+        if wave_number >= MAX_WAVES:
+            UI.set_victory()
+            return
         start_intermission()
 
 func start_intermission() -> void:
@@ -135,17 +146,20 @@ func _on_ui_next_wave() -> void:
     return
 
 func start_next_wave() -> void:
+    wave_number += 1
     self.music_state = MusicState.Intro
-    Music.play_track(Music.Track.BattleIntro, false, false)
+    Music.play_track(Music.get_random_intro_track(), false, false)
     Music.queue_next_track(Music.get_random_battle_track(), false, 0.05)
     state = State.Wave
     spawn_rate = max(0.25, spawn_rate - 0.2)
     next_spawn_time = 0.0
     time_elapsed = 0.0
-    wave_number += 1
+    
     UI.set_wave(wave_number, WAVE_DURATION)
 
 
 func _on_equipped_souls_died() -> void:
-    Log.info("Player has died")
-    SceneTransition.change_scene(SceneTransition.Scene.MainMenu)
+    player_character.die()
+    await Utils.wait(3.0)
+    # SceneTransition.change_scene(SceneTransition.Scene.MainMenu)
+    UI.set_game_over(wave_number)

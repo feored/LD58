@@ -2,7 +2,7 @@ extends Node3D
 
 signal died(enemy: Node3D)
 
-var life: int = Utils.rng.randi_range(750, 1500)
+var life: int = Utils.rng.randi_range(375, 500)
 
 const DAMAGE = 70
 const HIT_ANIMATION_TIME = 0.15
@@ -15,7 +15,7 @@ const COOLDOWN_BETWEEN_ATTACKS = 1.0
 
 var type: Constants.EnemyType = Constants.EnemyType.Knight
 var player_character: Node3D = null
-var speed: float = Utils.rng.randf_range(2.5, 5.7)
+var speed: float = Utils.rng.randf_range(2.2, 2.8)
 var is_hit: bool = false
 var is_dead : bool = false
 var is_swinging: bool = false
@@ -89,6 +89,7 @@ func die() -> void:
     Sfx.play_multitrack(Sfx.MultiTrack.KnightDeath, self.global_position)
     self.is_dead = true
     self.animation_player.play("knightdeath")
+    %EnemyDeath.emitting = true
     await Utils.wait(0.5)
     self.died.emit(self)
 

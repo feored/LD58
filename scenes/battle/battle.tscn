@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://bah67ey81q3j"]
+[gd_scene load_steps=59 format=4 uid="uid://bah67ey81q3j"]
 
 [ext_resource type="Script" uid="uid://d3rj5ma2lphnf" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dgsdmqqw8epq0" path="res://scenes/battle/character/character.tscn" id="1_ffvsa"]
@@ -268,6 +268,52 @@ color_ramp = SubResource("GradientTexture2D_n6gaa")
 resource_local_to_scene = true
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_fe4ja"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sgdsx"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_fe4ja")
+width = 128
+fill_from = Vector2(0.2707775, 0.6970509)
+fill_to = Vector2(0.98659515, 0.9436997)
+
+[sub_resource type="Curve" id="Curve_n3qg2"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_asbqy"]
+width = 128
+curve = SubResource("Curve_n3qg2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5moxy"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = 0.99999774
+radial_accel_max = 14.999997
+scale_min = 1.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_asbqy")
+color = Color(18.892157, 0, 0, 1)
+color_ramp = SubResource("GradientTexture2D_sgdsx")
+hue_variation_min = -0.27
+hue_variation_max = -0.18000002
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_156m4"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fisqk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w40i5"]
@@ -370,12 +416,17 @@ mesh = SubResource("ArrayMesh_sgdsx")
 process_material = SubResource("ParticleProcessMaterial_6ofp8")
 draw_pass_1 = SubResource("QuadMesh_mvulk")
 
+[node name="LichDeath" parent="Character" index="6"]
+process_material = SubResource("ParticleProcessMaterial_5moxy")
+draw_pass_1 = SubResource("QuadMesh_156m4")
+
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_xd4uy")
 
 [node name="WaveUI" type="Control" parent="UI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -565,9 +616,8 @@ grow_vertical = 2
 script = ExtResource("6_pll4o")
 inventory = NodePath("../../../../Character/Inventory")
 
-[node name="MenuContainer" type="PanelContainer" parent="UI"]
+[node name="GameOverUI" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
-process_mode = 3
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -576,12 +626,72 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_py4tk")
 
-[node name="NextWaveButton" type="Button" parent="UI/MenuContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="UI/GameOverUI"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverUI/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="UI/GameOverUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6056738, 1.6605109e-06, 3.85046e-07, 1)
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="GameOverWaveLabel" type="Label" parent="UI/GameOverUI/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "You Reached Wave 7"
+horizontal_alignment = 1
+
+[node name="GameOverMenuButton" type="Button" parent="UI/GameOverUI/CenterContainer/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Next Wave"
+text = "Back to Menu"
+
+[node name="VictoryUI" type="PanelContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_py4tk")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/VictoryUI"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VictoryUI/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.61, 0.3558333, 1)
+theme_override_font_sizes/font_size = 32
+text = "Victory"
+horizontal_alignment = 1
+
+[node name="GameOverWaveLabel" type="Label" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "You defeated all waves!
+"
+horizontal_alignment = 1
+
+[node name="GameOverWaveLabel2" type="Label" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7488956, 0.5185086, 0.14095366, 1)
+text = "Post a comment referencing 
+the secret wave 6 enemy so
+we know you've beaten it!"
+horizontal_alignment = 1
+
+[node name="VictoryMenuButton" type="Button" parent="UI/VictoryUI/CenterContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Back to Menu"
 
 [node name="EscMenu" parent="." instance=ExtResource("6_fh7rg")]
 
@@ -676,7 +786,8 @@ bus = &"Ambience"
 [connection signal="spell_no_ammo" from="Character" to="UI/WaveUI/SpellSelector" method="_on_character_spell_no_ammo"]
 [connection signal="next_wave" from="UI" to="." method="_on_ui_next_wave"]
 [connection signal="died" from="UI/WaveUI/EquippedSoulsChain/EquippedSouls" to="." method="_on_equipped_souls_died"]
-[connection signal="pressed" from="UI/MenuContainer/NextWaveButton" to="UI" method="_on_next_wave_button_pressed"]
+[connection signal="pressed" from="UI/GameOverUI/CenterContainer/VBoxContainer/GameOverMenuButton" to="UI" method="_on_game_over_menu_button_pressed"]
+[connection signal="pressed" from="UI/VictoryUI/CenterContainer/VBoxContainer/VictoryMenuButton" to="UI" method="_on_victory_menu_button_pressed"]
 
 [editable path="arena_final"]
 [editable path="Character"]

@@ -6,7 +6,7 @@ const green_skull_scene = preload("res://scenes/battle/souls/skull_green.tscn")
 
 const BASE_LIFETIME = 5.0
 const DISTANCE_TO_GET = 0.25
-const SPEED = 2.0
+const SPEED = 4.0
 
 var target: Node3D = null
 var is_targeting: bool = false
