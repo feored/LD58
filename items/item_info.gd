@@ -271,11 +271,15 @@ func get_random_group(except_groups : Array[Item.Group] = []) -> Item.Group:
     var chosen_group = all_groups[Utils.rng.randi_range(0, all_groups.size() - 1)]
     return Item.Group.get(chosen_group)
 
-func get_random_affix(group: Item.Group, balance: Item.Balance, max_tier = -1) -> Item.Affix:
+func get_random_affix(group: Item.Group, balance: Item.Balance, max_tier = -1, min_tier = -1) -> Item.Affix:
     var affixes = AFFIXES[group][balance]
     if max_tier >= 0:
         affixes = affixes.filter(func(affix):
             return affix.tier <= max_tier
+        )
+    if min_tier >= 0:
+        affixes = affixes.filter(func(affix):
+            return affix.tier >= min_tier
         )
     return affixes[Utils.rng.randi_range(0, affixes.size() - 1)]
 
@@ -327,7 +331,7 @@ func generate_green_item() -> Item:
     for i in NUM_AFFIXES:
         var random_group = get_random_group(already_rolled_groups)
         var random_balance = Item.Balance.Positive if Utils.rng.randi() % 2 == 0 else Item.Balance.Negative
-        var affix = get_random_affix(random_group, random_balance, 2)
+        var affix = get_random_affix(random_group, random_balance, 1)
         item.rolled_affixes.append(Item.RolledAffix.new(affix))
         already_rolled_groups.append(affix.group)
     item.item_name = generate_name(item)
@@ -335,7 +339,22 @@ func generate_green_item() -> Item:
 
 func generate_red_item() -> Item:
     ## At least 1 negative to 2 positive
-    return
+    var item = Item.new()
+    item.item_type = Item.Type.Red
+    item.fortitude = Utils.rng.randi_range(BASE_FORTITUDE[Item.Type.Red].x, BASE_FORTITUDE[Item.Type.Red].y)
+    var NUM_AFFIXES = Utils.rng.randi_range(3, 7)
+    var positive_count = 0
+    var negative_count = 0
+    for i in NUM_AFFIXES:
+        var random_group = get_random_group()
+        var balance = Item.Balance.Negative
+        if negative_count > 2 * positive_count:
+            balance = Item.Balance.Positive if Utils.rng.randi() % 2 == 0 else Item.Balance.Negative
+        var random_balance = Item.Balance.Positive if Utils.rng.randi() % 3 != 0 else Item.Balance.Negative
+        var affix = get_random_affix(random_group, random_balance, 99, 1)
+        item.rolled_affixes.append(Item.RolledAffix.new(affix))
+    item.item_name = generate_name(item)
+    return item
 
 func generate_item(item_type: Item.Type) -> Item:
     match item_type:
