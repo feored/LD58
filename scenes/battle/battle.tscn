@@ -669,6 +669,7 @@ draw_pass_1 = SubResource("QuadMesh_e48mi")
 stream = ExtResource("20_fe4ja")
 volume_db = -10.257
 autoplay = true
+bus = &"Ambience"
 
 [connection signal="got_hit" from="Character" to="UI/WaveUI/EquippedSoulsChain/EquippedSouls" method="_on_character_got_hit"]
 [connection signal="spell_changed" from="Character" to="UI/WaveUI/SpellSelector" method="_on_character_spell_changed"]
