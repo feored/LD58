@@ -84,6 +84,10 @@ func spawn_enemy() -> void:
     enemy_position.x += r * cos(theta)
     enemy_position.z += r * sin(theta)
     enemy_position.y = 0.5
+    if (enemy_position.z - self.player_character.global_position.x) < MIN_DISTANCE_FROM_PLAYER:
+        enemy_position.x += MIN_DISTANCE_FROM_PLAYER
+    if (enemy_position.z - self.player_character.global_position.z) < MIN_DISTANCE_FROM_PLAYER:
+        enemy_position.z += MIN_DISTANCE_FROM_PLAYER
     enemy_instance.died.connect(enemy_died)
     add_child(enemy_instance)
     enemy_instance.global_position = enemy_position + player_character.global_position
