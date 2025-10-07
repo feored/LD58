@@ -69,9 +69,9 @@ const DROP_CHANCES = {
         Item.Type.Red: 0.1
     },
     Constants.EnemyType.KnightCaptain: {
-        Item.Type.Blue: 0.6,
-        Item.Type.Green: 0.3,
-        Item.Type.Red: 0.1
+        Item.Type.Blue: 0.0,
+        Item.Type.Green: 0.7,
+        Item.Type.Red: 0.3
     },
     Constants.EnemyType.Mage: {
         Item.Type.Blue: 0.6,

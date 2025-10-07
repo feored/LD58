@@ -19,11 +19,11 @@ const DEFAULT_WINDOW_RESOLUTIONS = {
 const DEFAULT_SECTION = "settings"
 const DEFAULT_PATH = "user://config.cfg"
 const DEFAULT_CONFIG = {
-	Setting.FullScreen: false,
-	Setting.MasterVolume: 1,
+	Setting.FullScreen: true,
+	Setting.MasterVolume: 0.5,
 	Setting.MusicVolume: 1,
 	Setting.SfxVolume: 1,
-	Setting.WindowResolution: Vector2(1280, 720)
+	Setting.WindowResolution: Vector2(1920, 1080)
 }
 
 @onready var audio_bus = {

@@ -1,12 +1,301 @@
-[gd_scene load_steps=7 format=3 uid="uid://csa7a3e8acaer"]
+[gd_scene load_steps=37 format=3 uid="uid://csa7a3e8acaer"]
 
 [ext_resource type="Script" uid="uid://dp16g45cbyino" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
 [ext_resource type="Theme" uid="uid://c2u68cvn6q7d6" path="res://assets/theme.tres" id="2_0ebjn"]
 [ext_resource type="AudioStream" uid="uid://brk66rs867dnr" path="res://audio/music/kolekta_menu.mp3" id="3_uqeha"]
 [ext_resource type="Texture2D" uid="uid://cpliu2c5adb5a" path="res://assets/images/start_screen_text.png" id="3_wem23"]
 [ext_resource type="AudioStream" uid="uid://q0aq4jt0efgv" path="res://audio/music/kolekta_menu_bass.mp3" id="4_wem23"]
+[ext_resource type="Texture2D" uid="uid://flldwuhtdvhp" path="res://scenes/battle/souls/Shaders/StylizedFire/HoleNoise.png" id="7_lqpn7"]
+[ext_resource type="Texture2D" uid="uid://bko6oayqcslrd" path="res://scenes/battle/souls/Shaders/StylizedFire/FireMask.png" id="8_qel0l"]
+[ext_resource type="PackedScene" uid="uid://bapdkwx7nkigc" path="res://scenes/battle/souls/skull_green.tscn" id="12_tfctf"]
+[ext_resource type="PackedScene" uid="uid://bacajla3hm5jt" path="res://scenes/battle/souls/skull_red.tscn" id="13_n7xlh"]
+[ext_resource type="PackedScene" uid="uid://bsrc8jrr1br1n" path="res://scenes/battle/souls/soul_blue.gltf" id="14_0xlsr"]
+[ext_resource type="Shader" uid="uid://d2qu2h8fw4kic" path="res://scenes/battle/souls/Shaders/stylized_fire.gdshader" id="16_83tid"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wem23"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrgl4"]
+render_priority = 0
+shader = ExtResource("16_83tid")
+shader_parameter/noise_texture = ExtResource("7_lqpn7")
+shader_parameter/texture_mask = ExtResource("8_qel0l")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_dn3lk"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sgdsx"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_dn3lk")
+width = 128
+fill_from = Vector2(0.2707775, 0.6970509)
+fill_to = Vector2(0.98659515, 0.9436997)
+
+[sub_resource type="Curve" id="Curve_4ujhu"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_asbqy"]
+width = 128
+curve = SubResource("Curve_4ujhu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vnpsp"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = 0.99999774
+radial_accel_max = 14.999997
+scale_min = 1.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_asbqy")
+color = Color(18.892157, 0, 0, 1)
+color_ramp = SubResource("GradientTexture2D_sgdsx")
+hue_variation_min = -0.27
+hue_variation_max = -0.18000002
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_a1gy5"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bq5lc"]
+render_priority = 0
+shader = ExtResource("16_83tid")
+shader_parameter/noise_texture = ExtResource("7_lqpn7")
+shader_parameter/texture_mask = ExtResource("8_qel0l")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_xac7c"]
+resource_local_to_scene = true
+colors = PackedColorArray(0.21875, 1, 0, 1, 0, 0.640625, 0.145142, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p1s1o"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_xac7c")
+width = 128
+fill_from = Vector2(0.2922252, 0.71313673)
+fill_to = Vector2(0.92493296, 0.24664879)
+
+[sub_resource type="Curve" id="Curve_0m3cs"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nvdhp"]
+width = 128
+curve = SubResource("Curve_0m3cs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i7nm7"]
+resource_local_to_scene = true
+lifetime_randomness = 0.81
+emission_shape_offset = Vector3(0, -0.3, 0)
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, -90, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 0.2
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 1, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_nvdhp")
+color = Color(0.6841589, 1.1274614, 8.959895, 1)
+color_ramp = SubResource("GradientTexture2D_p1s1o")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tfctf"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Shader" id="Shader_tvm4e"]
+code = "// ANCHOR: all
+// This shader is based on Minionsart's stylized fire
+// https://twitter.com/minionsart/status/1132593681452683264?s=20
+shader_type spatial;
+render_mode blend_mix;
+
+// This texture must be seamless!
+// Experiment with the different noises provided in the res://Demos/StylizedFire/ folder
+uniform sampler2D noise_texture;
+
+uniform sampler2D texture_mask;
+uniform float emission_intensity = 2.0;
+uniform float time_scale = 3.0;
+uniform vec2 texture_scale = vec2(1.0);
+uniform float edge_softness = 0.1;
+
+// ANCHOR: varying
+varying vec3 world_coord;
+varying float world_x_dot;
+// END: varying
+
+void vertex() {
+	// ANCHOR: matworld_1
+	// Billboard code, taken directly from a spatial material
+	// create a spatial material, enable billboard with billboard keep scale, and then convert
+	// to shader material, and it will create a shader with this code.
+	mat4 mat_world = mat4(
+			normalize(INV_VIEW_MATRIX[0]) * length(MODEL_MATRIX[0]),
+			normalize(INV_VIEW_MATRIX[1]) * length(MODEL_MATRIX[0]),
+			normalize(INV_VIEW_MATRIX[2]) * length(MODEL_MATRIX[2]),
+			MODEL_MATRIX[3]);
+	// END: matworld_1
+	// ANCHOR: matworld_2
+	mat_world *= mat4(
+			vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(0.0, 0.0, 1.0, 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+	// END: matworld_2
+	// ANCHOR: modelview
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
+	// END: modelview
+	// ANCHOR: varying_calculations
+	// We map the coordinates on the vertical planes xy and zy
+	// we also calculate how to blend between the two based on where the world space normal
+	// is pointing.
+	world_coord = (mat_world * vec4(VERTEX, 1.0)).xyz;
+	vec4 world_normal = (mat_world * vec4(NORMAL, 0.0));
+	world_x_dot =  abs(dot(normalize(world_normal.xyz), vec3(1.0, 0.0, 0.0)));
+	// END: varying_calculations
+}
+
+void fragment() {
+	// ANCHOR: mask
+	// We sample the mask texture based on regular UV
+	// We don't want the particles to show their square shape
+	// so we use a round, black and white, mask texture
+	float mask = texture(texture_mask, UV).r;
+	// END: mask
+	// ANCHOR: pan
+	vec2 time_based_pan = vec2(0.2, 1.0) * (-TIME * time_scale);
+	// END: pan
+	// ANCHOR: noise_planes
+	// We sample the noise both from the xy plane and from the zy plane, adding a time-based
+	// panning. If we didn't do this, we would see the holes of the noise will always be in the
+	// same space in global coordinates. Set the time_scale to zero to see how it would look like.
+	// To add more variation, we could sample from another noise that has a different scale and panning speed.
+	// The additional offset on the zy noise is to avoid mirroring effects when
+	// the view vector is between same-sign x and z axes
+	float noise_xy = texture(noise_texture, world_coord.xy * texture_scale + time_based_pan).r;
+	float noise_zy = texture(noise_texture,
+			world_coord.zy * texture_scale + time_based_pan + vec2(0.7, 0.3)).r;
+	// END: noise_planes
+	// ANCHOR: noise_mix
+	// We blend the noise based on world_x_dot, which is the dot product between
+	// the normal of the billboard plane, and the global x axis. If we face the global
+	// x axis, then we sample from the xy plane, otherwise, we sample from the zy plane
+	float noise = mix(noise_xy, noise_zy, clamp(world_x_dot, 0.0, 1.0));
+	// END: noise_mix
+	// The particle color is assigned to the vertex color, which is called COLOR
+	ALBEDO = COLOR.rgb;
+	// ANCHOR: emission
+	// Assign the same color for emission, multiplied by the emission intensity
+	EMISSION = ALBEDO * emission_intensity;
+	// END: emission
+	// ANCHOR: alpha_erosion
+	// Instead of blending out the particle, we apply a technique called alpha erosion, where we
+	// subtract an erosion amount from the alpha.
+	float alpha = noise * mask;
+	alpha += COLOR.a - 1.0;
+	// END: alpha_erosion
+	// ANCHOR: alpha_clamp
+	// Because we perform a subtraction, we ensure that the alpha is always between 0 and 1.
+	// If the alpha goes negative or above 1, a number of visual artifacts appear.
+	alpha = clamp(alpha, 0.0, 1.0);
+	// END: alpha_clamp
+	// ANCHOR: smoothstep
+	// In order to give this fire a stylized vibe, we use smoothstep to remap the alpha value
+	// We could use step(0.1, alpha), but then there would be an abrupt cut between transparent and
+	// non transparent (exactly as if we discarded the fragment with discard)
+	// smoothstep gives a nice blend on the edges instead
+	ALPHA = smoothstep(0.0, edge_softness, alpha);
+	// END: smoothstep
+}
+// END: all"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asbqy"]
+load_path = "res://.godot/imported/HoleNoise.png-0ef0af8c7b5f5f294890593d1f1aa872.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bclxo"]
+load_path = "res://.godot/imported/FireMask.png-aa0d27a77b9e212aa873e26ef5df344d.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqpn7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_tvm4e")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_asbqy")
+shader_parameter/texture_mask = SubResource("CompressedTexture2D_bclxo")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="Gradient" id="Gradient_qel0l"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0.976562, 1, 1, 0.335327, 0, 0.640625, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sv4b0"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_qel0l")
+width = 128
+
+[sub_resource type="Curve" id="Curve_rrgl4"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i442t"]
+width = 128
+curve = SubResource("Curve_rrgl4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dn3lk"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+emission_shape_offset = Vector3(0, -1, 0)
+emission_shape_scale = Vector3(3, 5, 3)
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+radial_velocity_min = 0.49997765
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_i442t")
+color_ramp = SubResource("GradientTexture2D_sv4b0")
+hue_variation_min = 0.10999998
+hue_variation_max = 0.21999997
+turbulence_noise_strength = 6.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_4ujhu"]
+size = Vector2(0.5, 0.5)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_fsom3")
@@ -25,8 +314,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_wem23")
 [node name="TextureRect" type="TextureRect" parent="UI/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("3_wem23")
-expand_mode = 5
-stretch_mode = 6
+expand_mode = 3
+stretch_mode = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="UI/PanelContainer"]
 layout_mode = 2
@@ -39,6 +328,7 @@ size_flags_stretch_ratio = 3.0
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="UI/PanelContainer/CenterContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
@@ -67,6 +357,56 @@ stream = ExtResource("4_wem23")
 volume_db = 5.0
 autoplay = true
 bus = &"Music"
+
+[node name="LichDeath" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6, 0)
+material_override = SubResource("ShaderMaterial_rrgl4")
+cast_shadow = 0
+amount = 30
+speed_scale = 1.5
+randomness = 1.0
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_vnpsp")
+draw_pass_1 = SubResource("QuadMesh_a1gy5")
+
+[node name="SkullGreen" parent="." instance=ExtResource("12_tfctf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.245, 0)
+
+[node name="SkullRed" parent="." instance=ExtResource("13_n7xlh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.685, 0, 0)
+
+[node name="Lich Smoke" type="GPUParticles3D" parent="."]
+transform = Transform3D(-3, 0, 4.5298742e-07, 0, 3, 0, -4.5298742e-07, 0, -3, 0, 1, -6.365)
+material_override = SubResource("ShaderMaterial_bq5lc")
+cast_shadow = 0
+amount = 15
+lifetime = 0.5
+fixed_fps = 15
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_i7nm7")
+draw_pass_1 = SubResource("QuadMesh_tfctf")
+
+[node name="soul_blue" parent="." instance=ExtResource("14_0xlsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.365)
+
+[node name="EnemyDeath" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, 0, 4, -11.09)
+material_override = SubResource("ShaderMaterial_lqpn7")
+cast_shadow = 0
+amount = 60
+lifetime = 0.5
+speed_scale = 2.5
+explosiveness = 0.1
+randomness = 0.3
+fixed_fps = 15
+draw_order = 1
+trail_lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_dn3lk")
+draw_pass_1 = SubResource("QuadMesh_4ujhu")
 
 [connection signal="pressed" from="UI/PanelContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="UI/PanelContainer/CenterContainer/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]

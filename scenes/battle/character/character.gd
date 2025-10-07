@@ -7,7 +7,7 @@ class_name Character
 @onready var melee_area: Area3D = %MeleeArea3D
 @onready var inventory: Inventory = %Inventory
 
-const MELEE_SELF_DAMAGE = 30
+const MELEE_SELF_DAMAGE = 20
 const SPELL_CAST_WAIT_TIME: float = 0.25
 const BASE_MELEE_DAMAGE: int = 50
 const BASE_MOVEMENT_SPEED: float = 2.5

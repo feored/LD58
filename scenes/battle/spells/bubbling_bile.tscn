@@ -232,7 +232,6 @@ shape = SubResource("CylinderShape3D_rfals")
 
 [node name="Bile" type="Node3D" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="Pool" type="MeshInstance3D" parent="Bile"]
 unique_name_in_owner = true
@@ -240,11 +239,13 @@ mesh = SubResource("CylinderMesh_i6xcy")
 skeleton = NodePath("../..")
 
 [node name="Acid Pool" type="GPUParticles3D" parent="Bile"]
+visible = false
 material_override = SubResource("ShaderMaterial_5ehmv")
 cast_shadow = 0
-amount = 50
+emitting = false
+amount = 25
 lifetime = 4.0
-fixed_fps = 15
+fixed_fps = 5
 draw_order = 1
 process_material = SubResource("ParticleProcessMaterial_0u2n3")
 draw_pass_1 = SubResource("QuadMesh_iyp4e")
@@ -260,5 +261,6 @@ process_material = SubResource("ParticleProcessMaterial_nrvur")
 draw_pass_1 = SubResource("QuadMesh_8tqjt")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Bile"]
+visible = false
 light_color = Color(0.26399997, 0.88, 0.22, 1)
 omni_attenuation = 2.0

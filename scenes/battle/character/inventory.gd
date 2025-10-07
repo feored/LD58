@@ -6,6 +6,10 @@ signal updated
 const MAX_TOTAL_SOULS: int = 15
 var items: Array[Item] = []
 
+func _ready() -> void:
+    for i in range(3):
+        add_item(ItemInfo.generate_item(Item.Type.Blue))
+
 func add_item(item: Item) -> void:
     Log.info(item)
     items.append(item)

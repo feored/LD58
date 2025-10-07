@@ -100,7 +100,7 @@ func enemy_died(enemy: Node3D) -> void:
     enemies.erase(enemy)
     enemy.queue_free()
     var chance_soul = Utils.rng.randi_range(0, 100)
-    var total_chance = 50 + GameState.total_stats[Item.Group.MagicFind]
+    var total_chance = 80 + GameState.total_stats[Item.Group.MagicFind] * 100
     if chance_soul < total_chance:
         spawn_soul(enemy_position, enemy.type)
 
